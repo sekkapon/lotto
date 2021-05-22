@@ -55,7 +55,7 @@
     $('#formLogin').submit(function(event) {
         event.preventDefault();
         $.ajax({
-            url: '<?= base_url('Login/checkLogin'); ?>',
+            url: '<?= base_url('login/checkLogin'); ?>',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -65,7 +65,7 @@
         }).done(function(res) {
             console.log(res);
             if (res.status == 'success') {
-                window.location.href = '<?= base_url('Admin/index'); ?>'
+                window.location.href = '<?= base_url('backend'); ?>'
             } else {
                 swal({
                     icon: res.status,

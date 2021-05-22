@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 
-$routes->setDefaultNamespace('App\Controllers\Backend');
+$routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Backend');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
@@ -32,19 +32,27 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+// $routes->group('', ['filter' => 'auth'], function ($routes) {
 
-// $routes->group('', ['filter' => 'FilterLogin'], function ($routes) {
-// 	$routes->get('admin', 'Admin\Admin::index');
-
-// 	$routes->group('admin', function ($routes) {
-// 		$routes->get('', 'Admin\Admin::index');
-// 		$routes->get('(:any)', 'Admin\Admin::$1');
-// 		$routes->post('(:any)', 'Admin\Admin::$1');
+// 	$routes->group('backend', function ($routes) {
+// 		$routes->get('', 'Backend\Backend::index');
+// 		$routes->get('(:any)', 'Backend\Backend::$1');
+// 		$routes->post('(:any)', 'Backend\Backend::$1');
 // 	});
 // });
 
-$routes->get('Login/(:any)', 'Login\Login::$1');
-$routes->post('Login/(:any)', 'Login\Login::$1');
+$routes->get('/', 'Backend\Backend::index');
+
+$routes->get('/login', 'Login\Login::index');
+$routes->get('login/(:any)', 'Login\Login::$1');
+$routes->post('login/(:any)', 'Login\Login::$1');
+
+
+$routes->get('/add_user', 'Backend\Add_user::index');
+$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
+
+
+
 
 /*
  * --------------------------------------------------------------------
