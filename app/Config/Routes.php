@@ -32,28 +32,38 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->group('', ['filter' => 'auth'], function ($routes) {
 
-// 	$routes->group('backend', function ($routes) {
-// 		$routes->get('', 'Backend\Backend::index');
-// 		$routes->get('(:any)', 'Backend\Backend::$1');
-// 		$routes->post('(:any)', 'Backend\Backend::$1');
-// 	});
-// });
-$routes->group('', ['filter' => 'auth'], function ($routes) {
-});
+	// ==============================================================================
+	// ==============================Frontend========================================
+	// ==============================================================================
+	$routes->get('/', 'Frontend\Home::index');
+	$routes->group('bet-huay-thai',['filter' => 'auth_mem'], function ($routes) {
+		$routes->get('', 'Frontend\BetHauythai::index');
+	});
+	// login frontend
+	$routes->get('singin', 'Login\Singin::index');
+	$routes->add('singin/(:any)', 'Login\Singin::$1');
 
-$routes->group('backend', ['filter' => 'auth'], function ($routes) {
-	$routes->get('', 'Backend\Backend::index');
 
-	$routes->get('/add_user', 'Backend\Add_user::index');
-	$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
-});
+
+
+
+	// ==============================================================================
+	// ==============================Backend=========================================
+	// ==============================================================================
+	$routes->group('/backend', ['filter' => 'auth'], function ($routes) {
+		$routes->get('', 'Backend\Backend::index');
+
+		$routes->get('/add_user', 'Backend\Add_user::index');
+		$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
+	});
+
+	// login backend
 	$routes->get('login', 'Login\Login::index');
-	$routes->get('login/(:any)', 'Login\Login::$1');
-	$routes->post('login/(:any)', 'Login\Login::$1');
+	$routes->add('login/(:any)', 'Login\Login::$1');
+	
 
-
+	
 
 
 
