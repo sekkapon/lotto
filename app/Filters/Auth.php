@@ -18,8 +18,8 @@ class Auth implements FilterInterface
     {
 
         // Do something here
-        if (!$this->session->has(getenv('session_name'))) {
-            return redirect()->to(base_url($this->language . '/Login/adminLogin'));
+        if (!$this->session->has('session_admin')) {
+            return redirect()->to(base_url('/login'));
         }
     }
 

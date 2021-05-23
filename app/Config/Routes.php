@@ -40,16 +40,19 @@ $routes->setAutoRoute(true);
 // 		$routes->post('(:any)', 'Backend\Backend::$1');
 // 	});
 // });
+$routes->group('', ['filter' => 'auth'], function ($routes) {
+});
 
-$routes->get('/', 'Backend\Backend::index');
+$routes->group('backend', ['filter' => 'auth'], function ($routes) {
+	$routes->get('', 'Backend\Backend::index');
 
-$routes->get('/login', 'Login\Login::index');
-$routes->get('login/(:any)', 'Login\Login::$1');
-$routes->post('login/(:any)', 'Login\Login::$1');
+	$routes->get('/add_user', 'Backend\Add_user::index');
+	$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
+});
+	$routes->get('login', 'Login\Login::index');
+	$routes->get('login/(:any)', 'Login\Login::$1');
+	$routes->post('login/(:any)', 'Login\Login::$1');
 
-
-$routes->get('/add_user', 'Backend\Add_user::index');
-$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
 
 
 
