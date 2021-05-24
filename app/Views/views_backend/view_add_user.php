@@ -1,6 +1,4 @@
 <?php $this->extend('template/content'); ?>
-
-
 <?php $this->section('content'); ?>
 
 <div class="page-heading">
@@ -13,359 +11,178 @@
         </div>
     </div>
 
-    <!-- Basic Horizontal form layout section start -->
-    <section id="basic-vertical-layouts">
-        <div class="row match-height">
-            <div class="col-md-6 col-12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form form-vertical">
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="first-name-icon">Firstname</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" id="firstName">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
-                                                </div>
+    <div class="row match-height">
+        <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label>ชื่อสมาชิก</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control" id="firstName">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-filter-left"></i>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="email-id-icon">Phone</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" id="phone">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-phone"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="mobile-id-icon">Mobile</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Mobile" id="mobile-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-phone"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="password-id-icon">Password</label>
-                                                <div class="position-relative">
-                                                    <input type="password" class="form-control" placeholder="Password" id="password-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-lock"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox mt-2">
-                                                    <input type="checkbox" id="remember-me-v" class='form-check-input' checked>
-                                                    <label for="remember-me-v">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form with Icons</h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form form-vertical">
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="first-name-icon">First Name</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Input with icon left" id="first-name-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
-                                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label>เบอร์โทร</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control" id="phone" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-phone"></i>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-
-                                            <div class="form-group has-icon-left">
-                                                <label for="email-id-icon">Email</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Email" id="email-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-envelope"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="mobile-id-icon">Mobile</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Mobile" id="mobile-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-phone"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="password-id-icon">Password</label>
-                                                <div class="position-relative">
-                                                    <input type="password" class="form-control" placeholder="Password" id="password-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-lock"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox mt-2">
-                                                    <input type="checkbox" id="remember-me-v" class='form-check-input' checked>
-                                                    <label for="remember-me-v">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- // Basic Horizontal form layout section end -->
-
-    <!-- Basic Vertical form layout section start -->
-    <section id="basic-vertical-layouts">
-        <div class="row match-height">
-            <div class="col-md-6 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form</h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form form-vertical">
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-vertical">First Name</label>
-                                                <input type="text" id="first-name-vertical" class="form-control" name="fname" placeholder="First Name">
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label>ยูสเซอร์เนม</label>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control" id="userName">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person"></i>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Email</label>
-                                                <input type="email" id="email-id-vertical" class="form-control" name="email-id" placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="contact-info-vertical">Mobile</label>
-                                                <input type="number" id="contact-info-vertical" class="form-control" name="contact" placeholder="Mobile">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="password-vertical">Password</label>
-                                                <input type="password" id="password-vertical" class="form-control" name="contact" placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" id="checkbox3" class='form-check-input' checked>
-                                                    <label for="checkbox3">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Vertical Form with Icons</h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form form-vertical">
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="first-name-icon">First Name</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Input with icon left" id="first-name-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
-                                                </div>
+                                <div class="col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label>พาสเวิร์ด</label>
+                                        <div class="position-relative">
+                                            <input type="password" class="form-control" id="password">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-lock"></i>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-
-                                            <div class="form-group has-icon-left">
-                                                <label for="email-id-icon">Email</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Email" id="email-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-envelope"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="mobile-id-icon">Mobile</label>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Mobile" id="mobile-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-phone"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group has-icon-left">
-                                                <label for="password-id-icon">Password</label>
-                                                <div class="position-relative">
-                                                    <input type="password" class="form-control" placeholder="Password" id="password-id-icon">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-lock"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox mt-2">
-                                                    <input type="checkbox" id="remember-me-v" class='form-check-input' checked>
-                                                    <label for="remember-me-v">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- // Basic Vertical form layout section end -->
-
-    <!-- // Basic multiple Column Form section start -->
-    <section id="multiple-column-form">
-        <div class="row match-height">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Multiple Column</h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form">
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">First Name</label>
-                                            <input type="text" id="first-name-column" class="form-control" placeholder="First Name" name="fname-column">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="last-name-column">Last Name</label>
-                                            <input type="text" id="last-name-column" class="form-control" placeholder="Last Name" name="lname-column">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="city-column">City</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="City" name="city-column">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="country-floating">Country</label>
-                                            <input type="text" id="country-floating" class="form-control" name="country-floating" placeholder="Country">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="company-column">Company</label>
-                                            <input type="text" id="company-column" class="form-control" name="company-column" placeholder="Company">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="email-id-column">Email</label>
-                                            <input type="email" id="email-id-column" class="form-control" name="email-id-column" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-12">
-                                        <div class='form-check'>
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="checkbox5" class='form-check-input' checked>
-                                                <label for="checkbox5">Remember Me</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <footer>
+                                    <br>
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        <span class="text-muted">ตั้งค่าหวย >></span>
                                     </div>
-                                </div>
-                            </form>
+                                </footer>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- // Basic multiple Column Form section end -->
+    </div>
+
+    <div class="row" id="table-striped">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <span style="font-weight: 500; color: rgba(35, 28, 99, 1);">ตั้งค่าหวย</span>
+                </div>
+                <div class="card-content">
+                    <!-- table striped -->
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr align="center">
+                                    <th></th>
+                                    <th>ต่ำสุดต่อไม้</th>
+                                    <th>สูงสุดต่อไม้</th>
+                                    <th>ตั้งอั้น</th>
+                                    <th>อัตราจ่าย</th>
+                                    <th>ส่วนลด</th>
+                                </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr>
+                                    <td class="text-bold-500">3ตัวบน</td>
+                                    <td><input type="text" class="form-control" id="3_upper_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_upper_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_upper_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_upper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_upper_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">3ตัวล่าง</td>
+                                    <td><input type="text" class="form-control" id="3_under_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_under_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_under_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_under_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_under_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">3ตัวโต๊ด</td>
+                                    <td><input type="text" class="form-control" id="3_toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_toad_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="3_toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">2ตัวบน</td>
+                                    <td><input type="text" class="form-control" id="2_upper_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_upper_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_upper_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_upper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_upper_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">2ตัวล่าง</td>
+                                    <td><input type="text" class="form-control" id="2_under_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_under_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_under_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_under_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_under_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">2ตัวโต๊ด</td>
+                                    <td><input type="text" class="form-control" id="2_toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_toad_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="2_toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">ลอยบน</td>
+                                    <td><input type="text" class="form-control" id="float_upper_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_upper_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_upper_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_upper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_upper_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">ลอยล่าง</td>
+                                    <td><input type="text" class="form-control" id="float_under_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_under_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_under_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_under_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="float_under_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">4ตัวโต๊ด</td>
+                                    <td><input type="text" class="form-control" id="4_toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="4_toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="4_toad_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="4_toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="4_toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">5ตัวโต๊ด</td>
+                                    <td><input type="text" class="form-control" id="5_toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="5_toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="5_toad_maxPerNum" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="5_toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                    <td><input type="text" class="form-control" id="5_toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:75px; text-align: center;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php $this->endSection(); ?>

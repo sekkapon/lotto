@@ -8,6 +8,19 @@ $this->DB = \Config\Database::connect();
 <!-- head -->
 <?= $this->include('template/head'); ?>
 
+
+<style>
+    span.headMenu {
+        font-weight: normal;
+        font-size: 18px;
+    }
+
+    span.subMenu {
+        font-weight: normal;
+        font-size: 15px;
+    }
+</style>
+
 <body>
     <div id="app">
         <!-- navbar -->
