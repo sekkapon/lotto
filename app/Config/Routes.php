@@ -62,6 +62,7 @@ $routes->group('/backend', ['filter' => 'auth'], function ($routes) {
 
 	$routes->get('/add_user', 'Backend\Add_user::index');
 	$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
+	$routes->post('/add_user/(:any)', 'Backend\Add_user::$1');
 });
 
 // login backend
