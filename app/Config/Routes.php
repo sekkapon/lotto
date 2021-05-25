@@ -33,32 +33,21 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-<<<<<<< HEAD
+
 // ==============================================================================
 // ==============================Frontend========================================
 // ==============================================================================
-$routes->get('/', 'Frontend\Home::index');
+// $routes->get('/', 'Frontend\Home::index');
 $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
 	$routes->get('', 'Frontend\BetHauythai::index');
+	$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
+	$routes->get('bet-report', 'Frontend\BetHauythai::BetReport');
+	$routes->get('bet-result', 'Frontend\BetHauythai::BetResult');
 });
 // login frontend
-$routes->get('singin', 'Login\Singin::index');
+$routes->get('/', 'Login\Singin::index');
 $routes->add('singin/(:any)', 'Login\Singin::$1');
-=======
-	// ==============================================================================
-	// ==============================Frontend========================================
-	// ==============================================================================
-	// $routes->get('/', 'Frontend\Home::index');
-	$routes->group('bet-huay-thai',['filter' => 'auth_mem'], function ($routes) {
-		$routes->get('', 'Frontend\BetHauythai::index');
-		$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
-		$routes->get('bet-report', 'Frontend\BetHauythai::BetReport');
-		$routes->get('bet-result', 'Frontend\BetHauythai::BetResult');
-	});
-	// login frontend
-	$routes->get('/', 'Login\Singin::index');
-	$routes->add('singin/(:any)', 'Login\Singin::$1');
->>>>>>> 42cd79276997460e5609899ad0e71a9e606da48e
+
 
 
 
