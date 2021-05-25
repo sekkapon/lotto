@@ -69,10 +69,6 @@ $routes->get('login', 'Login\Login::index');
 $routes->add('login/(:any)', 'Login\Login::$1');
 
 
-
-
-
-
 /*
  * --------------------------------------------------------------------
  * Additional Routing
