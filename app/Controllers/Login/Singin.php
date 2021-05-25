@@ -4,11 +4,11 @@ namespace App\Controllers\Login;
 
 use App\Controllers\Base\BaseController;
 
-class Login extends BaseController
+class Singin extends BaseController
 {
 	public function index()
 	{
-		return view('views_login/view_login');
+		return view('views_login/member_login');
 	}
 
 	public function checkLogin()
