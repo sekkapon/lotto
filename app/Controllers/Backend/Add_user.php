@@ -36,16 +36,15 @@ class Add_user extends BaseController
         //     echo json_encode(array('code' => 3, 'msg' => 'ยูสเซอร์เนมถูกใช้งานแล้ว'));
         //     die;
         // }
-        // if ($this->My_Query->insertData($dataQuery) == FALSE) {
+        $insertID = $this->My_Query->insertData($dataQuery);
+        // if ($insertID == FALSE) {
         //     echo json_encode(array('code' => 2, 'msg' => 'ไม่สามารถเพิ่มข้อมูลได้กรุณาติดต่อโปรแกรมเมอร์'));
         //     die;
         // }
-        foreach ($arrData['dataConfig'] as $key => $valueDataConfig) {
-            $cutData = explode('_', $valueDataConfig['name']);
-            $typeLotto = $cutData[0];
-            echo '<pre>';
-            print_r($typeLotto);
-        }
+
+
+
+
 
         die;
         // echo '<pre>';
