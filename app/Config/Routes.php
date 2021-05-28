@@ -47,6 +47,22 @@ $routes->setAutoRoute(true);
 	$routes->get('/', 'Login\Singin::index');
 	$routes->add('singin/(:any)', 'Login\Singin::$1');
 
+<<<<<<< Updated upstream
+=======
+// ==============================================================================
+// ==============================Frontend========================================
+// ==============================================================================
+$routes->get('', 'Frontend\Home::index');
+$routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
+	$routes->get('', 'Frontend\BetHauythai::index');
+	$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
+	$routes->get('bet-report', 'Frontend\BetHauythai::BetReport');
+	$routes->get('bet-result', 'Frontend\BetHauythai::BetResult');
+});
+// login frontend
+$routes->get('/', 'Login\Singin::index');
+$routes->add('singin/(:any)', 'Login\Singin::$1');
+>>>>>>> Stashed changes
 
 
 
@@ -61,13 +77,50 @@ $routes->setAutoRoute(true);
 		$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
 	});
 
+<<<<<<< Updated upstream
 	// login backend
 	$routes->get('login', 'Login\Login::index');
 	$routes->add('login/(:any)', 'Login\Login::$1');
 	
+=======
+// ==============================================================================
+// ==============================Backend=========================================
+// ==============================================================================
+$routes->group('backend', ['filter' => 'auth'], function ($routes) {
+>>>>>>> Stashed changes
 
 	
 
+<<<<<<< Updated upstream
+=======
+	$routes->get('add_user', 'Backend\Add_user::index');
+	$routes->get('add_user/(:any)', 'Backend\Add_user::$1');
+	$routes->post('add_user/(:any)', 'Backend\Add_user::$1');
+
+	//group setting lotto
+	$routes->group('set-huay', function ($routes) {
+		$routes->get('pay-rate', 'Sethuay\Payrate::index');
+		$routes->add('pay-rate/(:any)', 'Sethuay\Payrate::$1');
+
+		$routes->get('per-bet', 'Sethuay\Perbet::index');
+		$routes->add('per-bet/(:any)', 'Sethuay\Perbet::$1');
+
+		$routes->get('pay-max', 'Sethuay\Paymax::index');
+		$routes->add('pay-max/(:any)', 'Sethuay\Paymax::$1');
+
+		$routes->get('commission', 'Sethuay\Commission::index');
+		$routes->add('commission/(:any)', 'Sethuay\Commission::$1');
+
+		$routes->get('close-time', 'Sethuay\Closetime::index');
+		$routes->add('close-time/(:any)', 'Sethuay\Closetime::$1');
+		
+	});
+});
+
+// login backend
+$routes->get('login', 'Login\Login::index');
+$routes->add('login/(:any)', 'Login\Login::$1');
+>>>>>>> Stashed changes
 
 
 /*

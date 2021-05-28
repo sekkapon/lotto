@@ -54,6 +54,7 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
+<<<<<<< Updated upstream
                             <a href="extra-component-avatar.html">อัตราจ่าย</a>
                         </li>
                         <li class="submenu-item ">
@@ -67,6 +68,31 @@
                         </li>
                         <li class="submenu-item ">
                             <a href="extra-component-rating.html">เวลาปิดการแทง</a>
+=======
+                            <a href="<?= base_url('backend/set-huay/pay-rate'); ?>">
+                                <span class="subMenu">อัตราจ่าย</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/per-bet'); ?>">
+                                <span class="subMenu">ตั้งอั้น</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/pay-max'); ?>">
+                                <span class="subMenu">ต่ำสุด/สูงสุด ต่อไม้</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/commission'); ?>">
+                                <span class="subMenu">เปอร์เซ็นต์ส่วนลด</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/close-time'); ?>">
+                                <span class="subMenu">เวลาปิดการแทง</span>
+                            </a>
+>>>>>>> Stashed changes
                         </li>
                     </ul>
                 </li>
