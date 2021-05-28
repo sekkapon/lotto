@@ -59,9 +59,14 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
+<<<<<<< HEAD
                             <a href="extra-component-avatar.html">
                                 <span class="subMenu">อัตราจ่าย</span>
                             </a>
+=======
+<<<<<<< Updated upstream
+                            <a href="extra-component-avatar.html">อัตราจ่าย</a>
+>>>>>>> 9aeef3ec51cd21fe074ea3bdab6dc025bef263a8
                         </li>
                         <li class="submenu-item ">
                             <a href="extra-component-sweetalert.html">
@@ -79,9 +84,38 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
+<<<<<<< HEAD
                             <a href="extra-component-rating.html">
                                 <span class="subMenu">เวลาปิดการแทง</span>
                             </a>
+=======
+                            <a href="extra-component-rating.html">เวลาปิดการแทง</a>
+=======
+                            <a href="<?= base_url('backend/set-huay/pay-rate'); ?>">
+                                <span class="subMenu">อัตราจ่าย</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/per-bet'); ?>">
+                                <span class="subMenu">ตั้งอั้น</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/pay-max'); ?>">
+                                <span class="subMenu">ต่ำสุด/สูงสุด ต่อไม้</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/commission'); ?>">
+                                <span class="subMenu">เปอร์เซ็นต์ส่วนลด</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/close-time'); ?>">
+                                <span class="subMenu">เวลาปิดการแทง</span>
+                            </a>
+>>>>>>> Stashed changes
+>>>>>>> 9aeef3ec51cd21fe074ea3bdab6dc025bef263a8
                         </li>
                     </ul>
                 </li>
