@@ -56,7 +56,7 @@ abstract class BaseUtils
 	 */
 	public function __construct(ConnectionInterface &$db)
 	{
-		$this->db = & $db;
+		$this->db = &$db;
 	}
 
 	//--------------------------------------------------------------------
@@ -70,15 +70,12 @@ abstract class BaseUtils
 	public function listDatabases()
 	{
 		// Is there a cached result?
-		if (isset($this->db->dataCache['db_names']))
-		{
+		if (isset($this->db->dataCache['db_names'])) {
 			return $this->db->dataCache['db_names'];
 		}
 
-		if ($this->listDatabases === false)
-		{
-			if ($this->db->DBDebug)
-			{
+		if ($this->listDatabases === false) {
+			if ($this->db->DBDebug) {
 				throw new DatabaseException('Unsupported feature of the database platform you are using.');
 			}
 			return false;
@@ -87,13 +84,11 @@ abstract class BaseUtils
 		$this->db->dataCache['db_names'] = [];
 
 		$query = $this->db->query($this->listDatabases);
-		if ($query === false)
-		{
+		if ($query === false) {
 			return $this->db->dataCache['db_names'];
 		}
 
-		for ($i = 0, $query = $query->getResultArray(), $c = count($query); $i < $c; $i ++)
-		{
+		for ($i = 0, $query = $query->getResultArray(), $c = count($query); $i < $c; $i++) {
 			$this->db->dataCache['db_names'][] = current($query[$i]);
 		}
 
@@ -124,10 +119,8 @@ abstract class BaseUtils
 	 */
 	public function optimizeTable(string $tableName)
 	{
-		if ($this->optimizeTable === false)
-		{
-			if ($this->db->DBDebug)
-			{
+		if ($this->optimizeTable === false) {
+			if ($this->db->DBDebug) {
 				throw new DatabaseException('Unsupported feature of the database platform you are using.');
 			}
 			return false;
@@ -148,21 +141,17 @@ abstract class BaseUtils
 	 */
 	public function optimizeDatabase()
 	{
-		if ($this->optimizeTable === false)
-		{
-			if ($this->db->DBDebug)
-			{
+		if ($this->optimizeTable === false) {
+			if ($this->db->DBDebug) {
 				throw new DatabaseException('Unsupported feature of the database platform you are using.');
 			}
 			return false;
 		}
 
 		$result = [];
-		foreach ($this->db->listTables() as $tableName)
-		{
+		foreach ($this->db->listTables() as $tableName) {
 			$res = $this->db->query(sprintf($this->optimizeTable, $this->db->escapeIdentifiers($tableName)));
-			if (is_bool($res))
-			{
+			if (is_bool($res)) {
 				return $res;
 			}
 
@@ -171,12 +160,9 @@ abstract class BaseUtils
 			$res = $res->getResultArray();
 
 			// Postgre & SQLite3 returns empty array
-			if (empty($res))
-			{
+			if (empty($res)) {
 				$key = $tableName;
-			}
-			else
-			{
+			} else {
 				$res  = current($res);
 				$key  = str_replace($this->db->database . '.', '', current($res));
 				$keys = array_keys($res);
@@ -200,18 +186,15 @@ abstract class BaseUtils
 	 */
 	public function repairTable(string $tableName)
 	{
-		if ($this->repairTable === false)
-		{
-			if ($this->db->DBDebug)
-			{
+		if ($this->repairTable === false) {
+			if ($this->db->DBDebug) {
 				throw new DatabaseException('Unsupported feature of the database platform you are using.');
 			}
 			return false;
 		}
 
 		$query = $this->db->query(sprintf($this->repairTable, $this->db->escapeIdentifiers($tableName)));
-		if (is_bool($query))
-		{
+		if (is_bool($query)) {
 			return $query;
 		}
 
@@ -234,19 +217,16 @@ abstract class BaseUtils
 	{
 		$out = '';
 		// First generate the headings from the table column names
-		foreach ($query->getFieldNames() as $name)
-		{
+		foreach ($query->getFieldNames() as $name) {
 			$out .= $enclosure . str_replace($enclosure, $enclosure . $enclosure, $name) . $enclosure . $delim;
 		}
 
 		$out = substr($out, 0, -strlen($delim)) . $newline;
 
 		// Next blast through the result array and build out the rows
-		while ($row = $query->getUnbufferedRow('array'))
-		{
+		while ($row = $query->getUnbufferedRow('array')) {
 			$line = [];
-			foreach ($row as $item)
-			{
+			foreach ($row as $item) {
 				$line[] = $enclosure . str_replace($enclosure, $enclosure . $enclosure, $item) . $enclosure;
 			}
 			$out .= implode($delim, $line) . $newline;
@@ -267,10 +247,8 @@ abstract class BaseUtils
 	public function getXMLFromResult(ResultInterface $query, array $params = []): string
 	{
 		// Set our default values
-		foreach (['root' => 'root', 'element' => 'element', 'newline' => "\n", 'tab' => "\t"] as $key => $val)
-		{
-			if (! isset($params[$key]))
-			{
+		foreach (['root' => 'root', 'element' => 'element', 'newline' => "\n", 'tab' => "\t"] as $key => $val) {
+			if (!isset($params[$key])) {
 				$params[$key] = $val;
 			}
 		}
@@ -285,13 +263,11 @@ abstract class BaseUtils
 		helper('xml');
 		// Generate the result
 		$xml = '<' . $root . '>' . $newline;
-		while ($row = $query->getUnbufferedRow())
-		{
+		while ($row = $query->getUnbufferedRow()) {
 			$xml .= $tab . '<' . $element . '>' . $newline;
 
-			foreach ($row as $key => $val)
-			{
-				$val = (! empty($val)) ? xml_convert($val) : '';
+			foreach ($row as $key => $val) {
+				$val = (!empty($val)) ? xml_convert($val) : '';
 
 				$xml .= $tab . $tab . '<' . $key . '>' . $val . '</' . $key . '>' . $newline;
 			}
@@ -316,8 +292,7 @@ abstract class BaseUtils
 		// If the parameters have not been submitted as an
 		// array then we know that it is simply the table
 		// name, which is a valid short cut.
-		if (is_string($params))
-		{
+		if (is_string($params)) {
 			$params = ['tables' => $params];
 		}
 
@@ -334,12 +309,9 @@ abstract class BaseUtils
 		];
 
 		// Did the user submit any preferences? If so set them....
-		if (! empty($params))
-		{
-			foreach (array_keys($prefs) as $key)
-			{
-				if (isset($params[$key]))
-				{
+		if (!empty($params)) {
+			foreach (array_keys($prefs) as $key) {
+				if (isset($params[$key])) {
 					$prefs[$key] = $params[$key];
 				}
 			}
@@ -347,23 +319,19 @@ abstract class BaseUtils
 
 		// Are we backing up a complete database or individual tables?
 		// If no table names were submitted we'll fetch the entire table list
-		if (empty($prefs['tables']))
-		{
+		if (empty($prefs['tables'])) {
 			$prefs['tables'] = $this->db->listTables();
 		}
 
 		// Validate the format
-		if (! in_array($prefs['format'], ['gzip', 'txt'], true))
-		{
+		if (!in_array($prefs['format'], ['gzip', 'txt'], true)) {
 			$prefs['format'] = 'txt';
 		}
 
 		// Is the encoder supported? If not, we'll either issue an
 		// error or use plain text depending on the debug settings
-		if ($prefs['format'] === 'gzip' && ! function_exists('gzencode'))
-		{
-			if ($this->db->DBDebug)
-			{
+		if ($prefs['format'] === 'gzip' && !function_exists('gzencode')) {
+			if ($this->db->DBDebug) {
 				throw new DatabaseException('The file compression format you chose is not supported by your server.');
 			}
 
