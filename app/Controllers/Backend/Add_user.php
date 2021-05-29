@@ -37,22 +37,7 @@ class Add_user extends BaseController
             echo json_encode(array('code' => 2, 'msg' => 'ไม่สามารถเพิ่มข้อมูลได้กรุณาติดต่อโปรแกรมเมอร์'));
             die;
         }
-        $dataQuery = array(
-            'tableDB' => 'tb_close_time_bet',
-            'whereData' => [
-                'user_id' => $insertID,
-            ],
-            'data' => [
-                'user_id' => $insertID,
-                'close_time' => $arrData['closeTime'],
-                'open_time' => $arrData['openTime'],
-            ]
-        );
-        if ($this->My_Query->checkHaveData($dataQuery) == TRUE) {
-            echo json_encode(array('code' => 2, 'msg' => 'ไม่สามารถเพิ่มข้อมูลได้กรุณาติดต่อโปรแกรมเมอร์'));
-            die;
-        }
-        $this->My_Query->insertData($dataQuery);
+
 
         $checkData = [];
         foreach ($arrData['dataConfig'] as $key => $value) {

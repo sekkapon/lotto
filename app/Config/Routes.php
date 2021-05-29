@@ -56,7 +56,7 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 	$routes->add('add_user/(:any)', 'Backend\Add_user::$1');
 
 	$routes->get('user', 'Backend\user::index');
-	$routes->add('user/(:any)', 'Backend\user::$1');
+	$routes->add('user/(:any)', 'Backend\User::$1');
 
 
 	//group setting lotto

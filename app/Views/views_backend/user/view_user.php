@@ -1,21 +1,6 @@
 <?php $this->extend('template/content'); ?>
 <?php $this->section('content'); ?>
 
-<style>
-    span.settingHover:hover {
-        text-decoration: underline;
-        color: rgba(35, 28, 99, .8);
-    }
-
-    span.settingHover {
-        color: #7c8db5;
-    }
-
-    button.reset-btn:hover {
-        background-color: red;
-        color: white;
-    }
-</style>
 <div class="page-heading" id="settingTime">
     <div class="page-title">
         <div class="row">
@@ -29,8 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Table member</h4>
-                    <small>ตารางแสดงข้อมูลสมาชิก</small>
+                    <h4>ตารางแสดงข้อมูลสมาชิก</h4>
                 </div>
                 <div class="card-content">
                     <!-- table striped -->
@@ -44,7 +28,7 @@
                                 <th>สถานะ</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody align="center">
                             <?php $i = 1;
                             foreach ($member as $key => $valueMember) { ?>
                                 <tr>
@@ -83,8 +67,8 @@
 
     <script>
         $(function() {
-            let table1 = document.querySelector('#table1');
-            let dataTable = new simpleDatatables.DataTable(table1);
+            var table1 = document.querySelector('#table1');
+            var dataTable = new simpleDatatables.DataTable(table1);
         });
     </script>
     <?php $this->endSection(); ?>

@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="component-badge.html">
+                            <a href="<?= base_url('backend/user/viewEditUser'); ?>">
                                 <span class="subMenu">จัดการสมาชิก</span>
                             </a>
                         </li>

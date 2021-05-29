@@ -80,49 +80,6 @@
                                     <footer>
                                         <br>
                                         <div class="col-12 d-flex justify-content-end">
-                                            <a href="#settingTime">
-                                                <span class="settingHover">Setting Time (ตั้งค่าเวลเปิด-ปิดการแทง) >></span>
-                                            </a>
-                                        </div>
-                                    </footer>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group has-icon-left">
-                                            <label>เวลาปิดแทง</label>
-                                            <div class="position-relative">
-                                                <input type="time" class="form-control" id="closeTime" required>
-                                                <div class="form-control-icon">
-                                                    <i class="bi bi-alarm"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group has-icon-left">
-                                            <label>เวลาเปิดแทง</label>
-                                            <div class="position-relative">
-                                                <input type="time" class="form-control" id="openTime" required>
-                                                <div class="form-control-icon">
-                                                    <i class="bi bi-alarm"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <footer>
-                                        <br>
-                                        <div class="col-12 d-flex justify-content-end">
                                             <a href="#divSettingLotto">
                                                 <span class="settingHover">Setting Lotto (ตั้งค่าหวยให้สมาชิก) >></span>
                                             </a>
@@ -135,8 +92,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row" id="divSettingLotto">
             <div class="col-12">
                 <div class="card">
@@ -281,8 +236,7 @@
             'phone': $('#phone').val(),
             'username': $('#userName').val(),
             'password': $('#password').val(),
-            'closeTime': $('#closeTime').val(),
-            'openTime': $('#openTime').val(),
+
             'dataConfig': $(this).serializeArray()
         };
         console.log(arrData);
