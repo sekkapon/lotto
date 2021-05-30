@@ -236,7 +236,6 @@
             'phone': $('#phone').val(),
             'username': $('#userName').val(),
             'password': $('#password').val(),
-
             'dataConfig': $(this).serializeArray()
         };
         console.log(arrData);

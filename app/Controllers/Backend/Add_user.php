@@ -53,12 +53,13 @@ class Add_user extends BaseController
                 if ($valueCheckData == $cutData[0]) {
                     $sortData[$i]['user_id'] =  $insertID;
                     $sortData[$i]['type_lotto'] = $cutData[0];
-                    $sortData[$i][$cutData[1]] = $valueDataConfig['value'];
+                    $sortData[$i][$cutData[1]] = str_replace(',', '',  $valueDataConfig['value']);
                     $sortData[$i]['status'] = 1;
                 }
             }
             $i++;
         }
+
         foreach ($sortData as $key => $valueSortData) {
             $dataQuery = array(
                 'tableDB' => 'tb_cf_lotto',
