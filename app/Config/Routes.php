@@ -53,8 +53,11 @@ $routes->add('singin/(:any)', 'Login\Singin::$1');
 $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 
 	$routes->get('add_user', 'Backend\Add_user::index');
-	$routes->get('add_user/(:any)', 'Backend\Add_user::$1');
-	$routes->post('add_user/(:any)', 'Backend\Add_user::$1');
+	$routes->add('add_user/(:any)', 'Backend\Add_user::$1');
+
+	$routes->get('user', 'Backend\user::index');
+	$routes->add('user/(:any)', 'Backend\User::$1');
+
 
 	//group setting lotto
 	$routes->group('set-huay', function ($routes) {

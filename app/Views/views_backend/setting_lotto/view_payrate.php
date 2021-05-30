@@ -43,6 +43,7 @@
                                     <tr align="center">
                                         <th>ลำดับ</th>
                                         <th>ชื่อ</th>
+                                        <th><input type="checkbox"></th>
                                         <th>3ตัวบน</th>
                                         <th>3ตัวล่าง</th>
                                         <th>3ตัวโต๊ด</th>
@@ -51,17 +52,52 @@
                                         <th>2ตัวโต๊ด</th>
                                         <th>ลอยบน</th>
                                         <th>ลอยล่าง</th>
-                                        <th>ปักหน่วย</th>
-                                        <th>ปักสิบ</th>
-                                        <th>ปักร้อย</th>
-                                        <th>4ตัวตรง</th>
                                         <th>4ตัวโต๊ด</th>
                                         <th>5ตัวโต๊ด</th>
                                     </tr>
+                                    <tr>
+                                    <th></th>
+                                     <th></th>
+                                     <th></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                        <th><input class="form-control" ></th>
+                                    </tr>
                                 </thead>
                                 <tbody align="center">
-                                    <tr>
-                                    </tr>
+                                <pre>
+                                <?php 
+                                // print_r($datapayrate);
+                                // die;
+                                ?>
+
+                                </pre>
+                                <?php $i=0; foreach ($datapayrate as $k => $val) {$i++; ?>
+                                       <tr>
+                                            <td><?=$i;?></td>
+                                            <td><?=$val['username'];?></td>
+                                            <td><input type="checkbox"></td>
+                                            <td><?=$val['detail']['3upper']['payRate'];?></td>
+                                            <td><?=$val['detail']['3under']['payRate'];?></td>
+                                            <td><?=$val['detail']['3toad']['payRate'];?></td>
+                                            <td><?=$val['detail']['2upper']['payRate'];?></td>
+                                            <td><?=$val['detail']['2under']['payRate'];?></td>
+                                            <td><?=$val['detail']['2toad']['payRate'];?></td>
+                                            <td><?=$val['detail']['floatUpper']['payRate'];?></td>
+                                            <td><?=$val['detail']['floatUnder']['payRate'];?></td>
+                                            <td><?=$val['detail']['4toad']['payRate'];?></td>
+                                            <td><?=$val['detail']['5toad']['payRate'];?></td>
+                                       </tr>
+                                <?php }?>
+                                
+                                    
                            
                                 </tbody>
                             </table>

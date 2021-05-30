@@ -8,6 +8,19 @@ $this->DB = \Config\Database::connect();
 <!-- head -->
 <?= $this->include('template/head'); ?>
 
+
+<style>
+    span.headMenu {
+        font-weight: normal;
+        font-size: 18px;
+    }
+
+    span.subMenu {
+        font-weight: normal;
+        font-size: 15px;
+    }
+</style>
+
 <body>
     <div id="app">
         <!-- navbar -->
@@ -29,12 +42,13 @@ $this->DB = \Config\Database::connect();
     </div>
 
 </body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="<?= base_url('public/vendors/perfect-scrollbar/perfect-scrollbar.min.js'); ?>"></script>
 <script src="<?= base_url('public/js/bootstrap.bundle.min.js'); ?>"></script>
 
-<script src="<?= base_url('public/vendors/apexcharts/apexcharts.js'); ?>"></script>
-<script src="<?= base_url('public/js/pages/dashboard.js'); ?>"></script>
+<!-- <script src="<?= base_url('public/vendors/apexcharts/apexcharts.js'); ?>"></script> -->
+<!-- <script src="<?= base_url('public/js/pages/dashboard.js'); ?>"></script> -->
 
 <script src="<?= base_url('public/js/main.js'); ?>"></script>
 

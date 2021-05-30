@@ -5,7 +5,7 @@
 <div class="page-heading">
     <h3>Profile Statistics</h3>
 </div>
-<div class="page-content">
+<!-- <div class="page-content">
     <section class="row">
         <div class="col-12 col-lg-9">
             <div class="row">
@@ -167,7 +167,7 @@
                                             <td class="col-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar avatar-md">
-                                                        <img src="assets/images/faces/5.jpg">
+                                                        <img src="<?= base_url('public/images/faces/2.jpg'); ?>">
                                                     </div>
                                                     <p class="font-bold ms-3 mb-0">Si Cantik</p>
                                                 </div>
@@ -180,7 +180,7 @@
                                             <td class="col-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar avatar-md">
-                                                        <img src="assets/images/faces/2.jpg">
+                                                        <img src="<?= base_url('public/images/faces/2.jpg'); ?>">
                                                     </div>
                                                     <p class="font-bold ms-3 mb-0">Si Ganteng</p>
                                                 </div>
@@ -261,5 +261,5 @@
             </div>
         </div>
     </section>
-</div>
+</div> -->
 <?php $this->endSection(); ?>
