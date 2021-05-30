@@ -37,8 +37,6 @@ class Add_user extends BaseController
             echo json_encode(array('code' => 2, 'msg' => 'ไม่สามารถเพิ่มข้อมูลได้กรุณาติดต่อโปรแกรมเมอร์'));
             die;
         }
-
-
         $checkData = [];
         foreach ($arrData['dataConfig'] as $key => $value) {
             $cutData = explode('_', $value['name']);
