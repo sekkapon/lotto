@@ -61,20 +61,16 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 
 	//group setting lotto
 	$routes->group('set-huay', function ($routes) {
-		$routes->get('pay-rate', 'Sethuay\Payrate::index');
-		$routes->add('pay-rate/(:any)', 'Sethuay\Payrate::$1');
+		$routes->get('pay-rate', 'Sethuay\Set_huay::Payrate');
+		$routes->get('per-bet', 'Sethuay\Set_huay::Perbet');
+		$routes->get('max-min-bet', 'Sethuay\Set_huay::Maxminbet');
+		$routes->get('commission', 'Sethuay\Set_huay::Commission');
+		$routes->get('close-time', 'Sethuay\Set_huay::Closetime');
+		
+		$routes->add('api/(:any)', 'Sethuay\Set_huay::$1');
 
-		$routes->get('per-bet', 'Sethuay\Perbet::index');
-		$routes->add('per-bet/(:any)', 'Sethuay\Perbet::$1');
+		
 
-		$routes->get('pay-max', 'Sethuay\Paymax::index');
-		$routes->add('pay-max/(:any)', 'Sethuay\Paymax::$1');
-
-		$routes->get('commission', 'Sethuay\Commission::index');
-		$routes->add('commission/(:any)', 'Sethuay\Commission::$1');
-
-		$routes->get('close-time', 'Sethuay\Closetime::index');
-		$routes->add('close-time/(:any)', 'Sethuay\Closetime::$1');
 	});
 });
 
