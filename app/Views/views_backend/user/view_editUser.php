@@ -205,7 +205,7 @@
                     timer: 1500,
                     buttons: false,
                 }).then(value => {
-                    window.location.href = '<?= base_url('backend/user/viewEditUser'); ?>'
+                    window.location.href = '<?= base_url('backend/user'); ?>'
                 });
             } else {
                 swal({

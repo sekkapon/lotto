@@ -41,11 +41,6 @@
                         </li>
                         <li class="submenu-item ">
                             <a href="<?= base_url('backend/user'); ?>">
-                                <span class="subMenu">ข้อมูลสมาชิก</span>
-                            </a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="<?= base_url('backend/user/viewEditUser'); ?>">
                                 <span class="subMenu">จัดการสมาชิก</span>
                             </a>
                         </li>

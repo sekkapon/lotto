@@ -26,33 +26,8 @@ class User extends BaseController
             ]
         );
         $data['member'] = $this->My_Query->selectData($dataQuery);
-        return view('views_backend/user/view_user', $data);
-    }
-
-    public function viewEditUser()
-    {
-        $dataQuery = array(
-            'tableDB' => 'tb_user',
-            'selectData' => [
-                '*'
-            ],
-            'whereData' => [
-                'role' => 'member'
-            ],
-            'orderBy' => [
-                'keyOrderBy' => 'user_id',
-                'sortBy' => 'ASC',
-            ],
-            'limit' => [
-                'limitCount' => 25,
-                'startAt' => 0
-            ]
-        );
-        $data['member'] = $this->My_Query->selectData($dataQuery);
-
         return view('views_backend/user/view_editUser', $data);
     }
-
     public function getData()
     {
         $dataQuery = array(
