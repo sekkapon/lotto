@@ -11,7 +11,7 @@ class M_sethuay extends Model
     {
         $this->My_Query = model('My_query');
     }
-    public function detalimempayrate()
+    public function detalimem()
     {
 
         $dataQuery = array(
@@ -43,11 +43,12 @@ class M_sethuay extends Model
         );
         $data = $this->My_Query->joinAndWhereData($dataQuery);
 
-        return $this->loopnewdatapayrate($data);
+        return $this->loopnewdata($data);
     }
-    public function loopnewdatapayrate($data)
+    public function loopnewdata($data)
     {
         $checkData = [];
+        $sortData =[];
         foreach ($data as $key => $valueData) {
             if (!in_array($valueData['user_id'], $checkData)) {
                 array_push($checkData, $valueData['user_id']);
