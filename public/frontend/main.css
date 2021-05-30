@@ -391,7 +391,7 @@ section {
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: .88rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
@@ -3437,14 +3437,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-alternate {
-    color: #794c8a;
-    border-color: #794c8a
+    color: #4c4d8a;
+    border-color: #4c4d8a
 }
 
 .btn-outline-alternate:hover {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #4c4d8a;
+    border-color: #4c4d8a
 }
 
 .btn-outline-alternate:focus,
@@ -3454,7 +3454,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-alternate.disabled,
 .btn-outline-alternate:disabled {
-    color: #794c8a;
+    color: #4c4d8a;
     background-color: transparent
 }
 
@@ -3462,8 +3462,8 @@ fieldset:disabled a.btn {
 .btn-outline-alternate:not(:disabled):not(.disabled).active,
 .show>.btn-outline-alternate.dropdown-toggle {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #4c4d8a;
+    border-color: #4c4d8a
 }
 
 .btn-outline-alternate:not(:disabled):not(.disabled):active:focus,
@@ -5076,6 +5076,11 @@ input[type="button"].btn-block {
 .card-body {
     flex: 1 1 auto;
     padding: 1.25rem
+}
+
+.card-bodyM {
+    font-size: 0.9rem;
+    flex: 1 1 auto;
 }
 
 .card-title {
@@ -14831,14 +14836,14 @@ body {
 }
 
 .btn-outline-alternate {
-    color: #794c8a;
-    border-color: #794c8a
+    color: #4c4d8a;
+    border-color: #4c4d8a
 }
 
 .btn-outline-alternate:hover {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #4c4d8a;
+    border-color: #4c4d8a
 }
 
 .btn-outline-alternate:focus,
@@ -14848,7 +14853,7 @@ body {
 
 .btn-outline-alternate.disabled,
 .btn-outline-alternate:disabled {
-    color: #794c8a;
+    color: #4c4d8a;
     background-color: transparent
 }
 
@@ -14856,8 +14861,8 @@ body {
 .btn-outline-alternate:not(:disabled):not(.disabled).active,
 .show>.btn-outline-alternate.dropdown-toggle {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #4c4d8a;
+    border-color: #4c4d8a
 }
 
 .btn-outline-alternate:not(:disabled):not(.disabled):active:focus,
@@ -15145,6 +15150,10 @@ a.badge-alternate:focus {
 
 .btn-actions-pane-left {
     margin-right: auto
+}
+
+.btn-actions-pane-center {
+    margin: auto
 }
 
 .actions-icon-btn .btn-icon-only {

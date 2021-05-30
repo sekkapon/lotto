@@ -33,7 +33,6 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-
 // ==============================================================================
 // ==============================Frontend========================================
 // ==============================================================================
@@ -48,21 +47,35 @@ $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
 $routes->get('/', 'Login\Singin::index');
 $routes->add('singin/(:any)', 'Login\Singin::$1');
 
-
-
-
-
-
 // ==============================================================================
 // ==============================Backend=========================================
 // ==============================================================================
-$routes->group('/backend', ['filter' => 'auth'], function ($routes) {
+$routes->group('backend', ['filter' => 'auth'], function ($routes) {
 
-	$routes->get('', 'Backend\Backend::index');
+	$routes->get('add_user', 'Backend\Add_user::index');
+	$routes->add('add_user/(:any)', 'Backend\Add_user::$1');
 
-	$routes->get('/add_user', 'Backend\Add_user::index');
-	$routes->get('/add_user/(:any)', 'Backend\Add_user::$1');
-	$routes->post('/add_user/(:any)', 'Backend\Add_user::$1');
+	$routes->get('user', 'Backend\user::index');
+	$routes->add('user/(:any)', 'Backend\User::$1');
+
+
+	//group setting lotto
+	$routes->group('set-huay', function ($routes) {
+		$routes->get('pay-rate', 'Sethuay\Payrate::index');
+		$routes->add('pay-rate/(:any)', 'Sethuay\Payrate::$1');
+
+		$routes->get('per-bet', 'Sethuay\Perbet::index');
+		$routes->add('per-bet/(:any)', 'Sethuay\Perbet::$1');
+
+		$routes->get('pay-max', 'Sethuay\Paymax::index');
+		$routes->add('pay-max/(:any)', 'Sethuay\Paymax::$1');
+
+		$routes->get('commission', 'Sethuay\Commission::index');
+		$routes->add('commission/(:any)', 'Sethuay\Commission::$1');
+
+		$routes->get('close-time', 'Sethuay\Closetime::index');
+		$routes->add('close-time/(:any)', 'Sethuay\Closetime::$1');
+	});
 });
 
 // login backend

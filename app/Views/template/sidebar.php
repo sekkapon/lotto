@@ -40,12 +40,7 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="component-badge.html">
-                                <span class="subMenu">ข้อมูลสมาชิก</span>
-                            </a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="component-badge.html">
+                            <a href="<?= base_url('backend/user'); ?>">
                                 <span class="subMenu">จัดการสมาชิก</span>
                             </a>
                         </li>
@@ -59,29 +54,30 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="extra-component-avatar.html">
+                            <a href="<?= base_url('backend/set-huay/pay-rate'); ?>">
                                 <span class="subMenu">อัตราจ่าย</span>
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="extra-component-sweetalert.html">
+                            <a href="<?= base_url('backend/set-huay/per-bet'); ?>">
                                 <span class="subMenu">ตั้งอั้น</span>
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="extra-component-toastify.html">
+                            <a href="<?= base_url('backend/set-huay/pay-max'); ?>">
                                 <span class="subMenu">ต่ำสุด/สูงสุด ต่อไม้</span>
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="extra-component-rating.html">
+                            <a href="<?= base_url('backend/set-huay/commission'); ?>">
                                 <span class="subMenu">เปอร์เซ็นต์ส่วนลด</span>
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="extra-component-rating.html">
+                            <a href="<?= base_url('backend/set-huay/close-time'); ?>">
                                 <span class="subMenu">เวลาปิดการแทง</span>
                             </a>
+
                         </li>
                     </ul>
                 </li>
