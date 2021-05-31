@@ -4749,9 +4749,9 @@ fieldset:disabled .btn {
 
 .badge {
     display: inline-block;
-    padding: .35em .65em;
+    padding: .3em .55em;
     font-size: .85em;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     color: #fff;
     text-align: center;

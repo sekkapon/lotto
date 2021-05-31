@@ -56,7 +56,6 @@ class User extends BaseController
 
     public function updateUser()
     {
-
         $arrData = $this->request->getPost('arrData');
         $dataQuery = array(
             'tableDB' => 'tb_user',
@@ -76,6 +75,40 @@ class User extends BaseController
                 die;
             } else {
                 echo json_encode(array('code' => 2, 'msg' => 'อัพเดทข้อมูลไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์'));
+                die;
+            }
+        } else {
+            echo json_encode(array('code' => 3, 'msg' => 'ไม่มีข้อมูลสมาชิกกรุณาสร้างสมา่ชิก'));
+            die;
+        }
+    }
+    public function deleteUser()
+    {
+        $userID = $this->request->getPost('userID');
+
+        $dataQuery = array(
+            'tableDB' => 'tb_user',
+            'whereData' => [
+                'user_id' => $userID
+            ],
+            'data' => [
+                'user_id' => $userID
+            ],
+        );
+        if ($this->My_Query->checkHaveData($dataQuery) == TRUE) {
+            if ($this->My_Query->deleteData($dataQuery)) {
+                $dataQuery = array(
+                    'tableDB' => 'tb_user',
+                    'data' => [
+                        'user_id' => $userID
+                    ],
+                );
+                if ($this->My_Query->deleteData($dataQuery)) {
+                    echo json_encode(array('code' => 1));
+                    die;
+                }
+            } else {
+                echo json_encode(array('code' => 2, 'msg' => 'ลบข้อมูลไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์'));
                 die;
             }
         } else {

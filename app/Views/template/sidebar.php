@@ -102,7 +102,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="<?= base_url('backend/reward'); ?>" class='sidebar-link'>
                         <i class="bi bi-trophy-fill"></i>
                         <span class="headMenu">ผลรางวัล</span>
                     </a>
