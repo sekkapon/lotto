@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?= base_url('public/css/app.css'); ?>">
     <link rel="shortcut icon" href="<?= base_url('public/images/favicon.svg'); ?>" type="image/x-icon">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<?= base_url('public/vendors/simple-datatables/simple-datatables.js'); ?>"></script>
     <script src="<?= base_url('public/vendors/perfect-scrollbar/perfect-scrollbar.min.js'); ?>"></script>
