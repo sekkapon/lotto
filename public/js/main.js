@@ -53,19 +53,10 @@ window.addEventListener('resize', (event) => {
 });
 
 document.querySelector('.burger-btn').addEventListener('click', () => {
-<<<<<<< HEAD
         document.getElementById('sidebar').classList.toggle('active');
     })
     // document.querySelector('.sidebar-hide').addEventListener('click', () => {
     //     document.getElementById('sidebar').classList.toggle('active');
-=======
-    document.getElementById('sidebar').classList.toggle('active');
-})
-
-
-document.querySelector('.sidebar-hide').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('active');
->>>>>>> origin/farn
 
 // })
 
