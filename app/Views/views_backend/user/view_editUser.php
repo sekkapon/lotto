@@ -19,17 +19,6 @@
                 <h3>Manage Member</h3>
                 <p class="text-subtitle text-muted">จัดการสมาชิก</p>
             </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <a class="float-lg-end" href="<?= base_url('backend/user/viewEditUser'); ?>">
-                    << ADMIN</a>
-                        <!-- <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Layout Vertical Navbar
-                        </li>
-                    </ol>
-                </nav> -->
-            </div>
         </div>
     </div>
     <div class="row" id="divSettingLotto">
@@ -72,9 +61,9 @@
                                         <td>
                                             <?php
                                             if ($valueMember['status'] == 1) { ?>
-                                                <span class="badge bg-success">Active</span>
+                                                <span class="badge bg-success">ใช้งาน</span>
                                             <?php } else { ?>
-                                                <span class="badge bg-danger">Inactive</span>
+                                                <span class="badge bg-danger">ระงับ</span>
                                             <?php }
                                             ?>
                                         </td>
@@ -103,7 +92,7 @@
         <div class="card-content">
             <form id="editDataUser">
                 <div class="card-header">
-                    <h4>Edit Member</h4>
+                    <h4>Edit Member <span id="showMember"></span></h4>
                     <small>แก้ไขข้อมูลสมาชิก</small>
                 </div>
                 <div class="card-body">
@@ -179,6 +168,7 @@
         $('#phone').val($(data).data('user').phone);
         $('#userName').val($(data).data('user').username);
         $('#status').val($(data).data('user').status);
+        $('#showMember').html('( ' + $(data).data('user').firstname + ' )')
     }
     $("#editDataUser").submit(function(event) {
         event.preventDefault();

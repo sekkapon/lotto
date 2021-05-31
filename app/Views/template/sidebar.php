@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="<?= base_url('backend/set-huay/pay-max'); ?>">
+                            <a href="<?= base_url('backend/set-huay/max-min-bet'); ?>">
                                 <span class="subMenu">ต่ำสุด/สูงสุด ต่อไม้</span>
                             </a>
                         </li>
