@@ -21,8 +21,14 @@ $this->DB = \Config\Database::connect();
     }
 
     th {
+        font-family: Arial, Helvetica, sans-serif;
         font-weight: 500;
+        font-size: 15px;
         color: #25396f;
+    }
+
+    td {
+        font-size: 14px;
     }
 </style>
 

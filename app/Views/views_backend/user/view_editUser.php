@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Table Member</h4>
-                    <small>แก้ไขข้อมูลสมาชิก</small>
+                    <small>ตารางข้อมูลสมาชิก</small>
                 </div>
                 <div class="card-content">
                     <!-- table striped -->
@@ -69,7 +69,7 @@
                                         </td>
                                         <td>
                                             <a href="#edit" data-user="<?= htmlspecialchars(json_encode($valueMember, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="callEdit(this)"><i class="bi bi-search" style="font-size: 1.2rem;"></i></a>&nbsp;
-                                            <i class="bi bi-trash" style="font-size: 1.2rem;"></i>
+                                            <i class="bi bi-trash" style="font-size: 1.2rem;" data-delete="<?= htmlspecialchars(json_encode($valueMember, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="deleteData(this)"></i>
                                         </td>
                                     </tr>
                                 <?php
@@ -170,6 +170,48 @@
         $('#status').val($(data).data('user').status);
         $('#showMember').html('( ' + $(data).data('user').firstname + ' )')
     }
+
+    function deleteData(data) {
+        swal({
+            text: "ต้องการลบข้อมูล " + $(data).data('delete').username + " หรือไม่ ?",
+            buttons: {
+                cancel: true,
+                confirm: true,
+            },
+        }).then((value) => {
+            if (value) {
+                $.ajax({
+                    url: '<?= base_url('Backend/user/deleteUser'); ?>',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        userID: $(data).data('delete').user_id
+                    },
+                }).done(function(res) {
+                    console.log(res);
+                    if (res.code == 1) {
+                        swal({
+                            icon: 'success',
+                            text: 'ลบข้อมูลสำเร็จ',
+                            timer: 1500,
+                            buttons: false,
+                        }).then(value => {
+                            window.location.href = '<?= base_url('backend/user'); ?>'
+                        });
+                    } else {
+                        swal({
+                            icon: 'error',
+                            text: res.msg,
+                            timer: 2000,
+                            buttons: false,
+                        });
+                    }
+                });
+            }
+        });
+
+    }
+
     $("#editDataUser").submit(function(event) {
         event.preventDefault();
         arrData = {

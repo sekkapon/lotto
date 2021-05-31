@@ -58,6 +58,9 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 	$routes->get('user', 'Backend\user::index');
 	$routes->add('user/(:any)', 'Backend\User::$1');
 
+	$routes->get('reward', 'Backend\reward::index');
+	$routes->add('reward/(:any)', 'Backend\reward::$1');
+
 
 	//group setting lotto
 	$routes->group('set-huay', function ($routes) {
@@ -66,17 +69,14 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 		$routes->get('max-min-bet', 'Sethuay\Set_huay::Maxminbet');
 		$routes->get('commission', 'Sethuay\Set_huay::Commission');
 		$routes->get('close-time', 'Sethuay\Set_huay::Closetime');
-		
+
 		$routes->add('api/(:any)', 'Sethuay\Set_huay::$1');
-
-		
-
 	});
 });
-
 // login backend
 $routes->get('login', 'Login\Login::index');
 $routes->add('login/(:any)', 'Login\Login::$1');
+
 
 
 /*

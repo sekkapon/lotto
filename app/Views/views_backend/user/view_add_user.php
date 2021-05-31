@@ -238,7 +238,7 @@
             'password': $('#password').val(),
             'dataConfig': $(this).serializeArray()
         };
-        console.log(arrData);
+
         $.ajax({
             url: '<?= base_url('Backend/Add_user/addUser'); ?>',
             method: 'POST',
