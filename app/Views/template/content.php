@@ -30,6 +30,14 @@ $this->DB = \Config\Database::connect();
     td {
         font-size: 14px;
     }
+    button.reset-btn:hover {
+        background-color: red;
+        color: white;
+    }
+    .bggreenY{
+        background-color: greenyellow !important;
+    }
+
 </style>
 
 <body>
@@ -63,30 +71,8 @@ $this->DB = \Config\Database::connect();
 
 <script src="<?= base_url('public/js/main.js'); ?>"></script>
 <script>
-<<<<<<< HEAD
 (function ($) {
     $.fn.serializeFormJSON = function () {
-=======
-    (function($) {
-        $.fn.serializeFormJSON = function() {
-
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function() {
-                if (o[this.name]) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-            return o;
-        };
-    })(jQuery);
-</script>
->>>>>>> origin/farn
 
         var o = {};
         var a = this.serializeArray();

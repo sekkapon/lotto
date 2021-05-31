@@ -62,7 +62,7 @@ class M_sethuay extends Model
                     $sortData[$keyCheckData]['firstname'] = $valueData['firstname'];
                     $sortData[$keyCheckData]['phone'] = $valueData['phone'];
                     $sortData[$keyCheckData]['status'] = $valueData['status'];
-                    $sortData[$keyCheckData]['detail'][$valueData['type_lotto']] = [
+                    $sortData[$keyCheckData]['detail']['t_'.$valueData['type_lotto']] = [
                         'cf_id' => $valueData['cf_id'],
                         'type_lotto' => $valueData['type_lotto'],
                         'minPerBet' => $valueData['minPerBet'],

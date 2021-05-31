@@ -27,7 +27,11 @@ class Set_huay extends BaseController
         return view('views_backend/setting_lotto/view_perbet',$data);
     }
     public function Maxminbet()
-    {
+    {   
+        if($this->request->getPost('getdata')){
+            return json_encode($this->dataAll);
+        }
+
         return view('views_backend/setting_lotto/view_maxminbet');
     }
     public function Commission()
@@ -47,7 +51,7 @@ class Set_huay extends BaseController
         $errlog = [];
         $fup = $this->request->getPost('type');
         foreach ($dataArry as $key => $value) {
-            $datafilde = [];
+
             foreach ($value['dataF'] as $k => $v) {
                 if ($v != "" || $v > 0) {
                     $nkey = strval(substr($k, 2));
