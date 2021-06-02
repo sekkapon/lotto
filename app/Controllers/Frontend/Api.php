@@ -12,7 +12,7 @@ class Api extends BaseController
     }
     public function savemybet()
     {
-        return json_encode($this->request->getPost());
+        return json_encode($this->request->getPost('data'));
     }
     public function getmaxminbet(){
         
