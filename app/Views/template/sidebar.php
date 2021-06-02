@@ -5,9 +5,9 @@
                 <div class="logo">
                     <a href="index.html"><img src="<?= base_url('public/images/logo/logo.png'); ?>" alt="Logo" srcset=""></a>
                 </div>
-                <div class="toggler">
+                <!-- <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="sidebar-menu">
@@ -49,7 +49,7 @@
                                 <span class="subMenu">อัตราจ่าย</span>
                             </a>
                         </li>
-                   <!--      <li class="submenu-item ">
+                        <!--      <li class="submenu-item ">
                             <a href="<?= base_url('backend/set-huay/per-bet'); ?>">
                                 <span class="subMenu">ตั้งอั้น</span>
                             </a>
