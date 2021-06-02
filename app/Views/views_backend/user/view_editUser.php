@@ -233,7 +233,7 @@
             if (res.code == 1) {
                 swal({
                     icon: 'success',
-                    text: 'เพิ่มสมาชิกสำเร็จ',
+                    text: 'แก้ไขข้อมูลสำเร็จ',
                     timer: 1500,
                     buttons: false,
                 }).then(value => {
