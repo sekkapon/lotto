@@ -42,6 +42,8 @@ $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
 	$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
 	$routes->get('bet-report', 'Frontend\BetHauythai::BetReport');
 	$routes->get('bet-result', 'Frontend\BetHauythai::BetResult');
+	$routes->add('api/(:any)', 'Frontend\Api::$1');
+
 });
 // login frontend
 $routes->get('/', 'Login\Singin::index');
@@ -69,7 +71,6 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 		$routes->get('max-min-bet', 'Sethuay\Set_huay::Maxminbet');
 		$routes->get('commission', 'Sethuay\Set_huay::Commission');
 		$routes->get('close-time', 'Sethuay\Set_huay::Closetime');
-
 		$routes->add('api/(:any)', 'Sethuay\Set_huay::$1');
 	});
 });

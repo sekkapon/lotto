@@ -925,7 +925,7 @@
 }
 
 .sidebar-wrapper {
-    width: 300px;
+    width: 280px;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -937,9 +937,8 @@
 }
 
 .sidebar-wrapper .sidebar-header {
-    padding: 2rem 2rem 1rem;
+    padding: 4rem 5rem 1.5rem;
     font-size: 2rem;
-    font-weight: 700
 }
 
 .sidebar-wrapper .sidebar-header img {

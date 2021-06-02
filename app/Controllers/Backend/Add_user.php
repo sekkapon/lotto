@@ -12,6 +12,7 @@ class Add_user extends BaseController
     }
     public function addUser()
     {
+
         $arrData = $this->request->getPost('arrData');
         $dataQuery = array(
             'tableDB' => 'tb_user',

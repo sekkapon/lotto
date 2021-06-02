@@ -17,5 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<?= base_url('public/vendors/simple-datatables/simple-datatables.js'); ?>"></script>
     <script src="<?= base_url('public/vendors/perfect-scrollbar/perfect-scrollbar.min.js'); ?>"></script>
-    <script src="<?= base_url('public/js/bootstrap.bundle.min.js'); ?>"></script>
+    <script src="<?= base_url('public/js/bootstrap.bundle.min.js'); ?>"></script>.
+
+    <!-- <script src="<?= base_url('public/js/main.js'); ?>"></script> -->
 </head>

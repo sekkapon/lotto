@@ -108,7 +108,7 @@
                                         <th></th>
                                         <th>ต่ำสุดต่อไม้</th>
                                         <th>สูงสุดต่อไม้</th>
-                                        <th>ตั้งอั้น</th>
+                                        <!-- <th>ตั้งอั้น</th> -->
                                         <th>อัตราจ่าย</th>
                                         <th>ส่วนลด(เปอร์เซ็นต์)</th>
                                     </tr>
@@ -118,15 +118,15 @@
                                         <td class="text-bold-500">3ตัวบน</td>
                                         <td><input type="text" class="form-control chtxt" name="3upper_minPerBet" id="3upper_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="3upper_maxPerBet" id="3upper_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="3upper_maxCostPerNumber" id="3upper_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="3upper_payRate" id="3upper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="3upper_maxCostPerNumber" id="3upper_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td><input type="text" class="form-control chtxt" name="3upper_payRate" id="3upper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;"></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="3upper_percent" id="3upper_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required> </td>
                                     </tr>
                                     <tr>
                                         <td class="text-bold-500">3ตัวล่าง</td>
                                         <td><input type="text" class="form-control chtxt" name="3under_minPerBet" id="3under_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="3under_maxPerBet" id="3under_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="3under_maxCostPerNumber" id="3under_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="3under_maxCostPerNumber" id="3under_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="3under_payRate" id="3under_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="3under_percent" id="3under_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -134,7 +134,7 @@
                                         <td class="text-bold-500">3ตัวโต๊ด</td>
                                         <td><input type="text" class="form-control chtxt" name="3toad_minPerBet" id="3toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="3toad_maxPerBet" id="3toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="3toad_maxCostPerNumber" id="3toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="3toad_maxCostPerNumber" id="3toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="3toad_payRate" id="3toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="3toad_percent" id="3toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -142,7 +142,7 @@
                                         <td class="text-bold-500">2ตัวบน</td>
                                         <td><input type="text" class="form-control chtxt" name="2upper_minPerBet" id="2upper_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="2upper_maxPerBet" id="2upper_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="2upper_maxCostPerNumber" id="2upper_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="2upper_maxCostPerNumber" id="2upper_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="2upper_payRate" id="2upper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="2upper_percent" id="2upper_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -150,7 +150,7 @@
                                         <td class="text-bold-500">2ตัวล่าง</td>
                                         <td><input type="text" class="form-control chtxt" name="2under_minPerBet" id="2under_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="2under_maxPerBet" id="2under_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="2under_maxCostPerNumber" id="2under_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="2under_maxCostPerNumber" id="2under_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="2under_payRate" id="2under_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="2under_percent" id="2under_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -158,7 +158,7 @@
                                         <td class="text-bold-500">2ตัวโต๊ด</td>
                                         <td><input type="text" class="form-control chtxt" name="2toad_minPerBet" id="2toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="2toad_maxPerBet" id="2toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="2toad_maxCostPerNumber" id="2toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="2toad_maxCostPerNumber" id="2toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="2toad_payRate" id="2toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="2toad_percent" id="2toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -166,7 +166,7 @@
                                         <td class="text-bold-500">ลอยบน</td>
                                         <td><input type="text" class="form-control chtxt" name="floatUpper_minPerBet" id="floatUpper_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="floatUpper_maxPerBet" id="floatUpper_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="floatUpper_maxCostPerNumber" id="floatUpper_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="floatUpper_maxCostPerNumber" id="floatUpper_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="floatUpper_payRate" id="floatUpper_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="floatUpper_percent" id="floatUpper_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -174,7 +174,7 @@
                                         <td class="text-bold-500">ลอยล่าง</td>
                                         <td><input type="text" class="form-control chtxt" name="floatUnder_minPerBet" id="floatUnder_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="floatUnder_maxPerBet" id="floatUnder_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="floatUnder_maxCostPerNumber" id="floatUnder_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="floatUnder_maxCostPerNumber" id="floatUnder_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="floatUnder_payRate" id="floatUnder_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="floatUnder_percent" id="floatUnder_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -182,7 +182,7 @@
                                         <td class="text-bold-500">4ตัวโต๊ด</td>
                                         <td><input type="text" class="form-control chtxt" name="4toad_minPerBet" id="4toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="4toad_maxPerBet" id="4toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="4toad_maxCostPerNumber" id="4toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="4toad_maxCostPerNumber" id="4toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="4toad_payRate" id="4toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="4toad_percent" id="4toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>
@@ -190,7 +190,7 @@
                                         <td class="text-bold-500">5ตัวโต๊ด</td>
                                         <td><input type="text" class="form-control chtxt" name="5toad_minPerBet" id="5toad_minPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="5toad_maxPerBet" id="5toad_maxPerBet" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
-                                        <td><input type="text" class="form-control chtxt" name="5toad_maxCostPerNumber" id="5toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
+                                        <td hidden><input type="text" class="form-control chtxt" value="0" name="5toad_maxCostPerNumber" id="5toad_maxCostPerNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" name="5toad_payRate" id="5toad_payRate" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="height:30px; width:90px; text-align: center;" required></td>
                                         <td><input type="text" class="form-control chtxt" placeholder="%" name="5toad_percent" id="5toad_percent" oninput="this.value=this.value.replace(/[^0-9]/g,''); (this.value > 100) ? this.value=100:this.value=this.value;" style="height:30px; width:90px; text-align: center;" required></td>
                                     </tr>

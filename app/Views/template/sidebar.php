@@ -1,24 +1,15 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
-        <br>
-        <div class="card-body py-4 px-5">
-            <div class="d-flex align-items-center">
-                <div class="avatar avatar-xl">
-                    <?php if ($this->session->session_admin['role'] == 'programmer') { ?>
-                        <img src="<?= base_url('public/images/faces/2.jpg'); ?>">
-                    <?php } else if ($this->session->session_admin['role'] == 'admin') { ?>
-                        <img src="<?= base_url('public/images/faces/1.jpg'); ?>">
-                    <?php } else { ?>
-                        <img src="<?= base_url('public/images/faces/5.jpg'); ?>">
-                    <?php } ?>
+        <div class="sidebar-header">
+            <div class="d-flex justify-content-between">
+                <div class="logo">
+                    <a href="index.html"><img src="<?= base_url('public/images/logo/logo.png'); ?>" alt="Logo" srcset=""></a>
                 </div>
-                <div class="ms-3 name">
-                    <h5 class="font-bold"><?= $this->session->session_admin['username'] ?></h5>
-                    <h6 class="mb-0" style="color: #F53737; text-decoration: underline; cursor:pointer;">LOGOUT</h6>
+                <div class="toggler">
+                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
             </div>
         </div>
-
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
@@ -58,11 +49,11 @@
                                 <span class="subMenu">อัตราจ่าย</span>
                             </a>
                         </li>
-                        <li class="submenu-item ">
+                   <!--      <li class="submenu-item ">
                             <a href="<?= base_url('backend/set-huay/per-bet'); ?>">
                                 <span class="subMenu">ตั้งอั้น</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="submenu-item ">
                             <a href="<?= base_url('backend/set-huay/max-min-bet'); ?>">
                                 <span class="subMenu">ต่ำสุด/สูงสุด ต่อไม้</span>
@@ -77,7 +68,6 @@
                             <a href="<?= base_url('backend/set-huay/close-time'); ?>">
                                 <span class="subMenu">เวลาปิดการแทง</span>
                             </a>
-
                         </li>
                     </ul>
                 </li>

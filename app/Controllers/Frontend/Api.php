@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Models\M_sethuay;
+namespace App\Controllers\Frontend;
 
-use CodeIgniter\Model;
+use App\Controllers\Base\BaseController;
 
-
-class M_sethuay extends Model
+class Api extends BaseController
 {
     public function __construct()
     {
         $this->My_Query = model('My_query');
     }
-    public function detalimem()
+    public function savemybet()
     {
+        return json_encode($this->request->getPost());
+    }
+    public function getmaxminbet(){
+        
 
         $dataQuery = array(
             'tableDB' => 'tb_user',
@@ -20,6 +23,7 @@ class M_sethuay extends Model
                 '*'
             ],
             'whereData' => [
+                'tb_user.user_id' => 1,
                 'tb_user.role' => 'member',
             ],
             'join' => [
@@ -29,12 +33,6 @@ class M_sethuay extends Model
                     'keyHead' => 'user_id',
                     'typeJoin' => 'left'
                 ],
-                // [
-                //     'tableJoin' => 'tb_tag',
-                //     'keyJoin' => 'tag_id',
-                //     'keyHead' => 'tag_id',
-                //     'typeJoin' => 'left'
-                // ],
             ],
             'limit' => [
                 'limitCount' => 999,
@@ -42,11 +40,8 @@ class M_sethuay extends Model
             ]
         );
         $data = $this->My_Query->joinAndWhereData($dataQuery);
-
-        return $this->loopnewdata($data);
+        return json_encode($this->loopnewdata($data)) ;
     }
-    
-
     public function loopnewdata($data)
     {
         $checkData = [];

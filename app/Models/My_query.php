@@ -207,4 +207,6 @@ class My_query extends Model
     {
         return $this->DB->table($dataCheck['tableDB'])->where($dataCheck['whereData'])->countAllResults();
     }
+
+
 }
