@@ -88,9 +88,7 @@
                     <footer>
                         <div class="card-footer">
                             <div class="col-12 d-flex justify-content-end">
-
-                                <button type="button" class="btn btn-success me-1 mb-1">Submit</button>
-
+                                <button type="button" class="btn btn-success me-1 mb-1 submitReward">Submit</button>
                             </div>
                         </div>
                     </footer>
@@ -125,8 +123,10 @@
         </div>
     </div>
 </div>
+
+
 <script>
-    $(":button").click(function() {
+    $(":button.submitReward").click(function() {
         arrData = {
             'date': $('#round').val(),
             'reward1st': $('#reward1st').val(),

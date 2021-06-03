@@ -39,7 +39,7 @@
         }).done(function(res) {
             console.log(res);
             if (res.status == 'success') {
-                window.location.href = '<?= base_url('backend'); ?>'
+                window.location.href = '<?= base_url('bet-huay-thai'); ?>'
             } else {
                 swal({
                     icon: res.status,

@@ -8,19 +8,20 @@ class Singin extends BaseController
 {
 	public function index()
 	{
-		return view('views_login/member_login');
+		if (!$this->session->has('session_member')) {
+			return view('views_login/member_login');
+        }else{
+            return redirect()->to(base_url('bet-huay-thai'));
+        }
 	}
 
 	public function checkLogin()
 	{
-		// echo '<pre>';
-		// print_r($this->request->getPost());
-		// die;
 		$usernameInput = $this->request->getPost('usernameInput');
 		$passwordInput = $this->request->getPost('passwordInput');
 		if ($usernameInput != null || $passwordInput != null) {
 
-			$query_adminByusername = $this->DB->table('tb_user')->where('username', $usernameInput)->get();
+			$query_adminByusername = $this->DB->table('tb_user')->where(['username'=>$usernameInput,'role'=>'member'])->get();
 
 			if ($query_adminByusername->resultID->num_rows == 1) {
 
@@ -71,6 +72,7 @@ class Singin extends BaseController
 		);
 
 		$this->session->set('session_member', $session_member);
+		
 		if ($this->session->has('session_member')) {
 			return true;
 		} else {

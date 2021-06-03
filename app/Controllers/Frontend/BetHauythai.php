@@ -6,9 +6,18 @@ use App\Controllers\Base\BaseController;
 
 class BetHauythai extends BaseController
 {
+    public function __construct()
+    {
+        $this->session = \Config\Services::session();
+
+        $this->My_Query = model('My_query');
+    }
     public function index()
     {
-        return view('views_frontend/view_bet');
+       $get = $this->getbetonround();
+        $data['mybet'] = json_encode($get['data']);
+        $data['sumbet'] =$get['sum']->sumbet;
+        return view('views_frontend/view_bet',$data);
     }
     public function BetList(){
 
@@ -22,4 +31,57 @@ class BetHauythai extends BaseController
 
         return view('views_frontend/bet_result');
     }
+
+
+    public function getbetonround(){
+
+        $dataQuery = array(
+            'tableDB' => 'tb_ticket',
+            'selectData' => [
+                '*',
+            ],
+            'whereData' => [
+                'tb_ticket.user_id'=>$this->session->session_member['user_id']
+        ],
+            'orderBy' => [
+                'keyOrderBy' => 'ticket_id',
+                'sortBy' => 'ASC',
+            ],
+            'limit' => [
+                'limitCount' => 999,
+                'startAt' => 0
+            ]
+        ); 
+        $dataQuerySum = array(
+            'tableDB' => 'tb_ticket',
+            'selectData' => [
+                'SUM(amount_bet) AS sumbet',
+            ],
+            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id']],
+            'orderBy' => [
+                'keyOrderBy' => 'ticket_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        
+        return ['data'=>$this->My_Query->selectData($dataQuery),'sum'=>json_decode($this->getsumbet())];
+    }
+
+    public function getsumbet(){
+        $dataQuerySum = array(
+            'tableDB' => 'tb_ticket',
+            'selectData' => [
+                'SUM(amount_bet) AS sumbet',
+            ],
+            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id']],
+            'orderBy' => [
+                'keyOrderBy' => 'ticket_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        return json_encode($this->My_Query->selectDataRow($dataQuerySum));
+    }
+
+
+
 }
