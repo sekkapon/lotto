@@ -15,4 +15,10 @@ class Backend extends BaseController
     {
         return view('views_backend/view_system');
     }
+    public function logout()
+    {
+        $this->session->destroy();
+        header('Location: ' . base_url('login'));
+        die;
+    }
 }
