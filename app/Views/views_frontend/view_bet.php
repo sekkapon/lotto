@@ -32,10 +32,10 @@
             <div class="card-body">
                 <div class="tab-content">
                     <!-- แทงปกติ -->
-                  
-                        <div class="tab-pane show active" id="tab-eg2-0" role="tabpanel">
-                              <form id="formbet">
-                              <p>
+
+                    <div class="tab-pane show active" id="tab-eg2-0" role="tabpanel">
+                        <form id="formbet">
+                            <p>
                             <table class="mb-0 table table-striped">
                                 <tbody>
 
@@ -75,12 +75,12 @@
                             <div class="d-block text-center card-footer">
                                 <button class="btn-wide btn btn-success" type="submit">ตกลง</button>
                             </div>
-                            </form>
-                        </div>
-                    
-                
-                <!-- แทงปักหลัก -->
-                <!-- <div class="tab-pane show" id="tab-eg2-1" role="tabpanel">
+                        </form>
+                    </div>
+
+
+                    <!-- แทงปักหลัก -->
+                    <!-- <div class="tab-pane show" id="tab-eg2-1" role="tabpanel">
                     <p>
                     <table class="mb-0 table table-striped">
                         <tbody>
@@ -121,102 +121,103 @@
                         <a href="javascript:void(0);" class="btn-wide btn btn-success">Saveแทงปักหลัก</a>
                     </div>
                 </div> -->
-                <!-- แทงชุด -->
-                <div class="tab-pane show" id="tab-eg2-2" role="tabpanel">
-                    <p>
-                    <table class="mb-0 table table-striped">
-                        <tr>
-                            <td></td>
-                            <td colspan="2" align="center" class="text-10 L10 text-orange">
-                                <select class="form-control-sm form-control" name="slSuitLottoType" id="slSuitLottoType">
-                                    <option value="1">3 ตัวบน</option>
-                                    <option value="2">3 ตัวล่าง</option>
-                                </select>
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tbody>
+                    <!-- แทงชุด -->
+                    <div class="tab-pane show" id="tab-eg2-2" role="tabpanel">
+                        <p>
+                        <table class="mb-0 table table-striped">
                             <tr>
-                                <td align="center" class="bg-gradient-gray LR10 text-8"><strong>หมายเลข</strong> </td>
-                                <td class="bg-gradient-gray LR10 text-9" align="center">ตรง</td>
-                                <td class="bg-gradient-gray LR10 text-9" align="center">กลับ</td>
-                                <td class="bg-gradient-gray LR10 text-9" align="center"><span id="waiting3"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="border-white" align="center">
-                                    <input type="text" class="form-control" name="fbet_number" id="fbet_number" maxlength="3" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_number');" autocomplete="off">
+                                <td></td>
+                                <td colspan="2" align="center" class="text-10 L10 text-orange">
+                                    <select class="form-control-sm form-control" name="slSuitLottoType" id="slSuitLottoType">
+                                        <option value="1">3 ตัวบน</option>
+                                        <option value="2">3 ตัวล่าง</option>
+                                    </select>
                                 </td>
-                                <td class="border-white" align="center">
-                                    <input class="form-control" name="fbet_amt1" id="fbet_amt1" type="text" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_amt1');">
-                                </td>
-                                <td class="border-white" align="center"><input class="form-control" name="fbet_amt2" id="fbet_amt2" type="text" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_amt2');" autocomplete="off"></td>
-                                <td align="center"></td>
+                                <td></td>
                             </tr>
+                            <tbody>
+                                <tr>
+                                    <td align="center" class="bg-gradient-gray LR10 text-8"><strong>หมายเลข</strong> </td>
+                                    <td class="bg-gradient-gray LR10 text-9" align="center">ตรง</td>
+                                    <td class="bg-gradient-gray LR10 text-9" align="center">กลับ</td>
+                                    <td class="bg-gradient-gray LR10 text-9" align="center"><span id="waiting3"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="border-white" align="center">
+                                        <input type="text" class="form-control" name="fbet_number" id="fbet_number" maxlength="3" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_number');" autocomplete="off">
+                                    </td>
+                                    <td class="border-white" align="center">
+                                        <input class="form-control" name="fbet_amt1" id="fbet_amt1" type="text" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_amt1');">
+                                    </td>
+                                    <td class="border-white" align="center"><input class="form-control" name="fbet_amt2" id="fbet_amt2" type="text" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_amt2');" autocomplete="off"></td>
+                                    <td align="center"></td>
+                                </tr>
 
-                            <tr>
-                                <td colspan="4" class="bg-gradient-gray LR10 text-11" align="center" id="tbShowData" style="color:#F00">&nbsp;</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </p>
-                    <div class="d-block text-center card-footer">
-                        <a href="javascript:void(0);" class="btn-wide btn btn-success">Saveแทงชุด</a>
+                                <tr>
+                                    <td colspan="4" class="bg-gradient-gray LR10 text-11" align="center" id="tbShowData" style="color:#F00">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </p>
+                        <div class="d-block text-center card-footer">
+                            <a href="javascript:void(0);" class="btn-wide btn btn-success">Saveแทงชุด</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
+    </div>
+    <div class="col-md-6 col-xl-8">
+        <div class="main-card mb-3 card">
+            <div class="card-header">
+                &nbsp;&nbsp;<b>ยอดเล่น&nbsp;<font size="+1"><span id="total_amt"><?= $sumbet; ?></span></font>&nbsp;บาท</b>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <table class="mb-0 table table-striped">
+                        <thead>
+                            <tr>
+                                <td align="center">
+
+                                    <input class="form-check-input" type="checkbox" name="cbAll" id="cbAll" onclick="CheckAll(this);">
+                                    <span id="total_bet" style="font-weight:bold">(0)</span>
+                                </td>
+                                <td align="center">วันที่-เวลา(ป/ด/ว ช:น)</td>
+                                <td align="center">ประเภท</td>
+                                <td align="center">หมายเลข</td>
+                                <td align="center">จำนวน</td>
+                                <td align="center">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php $i = 0;;
+                            foreach (json_decode($mybet) as $key => $value) {
+                                $i++;;
+
+                            ?>
+                                <tr>
+                                    <td align="center"><?= $i; ?></td>
+                                    <td align="center"><?= date('Y/m/d H:i', $value->create_time); ?></td>
+                                    <td align="center"><?= $value->type_lotto; ?></td>
+                                    <td align="center"><?= $value->number_lotto ?></td>
+                                    <td align="center"><?= $value->amount_bet; ?></td>
+                                    <td align="center">&nbsp;</td>
+                                </tr>
+                            <?php  } ?>
+
+                        </tbody>
+                    </table>
+            </div>
+            <div class="card-footer">Footer</div>
+        </div>
+
 
 
     </div>
-</div>
-<div class="col-md-6 col-xl-8">
-    <div class="main-card mb-3 card">
-        <div class="card-header">
-            &nbsp;&nbsp;<b>ยอดเล่น&nbsp;<font size="+1"><span id="total_amt"><?=$sumbet;?></span></font>&nbsp;บาท</b>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">
-                <table class="mb-0 table table-striped">
-                <thead>
-                <tr>
-                            <td align="center">
-
-                                <input class="form-check-input" type="checkbox" name="cbAll" id="cbAll" onclick="CheckAll(this);">
-                                <span id="total_bet" style="font-weight:bold">(0)</span>
-                            </td>
-                            <td align="center">วันที่-เวลา(ป/ด/ว ช:น)</td>
-                            <td align="center">ประเภท</td>
-                            <td align="center">หมายเลข</td>
-                            <td align="center">จำนวน</td>
-                            <td align="center">&nbsp;</td>
-                        </tr>
-                </thead>
-                    <tbody>
- 
-                       <?php $i=0; ;
-                        foreach (json_decode($mybet) as $key => $value) { $i++; ;
-                        
-                        ?>
-            <tr>
-                        <td align="center"><?=$i;?></td>
-                        <td align="center"><?=date('Y/m/d H:i',$value->create_time);?></td>
-                        <td align="center"><?=$value->type_lotto;?></td>
-                        <td align="center"><?=$value->number_lotto?></td>
-                        <td align="center"><?=$value->amount_bet;?></td>
-                        <td align="center">&nbsp;</td>
- </tr>
-                        <?php  }?>
-                       
-                    </tbody>
-                </table>
-        </div>
-        <div class="card-footer">Footer</div>
-    </div>
-
-
-
-</div>
-<!-- <div class="col-md-6 col-xl-2">
+    <!-- <div class="col-md-6 col-xl-2">
     <label>หมายเลขปิดรับ</label>
     <div class="card mb-3 widget-content ">
         <div class="widget-content-wrapper ">
@@ -243,25 +244,6 @@
 
 
 <script>
-    $(function() {
-        var data = localStorage.getItem("maxmin");
-        if (data) {
-            return JSON.parse(data);
-        } else {
-            console.log("loademaxmin");
-            $.ajax({
-                    method: "POST",
-                    url: "bet-huay-thai/api/getmaxminbet",
-                    dataType: "json",
-                    data: {}
-                })
-                .done(function(msg) {
-                    localStorage.setItem("maxmin", JSON.stringify(msg[0]));
-                    return msg;
-                });
-        }
-    });
-
     function checknum(row, colum) {
         var tr = $(row).parents('tr').children().children('.betnum');
         var num = tr.val();
@@ -497,20 +479,20 @@
                 }
             });
         });
-if(newdata.length>0){
- $.ajax({
-                method: "POST",
-                url: "bet-huay-thai/api/savemybet",
-                dataType: "json",
-                data: {
-                    data: newdata,
-                }
-            })
-            .done(function(msg) {
-                console.log(msg);
-            });
-}
-       
+        if (newdata.length > 0) {
+            $.ajax({
+                    method: "POST",
+                    url: "bet-huay-thai/api/savemybet",
+                    dataType: "json",
+                    data: {
+                        data: newdata,
+                    }
+                })
+                .done(function(msg) {
+                    console.log(msg);
+                });
+        }
+
     });
 </script>
 

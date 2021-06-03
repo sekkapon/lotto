@@ -3,20 +3,26 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="index.html"><img src="<?= base_url('public/images/logo/logo.png'); ?>" alt="Logo" srcset=""></a>
+                    <a href="<?= base_url('backend/backend/system'); ?>"><img src="<?= base_url('public/images/logo/logo.png'); ?>" alt="Logo" srcset=""></a>
                 </div>
-                <!-- <div class="toggler">
+                <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
                 <li class="sidebar-item">
+                    <a href="<?= base_url('backend/backend/system'); ?>" class='sidebar-link'>
+                        <i class="bi bi-sliders"></i>
+                        <span class="headMenu">รายละเอียดระบบ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="<?= base_url('backend'); ?>" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span class="headMenu">แดชบอร์ด</span>
+                        <span class="headMenu">โปรไฟล์</span>
                     </a>
                 </li>
                 <li class="sidebar-item  has-sub">
@@ -84,7 +90,7 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="layout-default.html">
+                            <a href="<?= base_url('backend/report/reportReward'); ?>">
                                 <span class="subMenu">ผลรางวัลย้อนหลัง</span>
                             </a>
                         </li>
@@ -98,6 +104,12 @@
                     </a>
                 </li>
             </ul>
+
+            <div class="px-4">
+                <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3 logout'>
+                    Log out
+                </button>
+            </div>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
     </div>

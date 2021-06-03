@@ -18,10 +18,9 @@ class Auth_mem implements FilterInterface
     {
 
         // Do something here
-        // echo "by pass mem";
-        // if (!$this->session->has('session_member')) {
-        //     return redirect()->to(base_url('/Singin'));
-        // }
+        if (!$this->session->has('session_member')) {
+            return redirect()->to(base_url());
+        }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

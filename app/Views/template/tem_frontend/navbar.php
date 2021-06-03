@@ -31,17 +31,40 @@
     </div>
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
+            <hr>
             <div class="card-bodyM">
-                <h5 class="card-title"> สวัสดีค่ะ คุณ AAAA </h5>
+                <h4 class="card-title"> สวัสดีค่ะ คุณ AAAA </h4>
                 <ul class="list-group">
                     <li class="justify-content-between list-group-item"> งวดประจำวันที่ 01-06-2021 </li>
-                    <li class="justify-content-between list-group-item"> เครดิต <font size="+2"><span class="badge badge-info badge-pill">5,000.00</span></font></li>
-                    <li class="justify-content-between list-group-item"> ยอดพนัน <font size="+2"><span class="badge badge-secondary badge-pill">0.00</span></font></li>
-                    <li class="justify-content-between list-group-item"> ยอดได้-เสีย <font size="+2"><span class="badge badge-danger badge-pill">-540.00</span></font></li>
-                    <li class="justify-content-between list-group-item"> คงเหลือ <font size="+2"><span class="badge badge-success badge-pill">4,460.00</span></font></li>
+                    <!-- <li class="justify-content-between list-group-item"> เครดิต <font size="+2"><span class="badge badge-info badge-pill">5,000.00</span></font></li> -->
+                    <li class="justify-content-between list-group-item"> ยอดพนัน <font size="+2"><span class="badge badge-secondary badge-pill" id="navtotalbet">0.00</span></font>
+                    </li>
+                    <li class="justify-content-between list-group-item"> ยอดได้-เสีย <font size="+2"><span class="badge badge-danger badge-pill" id="navtotalbalanc">-0.00</span></font>
+                    </li>
+                    <!-- <li class="justify-content-between list-group-item"> คงเหลือ <font size="+2"><span class="badge badge-success badge-pill">4,460.00</span></font></li> -->
                 </ul>
             </div>
+            <p>
+            <h4 class="card-title"> หวยไทย </h4>
+            <div class="card-bodyM">
+                <ul class="list-group">
+                    <li class="justify-content-between list-group-item">
+                        <table class="table table-striped" style="font-size:0.7rem !important;">
+                            <thead>
+                                <tr>
+                                    <th>ประเภท</th>
+                                    <th>ขั้นต่ำ | สูงสุด</th>
+                                    <th>อัตราจ่าย</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyshowminmax">
+                             
+                            </tbody>
+                        </table>
 
+                    </li>
+                </ul>
+            </div>
 
         </div>
     </div>

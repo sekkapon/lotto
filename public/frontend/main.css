@@ -24237,7 +24237,7 @@ a.fc-more:hover {
         padding: 0 .5rem
     }
     .app-header .app-header__content .app-header-left .nav {
-        display: none
+        /* display: none */
     }
     .app-header .app-header__content.header-mobile-open {
         visibility: visible;

@@ -38,7 +38,9 @@ $routes->setAutoRoute(true);
 // ==============================================================================
 // $routes->get('/', 'Frontend\Home::index');
 $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
+	
 	$routes->get('', 'Frontend\BetHauythai::index');
+	$routes->post('myapi/(:any)', 'Frontend\BetHauythai::$1');
 	$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
 	$routes->get('bet-report', 'Frontend\BetHauythai::BetReport');
 	$routes->get('bet-result', 'Frontend\BetHauythai::BetResult');
@@ -62,6 +64,10 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 
 	$routes->get('reward', 'Backend\reward::index');
 	$routes->add('reward/(:any)', 'Backend\reward::$1');
+
+	$routes->get('report', 'Backend\Report::index');
+	$routes->add('report/(:any)', 'Backend\Report::$1');
+
 
 
 	//group setting lotto

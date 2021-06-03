@@ -4,6 +4,7 @@
 <?php $this->section('content'); ?>
 <div class="page-heading">
     <h3>Profile Statistics</h3>
+    <p class="text-subtitle text-muted">ผลรางวัลย้อนหลัง</p>
 </div>
 <!-- <div class="page-content">
     <section class="row">

@@ -10,4 +10,9 @@ class Backend extends BaseController
     {
         return view('views_backend/view_backend');
     }
+
+    public function system()
+    {
+        return view('views_backend/view_system');
+    }
 }

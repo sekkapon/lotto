@@ -8,6 +8,8 @@ class BetHauythai extends BaseController
 {
     public function __construct()
     {
+        $this->session = \Config\Services::session();
+
         $this->My_Query = model('My_query');
     }
     public function index()
@@ -39,7 +41,7 @@ class BetHauythai extends BaseController
                 '*',
             ],
             'whereData' => [
-                'tb_ticket.user_id'=>1
+                'tb_ticket.user_id'=>$this->session->session_member['user_id']
         ],
             'orderBy' => [
                 'keyOrderBy' => 'ticket_id',
@@ -55,13 +57,31 @@ class BetHauythai extends BaseController
             'selectData' => [
                 'SUM(amount_bet) AS sumbet',
             ],
-            'whereData' => ['tb_ticket.user_id'=>1],
+            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id']],
             'orderBy' => [
                 'keyOrderBy' => 'ticket_id',
                 'sortBy' => 'ASC',
             ],
         );
         
-        return ['data'=>$this->My_Query->selectData($dataQuery),'sum'=>$this->My_Query->selectDataRow($dataQuerySum)];
+        return ['data'=>$this->My_Query->selectData($dataQuery),'sum'=>json_decode($this->getsumbet())];
     }
+
+    public function getsumbet(){
+        $dataQuerySum = array(
+            'tableDB' => 'tb_ticket',
+            'selectData' => [
+                'SUM(amount_bet) AS sumbet',
+            ],
+            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id']],
+            'orderBy' => [
+                'keyOrderBy' => 'ticket_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        return json_encode($this->My_Query->selectDataRow($dataQuerySum));
+    }
+
+
+
 }

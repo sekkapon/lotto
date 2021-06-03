@@ -8,6 +8,7 @@ class Api extends BaseController
 {
     public function __construct()
     {
+        $this->session = \Config\Services::session();
         $this->My_Query = model('My_query');
     }
     public function savemybet()
@@ -15,7 +16,6 @@ class Api extends BaseController
         return json_encode($this->request->getPost('data'));
     }
     public function getmaxminbet(){
-        
 
         $dataQuery = array(
             'tableDB' => 'tb_user',
@@ -23,7 +23,7 @@ class Api extends BaseController
                 '*'
             ],
             'whereData' => [
-                'tb_user.user_id' => 1,
+                'tb_user.user_id' => $this->session->session_member['user_id'],
                 'tb_user.role' => 'member',
             ],
             'join' => [
@@ -51,9 +51,11 @@ class Api extends BaseController
                 array_push($checkData, $valueData['user_id']);
             }
         }
-        foreach ($checkData as $keyCheckData => $valueCheckData) {
+       
+        foreach ($checkData as $keyCheckData => $valueCheckData) {    
             foreach ($data as $key => $valueData) {
                 if ($valueCheckData == $valueData['user_id']) {
+                    $sortData[$keyCheckData]['localTime']=time();
                     $sortData[$keyCheckData]['user_id'] = $valueData['user_id'];
                     $sortData[$keyCheckData]['username'] = $valueData['username'];
                     $sortData[$keyCheckData]['firstname'] = $valueData['firstname'];
@@ -71,6 +73,31 @@ class Api extends BaseController
                 }
             }
         }
+        
         return $sortData;
     }
+
+    public function getbetlist()
+    {
+        $dataQuery = array(
+            'tableDB' => 'tb_ticket',
+            'selectData' => [
+                '*'
+            ],
+            'whereData' => [
+                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
+                'tb_ticket.round'=>'2021-06-02'
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'user_id',
+                'sortBy' => 'ASC',
+            ],
+            'limit' => [
+                'limitCount' => 999,
+                'startAt' => 0
+            ]
+        ); 
+        return  json_encode($this->My_Query->selectData($dataQuery));
+    }
+
 }
