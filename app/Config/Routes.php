@@ -38,14 +38,13 @@ $routes->setAutoRoute(true);
 // ==============================================================================
 // $routes->get('/', 'Frontend\Home::index');
 $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
-	
+
 	$routes->get('', 'Frontend\BetHauythai::index');
 	$routes->post('myapi/(:any)', 'Frontend\BetHauythai::$1');
 	$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
 	$routes->get('bet-report', 'Frontend\BetHauythai::BetReport');
 	$routes->get('bet-result', 'Frontend\BetHauythai::BetResult');
 	$routes->add('api/(:any)', 'Frontend\Api::$1');
-
 });
 // login frontend
 $routes->get('/', 'Login\Singin::index');

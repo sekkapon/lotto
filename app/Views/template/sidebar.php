@@ -106,11 +106,12 @@
             </ul>
 
             <div class="px-4">
-                <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3 logout'>
+
+                <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3' onclick="location.href='<?= base_url('backend/backend/logout'); ?>'">
                     Log out
                 </button>
             </div>
         </div>
-        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+        <!-- <button class="sidebar-toggler btn x"><i data-feather="x"></i></button> -->
     </div>
 </div>
