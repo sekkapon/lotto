@@ -21,13 +21,11 @@
     <div class="col-md-6 col-xl-12">
         <div class="main-card mb-3 card">
             <div class="card-header">
-                <label>เลือกรายการ</label>
-                <select class="form-control" name="slShowType" id="slShowType" onchange="getbetlist();">
-                    <option value="0" selected="">แสดงตามรายการแทง</option>
-                    <option value="1">แสดงตามหมายเลข</option>
-                </select>
-
+              
+            <div class="col-md-6 col-xl-1">
                 <label>เลือก</label>
+                </div>
+                <div class="col-md-6 col-xl-3">
                 <select class="form-control" name="slLottoType" id="slLottoType" onchange="getbetlist();">
                     <option value="">ทุกประเภท</option>
                     <option value="1">3 ตัวบน</option>
@@ -41,7 +39,8 @@
                     <option value="9">4 ตัวโต๊ด</option>
                     <option value="10">5 ตัวโต๊ด</option>
                 </select>
-
+                
+                </div>
             </div>
             <div class="card-body">
                 <h5 class="card-title">
@@ -92,23 +91,93 @@
             })
             .done(function(msg) {
                 console.log(msg);
-                $.each(msg, function(k, val) {
-                let txt = `
-                    <tr>
-                        <td><strong> ลำดับ</strong></td>
-                        <td><strong>วันที่ เวลา</strong></td>
-                        <td><strong>RefNo.</strong></td>
-                        <td><strong>ประเภท</strong></td>
-                        <td><strong>หมายเลข</strong></td>
-                        <td><strong>ยอดพนัน</strong></td>
-                        <td><strong>คอมมิชชั่น</strong></td>
-                        <td><strong>สถานะ</strong></td>
+                var txt = ``;
+                var txtfoot = ``;
+                var sumbet = 0;
+                var sumcom = 0;
+                var i =0;
+                $.each(msg, function(k, val) {i++;
+                    var type =""
+                    switch (val.type_lotto) {
+                        case "3upper":
+                            type = "3ตัวบน";
+                            break;
+                        case "3under":
+                            type = "3ตัวล่าง";
+                            break;
+                        case "3toad":
+                            type = "3ตัวโต๊ด";
+                            break;
+                        case "2upper":
+                            type = "2ตัวบน";
+                            break;
+                        case "2under":
+                            type = "2ตัวล่าง";
+                            break;
+                         case "floatUnder":
+                            type = "2ตัวโต๊ด";
+                            break;
+                        case "floatUpper":
+                            type = "ลอยบน";
+                            break;
+                        case "floatUnder":
+                            type = "ลอยล่าง";
+                            break;
+                        case "4toad":
+                            type = "4ตัวโต๊ด";
+                            break;
+                        case "5toad":
+                            type = "5ตัวโต๊ด";
+                            break;                        
+                        default:
+                            break;
+                    }
+
+                 txt += `
+                    <tr >
+                        <td>`+i+`</td>
+                        <td>`+formatDate((val.create_time) *1000)+`</td>
+                        <td>`+val.ticket_id+`</td>
+                        <td >`+type+`</td>
+                        <td>`+val.number_lotto+`</td>
+                        <td>`+val.amount_bet+`</td>
+                        <td>`+val.commission+`</td>
+                        <td>`+val.status+`</td>
                     </tr>
                 `;
-                });
-                $('#showlistbet').html(txt);
+                sumbet +=parseFloat(val.amount_bet);
+                sumcom += parseFloat(val.commission) ;
+               
+                }); 
+                txtfoot += `
+                    <tr>
+                         <td></td>
+                        <td></td>
+                        <td></td>
+                        <td ></td>
+                        <td>รวม</td>
+                        <td>`+sumbet+`</td>
+                        <td>`+sumcom+`</td>
+                        <td></td>
+                    </tr>`;
+                $('#showlistbet').html(txtfoot+txt);
             });
     }
+    function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+        h = d.getHours ();
+        m = d.getMinutes();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return year+'/'+month+'/'+day+' '+h+':'+m;
+}
 </script>
 
 
