@@ -52,10 +52,11 @@ class Set_huay extends BaseController
                 'sortBy' => 'DESC',
             ],
             'limit' => [
-                'limitCount' => 50,
+                'limitCount' => 10,
                 'startAt' => 0
             ]
         );
+
         $dataCloseTime['dataUser'] =  $this->My_Query->selectData($dataQuery);
         return view('views_backend/setting_lotto/view_closetime', $dataCloseTime);
     }
