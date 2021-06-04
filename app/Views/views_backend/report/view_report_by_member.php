@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <div class="d-flex justify-content-end">
-                        <div class="form-group has-icon-left col-3">
+                        <div class="form-group has-icon-left col-md-5 col-xl-5">
                             <label>งวดวันที่</label>
                             <div class="position-relative">
                                 <div class="form-control-icon">
@@ -43,19 +43,18 @@
                             </thead>
                             <tbody align="center" id="bodyTable">
                                 <tr align="center">
-                                    <td colspan="5">กรุณาเลือกงวด เพื่อนแสดงรายงาน</td>                                  
+                                    <td colspan="5">กรุณาเลือกงวด เพื่อนแสดงรายงาน</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    
+
 </script>
 <?php $this->endSection(); ?>

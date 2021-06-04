@@ -3,7 +3,7 @@
 
 <style>
     i.bi-search:hover {
-        color: black;
+        color: gray;
         cursor: pointer;
     }
 </style>
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-end" style="padding-top:15px">
-                                    <button type="button" class="btn btn-success me-1 mb-1">Submit</button>
+                                    <button type="button" class="btn btn-success me-1 mb-1" id="btnEdit" hidden>Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,11 @@
                             <tbody align="center" id="bodyTable">
                                 <?php $i = 1;
                                 foreach ($dataUser as $key => $valueMember) { ?>
-                                    <tr>
+                                    <?php if ($valueMember['status'] == 1) { ?>
+                                        <tr style="background-color:#04AA6D; color:white">
+                                        <?php } else { ?>
+                                        <tr>
+                                        <?php } ?>
                                         <td>
                                             <span><?= $i; ?> </span>
                                         </td>
@@ -103,10 +107,14 @@
                                             <span><?= $valueMember['open_time']; ?> น.</span>
                                         </td>
                                         <td>
-                                            <a href="#settingTime" data-user="<?= htmlspecialchars(json_encode($valueMember, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="callEdit(this)"><i class="bi bi-search" style="font-size: 1.2rem;"></i></a>
+                                            <?php if ($valueMember['status'] == 1) { ?>
+                                                <a href="#settingTime" style="color: white;" data-user="<?= htmlspecialchars(json_encode($valueMember, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="callEdit(this)"><i class="bi bi-search" style="font-size: 1.2rem;"></i></a>
+                                            <?php } else { ?>
+                                                <span> - </span>
+                                            <?php } ?>
                                         </td>
-                                    </tr>
-                                <?php
+                                        </tr>
+                                    <?php
                                     $i++;
                                 } ?>
 
@@ -168,6 +176,7 @@
         $('#round').val($(data).data('user').round);
         $('#closeTime').val($(data).data('user').close_time);
         $('#openTime').val($(data).data('user').open_time);
+        $('#btnEdit').removeAttr('hidden')
     }
 </script>
 <?php $this->endSection(); ?>
