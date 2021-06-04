@@ -43,11 +43,11 @@
                                 <i class="nav-link-icon fa fa-database"> </i> รายการแทง
                             </a>
                         </li>
-                        <li class="btn-group nav-item">
+                        <!-- <li class="btn-group nav-item">
                             <a href="<?=base_url('bet-huay-thai/bet-report');?>" class="nav-link">
                                 <i class="nav-link-icon fa fa-edit"></i> รายงานการเงิน
                             </a>
-                        </li>
+                        </li> -->
                         <li class="dropdown nav-item">
                             <a href="<?=base_url('bet-huay-thai/bet-result');?>" class="nav-link">
                                 <i class="nav-link-icon fa fa-cog"></i> ตรวจผลรางวัล

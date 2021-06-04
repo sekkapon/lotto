@@ -85,8 +85,13 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="layout-default.html">
+                            <a href="<?= base_url('backend/report/reportByMember'); ?>">
                                 <span class="subMenu">ยอดได้/เสีย ตามสมาชิก</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/report/reportByType'); ?>">
+                                <span class="subMenu">ยอดได้/เสีย ตามประเภทหวย</span>
                             </a>
                         </li>
                         <li class="submenu-item ">
@@ -95,6 +100,13 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="<?= base_url('backend/Cutoff'); ?>" class='sidebar-link'>
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span class="headMenu">ตัดยอด</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-item">

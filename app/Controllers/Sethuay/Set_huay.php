@@ -41,31 +41,66 @@ class Set_huay extends BaseController
     }
     public function Closetime()
     {
-        return view('views_backend/setting_lotto/view_closetime');
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                '*'
+            ],
+            'whereData' => [],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'DESC',
+            ],
+            'limit' => [
+                'limitCount' => 50,
+                'startAt' => 0
+            ]
+        );
+        $dataCloseTime['dataUser'] =  $this->My_Query->selectData($dataQuery);
+        return view('views_backend/setting_lotto/view_closetime', $dataCloseTime);
     }
     public function updateTime()
     {
         $arrData = $this->request->getPost('arrData');
+
         if ($arrData['closeTime'] == '' || $arrData['openTime'] == '') {
             echo json_encode(array('code' => 2, 'msg' => 'กรุณาเลือกเวลา'));
             die;
         }
+        if ($arrData['round'] == '') {
+            echo json_encode(array('code' => 2, 'msg' => 'กรุณาเลือกงวด'));
+            die;
+        }
+
         $dataQuery = array(
             'tableDB' => 'tb_close_time_bet',
             'whereData' => [
-                'close_time_id' => 1
+                'round' => $arrData['round']
             ],
             'data' => [
+                'round' => $arrData['round'],
                 'close_time' => $arrData['closeTime'],
-                'open_time' => $arrData['openTime']
+                'open_time' => $arrData['openTime'],
+                'status' => 1
             ]
         );
-        if ($this->My_Query->updateData($dataQuery) == TRUE) {
-            echo json_encode(array('code' => 1));
+        if ($this->My_Query->checkHaveData($dataQuery) == TRUE) {
+            if ($this->My_Query->updateData($dataQuery) == TRUE) {
+                echo json_encode(array('code' => 2, 'msg' => 'อัพเดทข้อมูลสำเร็จ'));
+                die;
+            } else {
+                echo json_encode(array('code' => 0, 'msg' => 'อัพเดทข้อมูลไม่สำเร็จ'));
+                die;
+            }
         } else {
-            echo json_encode(array('code' => 0, 'msg' => 'อัพเดทข้อมูลไม่สำเร็จ'));
+            if ($this->My_Query->insertData($dataQuery) == FALSE) {
+                echo json_encode(array('code' => 0, 'msg' => 'เพิ่มข้อมูลไม่สำเร็จ'));
+                die;
+            } else {
+                echo json_encode(array('code' => 1));
+                die;
+            }
         }
-        die;
     }
 
     public function updatedata()
@@ -74,7 +109,6 @@ class Set_huay extends BaseController
         $errlog = [];
         $fup = $this->request->getPost('type');
         foreach ($dataArry as $key => $value) {
-
             foreach ($value['dataF'] as $k => $v) {
                 if ($v != "" || $v > 0) {
                     $nkey = strval(substr($k, 2));

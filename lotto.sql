@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 11:48 AM
+-- Generation Time: Jun 04, 2021 at 11:42 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -107,15 +107,21 @@ CREATE TABLE `tb_close_number` (
 CREATE TABLE `tb_close_time_bet` (
   `close_time_id` int(11) NOT NULL,
   `close_time` varchar(15) NOT NULL COMMENT 'เวลาปิดแทง',
-  `open_time` varchar(15) NOT NULL COMMENT 'เปิดแทง'
+  `open_time` varchar(15) NOT NULL COMMENT 'เปิดแทง',
+  `round` varchar(15) NOT NULL COMMENT 'รอบ',
+  `status` int(1) NOT NULL COMMENT '0:ปิด 1:ปิด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_close_time_bet`
 --
 
-INSERT INTO `tb_close_time_bet` (`close_time_id`, `close_time`, `open_time`) VALUES
-(1, '16:18', '13:19');
+INSERT INTO `tb_close_time_bet` (`close_time_id`, `close_time`, `open_time`, `round`, `status`) VALUES
+(1, '12:45', '11:49', '2021-06-01', 1),
+(2, '16:18', '13:19', '2021-05-16', 0),
+(3, '12:45', '11:49', '2021-06-01', 1),
+(4, '11:57', '11:00', '2021-06-30', 1),
+(5, '12:04', '16:07', '2021-06-04', 1);
 
 -- --------------------------------------------------------
 
@@ -154,16 +160,17 @@ CREATE TABLE `tb_ticket` (
   `amount_bet` int(11) NOT NULL COMMENT 'จำนวนเงินแทง',
   `if_win` int(11) NOT NULL COMMENT 'ถ้าชนะจะได้เท่าไร',
   `win_lose` int(1) NOT NULL,
-  `status` int(1) NOT NULL
+  `status` int(1) NOT NULL COMMENT '0/รอ  \r\n1/ได้\r\n2/เสีย',
+  `commission` decimal(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_ticket`
 --
 
-INSERT INTO `tb_ticket` (`ticket_id`, `user_id`, `round`, `create_time`, `number_lotto`, `type_lotto`, `amount_bet`, `if_win`, `win_lose`, `status`) VALUES
-(1, 1, '2021-06-02', 1622615249, 123, '3upper', 10, 3000, 0, 0),
-(2, 1, '2021-06-02', 1622615249, 33, '2upper', 20, 1200, 0, 0);
+INSERT INTO `tb_ticket` (`ticket_id`, `user_id`, `round`, `create_time`, `number_lotto`, `type_lotto`, `amount_bet`, `if_win`, `win_lose`, `status`, `commission`) VALUES
+(1, 1, '2021-06-02', 1622615249, 123, '3upper', 50, 3000, 0, 0, '5.00'),
+(2, 1, '2021-06-02', 1622615249, 33, '2upper', 20, 1200, 0, 0, '2.00');
 
 -- --------------------------------------------------------
 
@@ -237,7 +244,7 @@ ALTER TABLE `tb_cf_lotto`
 -- AUTO_INCREMENT for table `tb_close_time_bet`
 --
 ALTER TABLE `tb_close_time_bet`
-  MODIFY `close_time_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `close_time_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_ticket`

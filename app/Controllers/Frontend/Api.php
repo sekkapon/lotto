@@ -79,15 +79,27 @@ class Api extends BaseController
 
     public function getbetlist()
     {
+        $type = $this->request->getPost('slLottoType');
+        $round = $this->request->getPost('roundlotto');
+        if($type != ""){
+            $where = [
+                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
+                'tb_ticket.type_lotto'=> $type,
+                'tb_ticket.round'=>$round
+            ];
+        }else{
+            $where = [
+                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
+                'tb_ticket.round'=>$round
+            ];
+        }
+        
         $dataQuery = array(
             'tableDB' => 'tb_ticket',
             'selectData' => [
                 '*'
             ],
-            'whereData' => [
-                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
-                'tb_ticket.round'=>'2021-06-02'
-            ],
+            'whereData' => $where,
             'orderBy' => [
                 'keyOrderBy' => 'user_id',
                 'sortBy' => 'ASC',
@@ -98,6 +110,30 @@ class Api extends BaseController
             ]
         ); 
         return  json_encode($this->My_Query->selectData($dataQuery));
+    }
+
+    public function getround(){
+        $status = $this->request->getPost('status');
+        if($status != ""){
+            $where = ['status'=>$status];
+        }else{
+            $where = [];
+        }
+        $dataQuerySum = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => ['*'],
+            'whereData' => $where,
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],     
+            'limit' => [
+                'limitCount' => 5,
+                'startAt' => 0
+            ]
+        );
+
+        return json_encode($this->My_Query->selectData($dataQuerySum));
     }
 
 }

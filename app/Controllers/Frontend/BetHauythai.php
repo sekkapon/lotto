@@ -21,7 +21,17 @@ class BetHauythai extends BaseController
     }
     public function BetList(){
 
-        return view('views_frontend/bet_list');
+        $dataQuerySum = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => ['*'],
+            'whereData' => ['status'=>1],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $data['round'] = json_encode($this->My_Query->selectDataRow($dataQuerySum));
+        return view('views_frontend/bet_list',$data);
     }
     public function BetReport(){
 

@@ -33,7 +33,7 @@
         <div class="app-sidebar__inner">
             <hr>
             <div class="card-bodyM">
-                <h4 class="card-title"> สวัสดีค่ะ คุณ AAAA </h4>
+                <h4 class="card-title"> สวัสดีค่ะ คุณ <?=$this->session->session_member['firstname'];?> </h4>
                 <ul class="list-group">
                     <li class="justify-content-between list-group-item"> งวดประจำวันที่ 01-06-2021 </li>
                     <!-- <li class="justify-content-between list-group-item"> เครดิต <font size="+2"><span class="badge badge-info badge-pill">5,000.00</span></font></li> -->

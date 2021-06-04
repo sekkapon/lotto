@@ -54,7 +54,7 @@ $routes->add('singin/(:any)', 'Login\Singin::$1');
 // ==============================Backend=========================================
 // ==============================================================================
 $routes->group('backend', ['filter' => 'auth'], function ($routes) {
-
+	$routes->get('', 'Backend\Backend::index');
 	$routes->get('add_user', 'Backend\Add_user::index');
 	$routes->add('add_user/(:any)', 'Backend\Add_user::$1');
 
@@ -67,7 +67,8 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 	$routes->get('report', 'Backend\Report::index');
 	$routes->add('report/(:any)', 'Backend\Report::$1');
 
-
+	$routes->get('cutoff', 'Backend\Cutoff::index');
+	$routes->add('cutoff/(:any)', 'Backend\Cutoff::$1');
 
 	//group setting lotto
 	$routes->group('set-huay', function ($routes) {
