@@ -23,15 +23,72 @@ class Cutoff extends BaseController
         );
         $round = $this->My_Query->selectDataRow($dataQuery)->round;
 
-        $data = $this->DB->table('tb_ticket')
-            ->select('round,type_lotto,SUM(amount_bet) AS sumBet')
-            ->where('round', $round)
-            ->groupBy('type_lotto')
-            ->orderBy('ticket_id', 'ASC')
+        $data['dataUser'] = $this->DB->table('tb_ticket')
+            ->select('tb_user.firstname,tb_user.username,tb_ticket.user_id,tb_ticket.round,tb_ticket.type_lotto,SUM(tb_ticket.amount_bet) as sumBetByType')
+            ->join('tb_user', 'tb_user.user_id = tb_ticket.user_id', 'left')
+            ->where('tb_ticket.round', $round)
+            ->where('tb_ticket.status', 0)
+            ->groupBy('tb_ticket.type_lotto,tb_ticket.user_id')
+            ->orderBy('tb_ticket.type_lotto', 'ASC')
             ->get()->getResultArray();
+
+        $checkData = [];
+        $sortData = [];
+        foreach ($data['dataUser'] as $key => $value) {
+            if (!in_array($value['user_id'], $checkData)) {
+                array_push($checkData, $value['user_id']);
+            }
+        }
+        foreach ($checkData as $keyCheckData => $valueCheckData) {
+            $i = 0;
+            foreach ($data['dataUser'] as $keydataUser => $valuedataUser) {
+                if ($valueCheckData == $valuedataUser['user_id']) {
+                    $sortData[$keyCheckData]['user_id'] = $valuedataUser['user_id'];
+                    $sortData[$keyCheckData]['round'] = $valuedataUser['round'];
+                    $sortData[$keyCheckData]['username'] = $valuedataUser['username'];
+                    $sortData[$keyCheckData]['firstname'] = $valuedataUser['firstname'];
+                    $sortData[$keyCheckData]['lotto'][$i] = [
+                        'typeBet' => $valuedataUser['type_lotto'],
+                        'SumBetByType' => $valuedataUser['sumBetByType']
+                    ];
+                    $i++;
+                }
+            }
+        }
+        $data['dataByUser'] = $sortData;
+        return view('views_backend/view_cutoff', $data);
+    }
+
+    public function callDataByUser()
+    {
+
+        $userID = $this->request->getPost('userID');
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+
+        $data['dataUser'] = $this->DB->table('tb_ticket')
+            ->select('user_id,round,number_lotto,type_lotto,SUM(amount_bet) as sumBetByType')
+            ->where('round', $round)
+            ->where('status', 0)
+            ->where('user_id', $userID)
+            ->groupBy('number_lotto,type_lotto')
+            ->orderBy('user_id', 'ASC')
+            ->get()->getResultArray();
+
         echo '<pre>';
         print_r($data);
         die;
-        return view('views_backend/view_cutoff');
     }
 }

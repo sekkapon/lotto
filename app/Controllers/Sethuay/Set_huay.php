@@ -63,7 +63,6 @@ class Set_huay extends BaseController
     public function updateTime()
     {
         $arrData = $this->request->getPost('arrData');
-
         if ($arrData['closeTime'] == '' || $arrData['openTime'] == '') {
             echo json_encode(array('code' => 2, 'msg' => 'กรุณาเลือกเวลา'));
             die;
@@ -76,7 +75,7 @@ class Set_huay extends BaseController
         $dataQuery = array(
             'tableDB' => 'tb_close_time_bet',
             'whereData' => [
-                'round' => $arrData['round']
+                'close_time_id' => $arrData['tableID']
             ],
             'data' => [
                 'round' => $arrData['round'],
@@ -87,18 +86,10 @@ class Set_huay extends BaseController
         );
         if ($this->My_Query->checkHaveData($dataQuery) == TRUE) {
             if ($this->My_Query->updateData($dataQuery) == TRUE) {
-                echo json_encode(array('code' => 2, 'msg' => 'อัพเดทข้อมูลสำเร็จ'));
+                echo json_encode(array('code' => 1, 'msg' => 'อัพเดทข้อมูลสำเร็จ'));
                 die;
             } else {
                 echo json_encode(array('code' => 0, 'msg' => 'อัพเดทข้อมูลไม่สำเร็จ'));
-                die;
-            }
-        } else {
-            if ($this->My_Query->insertData($dataQuery) == FALSE) {
-                echo json_encode(array('code' => 0, 'msg' => 'เพิ่มข้อมูลไม่สำเร็จ'));
-                die;
-            } else {
-                echo json_encode(array('code' => 1));
                 die;
             }
         }

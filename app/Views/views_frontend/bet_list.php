@@ -55,7 +55,7 @@
                         <option value="3toad">3 ตัวโต๊ด</option>
                         <option value="2upper">2 ตัวบน</option>
                         <option value="2under">2 ตัวล่าง</option>
-                        <option value="floatUnder">2 ตัวโต๊ด</option>
+                        <option value="2toad">2 ตัวโต๊ด</option>
                         <option value="floatUpper">1 ตัวบน</option>
                         <option value="floatUnder">1 ตัวล่าง</option>
                         <option value="4toad">4 ตัวโต๊ด</option>
@@ -103,7 +103,7 @@
 function getround(){
     $.ajax({
                 method: "POST",
-                url: "<?= base_url('bet-huay-thai/api/getround') ?>",
+                url: "<?= base_url('bet-huay-thai/api/getround/0') ?>",
                 dataType: "json",
                 data: {status: ""}
             })
@@ -154,7 +154,7 @@ function getround(){
                         case "2under":
                             type = "2ตัวล่าง";
                             break;
-                        case "floatUnder":
+                        case "2toad":
                             type = "2ตัวโต๊ด";
                             break;
                         case "floatUpper":

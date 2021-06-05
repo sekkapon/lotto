@@ -77,6 +77,12 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                    <a href="<?= base_url('backend/Cutoff'); ?>" class='sidebar-link'>
+                        <i class="bi bi-receipt-cutoff"></i>
+                        <span class="headMenu">ตัดยอด</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
@@ -102,12 +108,7 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="<?= base_url('backend/Cutoff'); ?>" class='sidebar-link'>
-                        <i class="bi bi-receipt-cutoff"></i>
-                        <span class="headMenu">ตัดยอด</span>
-                    </a>
-                </li>
+
 
                 <li class="sidebar-item">
                     <a href="<?= base_url('backend/reward'); ?>" class='sidebar-link'>

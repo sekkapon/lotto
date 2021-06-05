@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6 col-xl-4">
+    <div class="col-md-6 col-xl-5">
         <div class="card mb-3 card ">
             <div class="card-header">
                 <div class="btn-actions-pane-center">
@@ -121,55 +121,14 @@
                         <a href="javascript:void(0);" class="btn-wide btn btn-success">Saveแทงปักหลัก</a>
                     </div>
                 </div> -->
-                    <!-- แทงชุด -->
-                    <div class="tab-pane show" id="tab-eg2-2" role="tabpanel">
-                        <p>
-                        <table class="mb-0 table table-striped">
-                            <tr>
-                                <td></td>
-                                <td colspan="2" align="center" class="text-10 L10 text-orange">
-                                    <select class="form-control-sm form-control" name="slSuitLottoType" id="slSuitLottoType">
-                                        <option value="1">3 ตัวบน</option>
-                                        <option value="2">3 ตัวล่าง</option>
-                                    </select>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tbody>
-                                <tr>
-                                    <td align="center" class="bg-gradient-gray LR10 text-8"><strong>หมายเลข</strong> </td>
-                                    <td class="bg-gradient-gray LR10 text-9" align="center">ตรง</td>
-                                    <td class="bg-gradient-gray LR10 text-9" align="center">กลับ</td>
-                                    <td class="bg-gradient-gray LR10 text-9" align="center"><span id="waiting3"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="border-white" align="center">
-                                        <input type="text" class="form-control" name="fbet_number" id="fbet_number" maxlength="3" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_number');" autocomplete="off">
-                                    </td>
-                                    <td class="border-white" align="center">
-                                        <input class="form-control" name="fbet_amt1" id="fbet_amt1" type="text" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_amt1');">
-                                    </td>
-                                    <td class="border-white" align="center"><input class="form-control" name="fbet_amt2" id="fbet_amt2" type="text" onkeypress="if(event.keyCode==13)NextOnEnter3('fbet_amt2');" autocomplete="off"></td>
-                                    <td align="center"></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="4" class="bg-gradient-gray LR10 text-11" align="center" id="tbShowData" style="color:#F00">&nbsp;</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </p>
-                        <div class="d-block text-center card-footer">
-                            <a href="javascript:void(0);" class="btn-wide btn btn-success">Saveแทงชุด</a>
-                        </div>
-                    </div>
+         
                 </div>
             </div>
 
 
         </div>
     </div>
-    <div class="col-md-6 col-xl-8">
+    <div class="col-md-6 col-xl-7">
         <div class="main-card mb-3 card">
             <div class="card-header">
                 &nbsp;&nbsp;<b>ยอดเล่น&nbsp;<font size="+1"><span id="total_amt"><?= $sumbet; ?></span></font>&nbsp;บาท</b>
@@ -195,13 +154,47 @@
 
                             <?php $i = 0;;
                             foreach (json_decode($mybet) as $key => $value) {
-                                $i++;;
-
-                            ?>
+                                $i++;?>
                                 <tr>
                                     <td align="center"><?= $i; ?></td>
                                     <td align="center"><?= date('Y/m/d H:i', $value->create_time); ?></td>
-                                    <td align="center"><?= $value->type_lotto; ?></td>
+                                    <td align="center"><?php 
+                                        switch ($value->type_lotto) {
+                                            case '3upper':
+                                                echo "3ตัวบน";
+                                                break;
+                                            case '3under':
+                                                echo "3ตัวล่าง";                                                
+                                                break;
+                                            case '3toad':
+                                                echo "3ตัวโต๊ด";
+                                                break;
+                                            case '2upper':
+                                                echo "2ตัวบน";
+                                                break;
+                                            case '2under':
+                                                echo "2ตัวล่าง";
+                                                break;
+                                            case '2toad':
+                                                echo "2ตัวโต๊ด";
+                                                break;
+                                            case 'floatUpper':
+                                                echo "ลอยบน";
+                                                break;
+                                            case 'floatUnder':
+                                                echo "ลอยล่าง";
+                                                break;
+                                            case '4toad':
+                                                echo "4ตัวโต๊ด";
+                                                break;
+                                            case '5toad':
+                                                echo "5ตัวโต๊ด";     
+                                                    break;
+                                            default:
+                                                break;
+                                        }
+                                      
+                                     ?></td>
                                     <td align="center"><?= $value->number_lotto ?></td>
                                     <td align="center"><?= $value->amount_bet; ?></td>
                                     <td align="center">&nbsp;</td>
@@ -474,7 +467,12 @@
                 if (newkeynum == newkeybet) {
                     let numtype = k.slice(8, -4);
                     d['bet'] = val;
-                    d['type'] = numtype;
+                    if(value.length == 1){
+                        d['type'] = "t_"+((numtype=="1")?"floatUpper":"floatUnder");
+                    }else{
+                        d['type'] = "t_"+value.length+((numtype=="1")?"upper":(numtype=="2")?"toad":"under");
+                    }
+                   
                     newdata.push(d);
                 }
             });
@@ -489,7 +487,8 @@
                     }
                 })
                 .done(function(msg) {
-                    console.log(msg);
+                    alert(msg.status);
+                    location.reload();
                 });
         }
 

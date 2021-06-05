@@ -136,6 +136,16 @@ class My_query extends Model
         // );
         return ($this->DB->table($dataQuery['tableDB'])->insert($dataQuery['data'])) ? $this->DB->insertID() : false;
     }
+    public function insertBatchData($dataQuery)
+    {
+        // $dataQuery = array(
+        //     'tableDB' => 'log_login_admin',
+        //     'data' => [
+                // [1,2]
+        // ]
+        // );
+        return ($this->DB->table($dataQuery['tableDB'])->insertBatch($dataQuery['data'])) ? $this->DB->insertID() : false;
+    }
     public function deleteData($dataQuery)
     {
         // $dataQuery = array(

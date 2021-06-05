@@ -13,7 +13,57 @@ class Api extends BaseController
     }
     public function savemybet()
     {
-        return json_encode($this->request->getPost('data'));
+         
+        $checkTimeoff =  $this->checkTimeoff();
+        if ($checkTimeoff) {
+            $percent = json_decode($this->getmaxminbet())[0]->detail;
+            $datbet = $this->request->getPost('data');
+            $tosave = [];
+            foreach ($datbet as $key => $value) {
+                $type =  strval ($value['type']);
+                array_push(
+                    $tosave,
+                    [
+                        "user_id" => $this->session->session_member['user_id'],
+                        "round" => $checkTimeoff->round,
+                        "create_time" => time(),
+                        "number_lotto" => $value['num'],
+                        "type_lotto" => substr($type,2),
+                        "amount_bet" => $value['bet'],
+                        "if_win" => ($percent->$type->payRate*$value['bet']),
+                        "win_lose" => "",
+                        "status" => 0,
+                        "commission" => ((($percent->$type->percent)/100) * $value['bet']),
+                    ]
+                );
+            }
+
+            $dataQuery = array(
+                'tableDB' => 'tb_ticket',
+                'data' =>  $tosave
+            );
+            $this->My_Query->insertBatchData($dataQuery);
+            return json_encode(['status'=>'บันทึกสำเร็จ','data'=>$tosave]);
+        }else{
+            return json_encode(['status'=>'หมดเวลาแทง','data'=>'']);
+        }
+
+    }
+    public function checkTimeoff(){
+        $dataround = json_decode($this->getround(1))[0];
+        $round = $dataround->round;
+        $close_time = $dataround->close_time;
+
+        $timedbOff = strtotime(date($round.' '.$close_time));
+        $timesevr = time();
+
+        if(($timesevr - $timedbOff )> 0 ){
+            // หมดเวลาแทง
+            return  false;
+        }else{
+            return  $dataround;
+        }
+
     }
     public function getmaxminbet(){
 
@@ -112,9 +162,9 @@ class Api extends BaseController
         return  json_encode($this->My_Query->selectData($dataQuery));
     }
 
-    public function getround(){
-        $status = $this->request->getPost('status');
-        if($status != ""){
+    public function getround($status){
+        //  = $this->request->getPost('status');
+        if($status != 0){
             $where = ['status'=>$status];
         }else{
             $where = [];
@@ -125,10 +175,10 @@ class Api extends BaseController
             'whereData' => $where,
             'orderBy' => [
                 'keyOrderBy' => 'close_time_id',
-                'sortBy' => 'ASC',
+                'sortBy' => 'DESC',
             ],     
             'limit' => [
-                'limitCount' => 5,
+                'limitCount' => 6,
                 'startAt' => 0
             ]
         );

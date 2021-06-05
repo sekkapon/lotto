@@ -24,6 +24,17 @@
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="form-group has-icon-left" hidden>
+                                        <label>ID</label>
+                                        <div class="position-relative">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control" id="idTable" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <div class="form-group has-icon-left">
                                         <label>งวดวันที่</label>
                                         <div class="position-relative">
@@ -130,6 +141,7 @@
 <script>
     $(":button").click(function() {
         arrData = {
+            'tableID': $('#idTable').val(),
             'round': $('#round').val(),
             'closeTime': $('#closeTime').val(),
             'openTime': $('#openTime').val(),
@@ -152,15 +164,6 @@
                 }).then(value => {
                     window.location.href = '<?= base_url('backend/set-huay/close-time'); ?>'
                 });
-            } else if (res.code == 2) {
-                swal({
-                    icon: 'success',
-                    text: res.msg,
-                    timer: 1500,
-                    buttons: false,
-                }).then(value => {
-                    window.location.href = '<?= base_url('backend/set-huay/close-time'); ?>'
-                });
             } else {
                 swal({
                     icon: 'error',
@@ -176,6 +179,7 @@
         $('#round').val($(data).data('user').round);
         $('#closeTime').val($(data).data('user').close_time);
         $('#openTime').val($(data).data('user').open_time);
+        $('#idTable').val($(data).data('user').close_time_id);
         $('#btnEdit').removeAttr('hidden')
     }
 </script>
