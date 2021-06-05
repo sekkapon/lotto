@@ -37,7 +37,7 @@
                                         <!-- table striped -->
                                         <table class="table table-striped mb-0">
                                             <thead>
-                                                <tr>
+                                                <tr align="center">
                                                     <th>ลำดับ</th>
                                                     <th>ชื่อสมาชิก</th>
                                                     <th>ยูสเซอร์เนม</th>
@@ -48,7 +48,7 @@
                                             <tbody>
                                                 <?php $i = 1;
                                                 foreach ($dataByUser as $key => $value) { ?>
-                                                    <tr>
+                                                    <tr align="center">
                                                         <td><?= $i; ?></td>
                                                         <td>
                                                             <span class="selectCutoff" data-user="<?= htmlspecialchars(json_encode($value, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="pageCutoff(this)"><?= $value['firstname']; ?></span>
@@ -61,48 +61,49 @@
                                                         </td>
                                                         <td>
                                                             <div class="row">
-                                                                <div class="col-2" style="border-right: 1px solid gray;">
-                                                                    <?php
-                                                                    foreach ($value['lotto'] as $key => $valueLotto) {
-                                                                    ?>
-                                                                        <p class="inTable">
-                                                                            <?php if ($valueLotto['typeBet'] == '3upper') { ?>
-                                                                                <span> 3 ตัวบน</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == '3under') { ?>
-                                                                                <span> 3 ตัวล่าง</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == '3toad') { ?>
-                                                                                <span> 3 ตัวโต๊ด</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == '2upper') { ?>
-                                                                                <span> 2 ตัวบน</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == '2under') { ?>
-                                                                                <span> 2 ตัวล่าง</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == '2toad') { ?>
-                                                                                <span> 2 ตัวโต๊ด</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == 'floatUnder') { ?>
-                                                                                <span> ลอยล่าง</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
-                                                                                <span> ลอยบน</span>
-                                                                            <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
-                                                                                <span>4 ตัวโต๊ด</span>
-                                                                            <?php  } else { ?>
-                                                                                <span> 5 ตัวโต๊ด</span>
-                                                                            <?php } ?>
-                                                                        </p>
-                                                                    <?php } ?>
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <?php $sum = 0;
-                                                                    foreach ($value['lotto'] as $key => $valueLotto) {
-                                                                        $sum += (int)$valueLotto['SumBetByType'];
-                                                                    ?>
-                                                                        <p class="inTable">
-                                                                            <span><?= number_format($valueLotto['SumBetByType']);  ?> บาท</span>
-                                                                        </p>
-                                                                    <?php } ?>
-                                                                    <p class="inTable" style="color:red"><?= number_format($sum); ?> บาท</p>
+                                                                <div class="d-flex justify-content-center">
+                                                                    <div class="col-md-3 col-2" style="border-right: 1px solid gray;">
+                                                                        <?php
+                                                                        foreach ($value['lotto'] as $key => $valueLotto) {
+                                                                        ?>
+                                                                            <p class="inTable">
+                                                                                <?php if ($valueLotto['typeBet'] == '3upper') { ?>
+                                                                                    <span> 3 ตัวบน</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == '3under') { ?>
+                                                                                    <span> 3 ตัวล่าง</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == '3toad') { ?>
+                                                                                    <span> 3 ตัวโต๊ด</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == '2upper') { ?>
+                                                                                    <span> 2 ตัวบน</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == '2under') { ?>
+                                                                                    <span> 2 ตัวล่าง</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == '2toad') { ?>
+                                                                                    <span> 2 ตัวโต๊ด</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == 'floatUnder') { ?>
+                                                                                    <span> ลอยล่าง</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
+                                                                                    <span> ลอยบน</span>
+                                                                                <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
+                                                                                    <span>4 ตัวโต๊ด</span>
+                                                                                <?php  } else { ?>
+                                                                                    <span> 5 ตัวโต๊ด</span>
+                                                                                <?php } ?>
+                                                                            </p>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-4 ">
+                                                                        <?php $sum = 0;
+                                                                        foreach ($value['lotto'] as $key => $valueLotto) {
+                                                                            $sum += (int)$valueLotto['SumBetByType'];
+                                                                        ?>
+                                                                            <p class="inTable">
+                                                                                <span><?= number_format($valueLotto['SumBetByType']);  ?> บาท</span>
+                                                                            </p>
+                                                                        <?php } ?>
+                                                                        <p class="inTable" style="color:red"><?= number_format($sum); ?> บาท</p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-
                                                         </td>
                                                     </tr>
                                                 <?php $i++;
@@ -116,29 +117,29 @@
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row" id="divSettingLotto">
-                            <div class="col-12">
+                            <div class="col-md-12 col-12">
                                 <div class="card">
                                     <div class="card-content">
                                         <div class="table-responsive">
                                             <table class="table table-bordered mb-0">
                                                 <thead>
                                                     <tr align="center">
-                                                        <th colspan="20"> <span id="headShow"></span> </th>
+                                                        <th colspan="20"> <span id="headShow">ตัดยอดสมาชิก</span> </th>
                                                     </tr>
                                                     <tr align="center">
-                                                        <th>3ตัวบน</th>
+                                                        <th width="10%">3ตัวบน</th>
                                                         <th>จำนวน</th>
-                                                        <th>3ตัวล่าง</th>
+                                                        <th width="6%">3ตัวล่าง</th>
                                                         <th>จำนวน</th>
-                                                        <th>3ตัวโต๊ด</th>
+                                                        <th width="6%">3ตัวโต๊ด</th>
                                                         <th>จำนวน</th>
-                                                        <th>2ตัวบน</th>
+                                                        <th width="6%">2ตัวบน</th>
                                                         <th>จำนวน</th>
-                                                        <th>2ตัวล่าง</th>
+                                                        <th width="6%">2ตัวล่าง</th>
                                                         <th>จำนวน</th>
-                                                        <th>2ตัวโต๊ด</th>
+                                                        <th width="6%">2ตัวโต๊ด</th>
                                                         <th>จำนวน</th>
-                                                        <th>ลอยบน</th>
+                                                        <th width="6%">ลอยบน</th>
                                                         <th>จำนวน</th>
                                                         <th>ลอยล่าง</th>
                                                         <th>จำนวน</th>
