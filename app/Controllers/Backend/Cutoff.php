@@ -61,8 +61,8 @@ class Cutoff extends BaseController
 
     public function callDataByUser()
     {
-
-        $userID = $this->request->getPost('userID');
+        // $userID = $this->request->getPost('userID');
+        $userID = 1;
         $dataQuery = array(
             'tableDB' => 'tb_close_time_bet',
             'selectData' => [
@@ -77,18 +77,47 @@ class Cutoff extends BaseController
             ],
         );
         $round = $this->My_Query->selectDataRow($dataQuery)->round;
-
+        $data['dataUser'] = [];
         $data['dataUser'] = $this->DB->table('tb_ticket')
             ->select('user_id,round,number_lotto,type_lotto,SUM(amount_bet) as sumBetByType')
             ->where('round', $round)
             ->where('status', 0)
             ->where('user_id', $userID)
             ->groupBy('number_lotto,type_lotto')
-            ->orderBy('user_id', 'ASC')
-            ->get()->getResultArray();
+            ->orderBy('type_lotto', 'ASC')
+            ->get()
+            ->getResultArray();
 
-        echo '<pre>';
-        print_r($data);
-        die;
+        $checkData = [];
+        $sortData = [];
+        foreach ($data['dataUser'] as $keyDataUser => $valueDataUser) {
+            if (!in_array($valueDataUser['type_lotto'], $checkData)) {
+                array_push($checkData, $valueDataUser['type_lotto']);
+            }
+        }
+
+        foreach ($checkData as $keyCheckData => $valueCheckData) {
+            $sortData['num' . $valueCheckData] = [];
+            $i = 0;
+            foreach ($data['dataUser'] as $key => $value) {
+                if ($valueCheckData == $value['type_lotto']) {
+                    array_push($sortData['num' . $valueCheckData], array(
+                        'number_lotto' => $value['number_lotto'],
+                        'amount_bet' => $value['sumBetByType']
+                    ));
+                    $i++;
+                }
+            }
+        }
+
+
+
+        if (sizeof($sortData) == 0) {
+            echo json_encode(array('code' => 0, 'msg' => 'ไม่มีข้อมูลการแทง'));
+            die;
+        } else {
+            echo json_encode(array('code' => 1, 'data' => $sortData));
+            die;
+        }
     }
 }
