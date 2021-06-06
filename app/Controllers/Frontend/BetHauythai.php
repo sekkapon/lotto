@@ -51,11 +51,13 @@ class BetHauythai extends BaseController
                 '*',
             ],
             'whereData' => [
-                'tb_ticket.user_id'=>$this->session->session_member['user_id']
+                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
+                'tb_ticket.status'=>0,
+
         ],
             'orderBy' => [
                 'keyOrderBy' => 'ticket_id',
-                'sortBy' => 'ASC',
+                'sortBy' => 'DESC',
             ],
             'limit' => [
                 'limitCount' => 999,

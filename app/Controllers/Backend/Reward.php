@@ -24,15 +24,15 @@ class Reward extends BaseController
             'tableDB' => 'tb_raward',
             'data' => [
                 'reward_date' => $arrData['date'],
-                'reward_1st' => $arrData['reward1st'],
-                'reward_3upper' => substr($arrData['reward1st'], 3),
+                'reward_1st' => json_encode([$arrData['reward1st']]),
+                'reward_3upper' => json_encode([substr($arrData['reward1st'], 3)]),
                 'reward_3toad' => json_encode($this->genToad(3,substr($arrData['reward1st'], 3))),
-                'reward_3under_1st' => $arrData['reward3under1st'],
-                'reward_3under_2nd' => $arrData['reward3under2nd'],
-                // 'reward_3under_3th' => $arrData['reward3under3th'],
-                // 'reward_3under_4th' => $arrData['reward3under4th'],
-                'reward_2under' => $arrData['reward2under'],
-                'reward_2upper' => substr($arrData['reward1st'], 4),
+                'reward_3under_1st' => json_encode([$arrData['reward3under1st']]),
+                'reward_3under_2nd' => json_encode([$arrData['reward3under2nd']]),
+                'reward_3under_3th' => json_encode([$arrData['reward3under3th']]),
+                'reward_3under_4th' => json_encode([$arrData['reward3under4th']]),
+                'reward_2under' => json_encode([$arrData['reward2under']]),
+                'reward_2upper' => json_encode([substr($arrData['reward1st'], 4)]),
                 'reward_2toad' => json_encode($this->genToad(2,substr($arrData['reward1st'], 3))),
                 'reward_float_under' => json_encode($this->genToad(1,substr($arrData['reward1st'], 4))),
                 'reward_float_upper' => json_encode($this->genToad(1,substr($arrData['reward1st'], 3))),
@@ -40,16 +40,20 @@ class Reward extends BaseController
                 'reward_5toad' => json_encode($this->genToad(5,substr($arrData['reward1st'], 1))),
             ]
         );
-        return json_encode($dataQuery);
+        $this->calculateReward($dataQuery['data']);
+     
         if ($this->My_Query->insertData($dataQuery) === FALSE) {
             return json_encode(array('code' => 2, 'msg' => 'ไม่สามารถเพิ่มข้อมูลได้กรุณาติดต่อโปรแกรมเมอร์'));
   
         } else {
 
             $data = array(
+                'reward_date' => $arrData['date'],
                 'reward_1st' => $arrData['reward1st'],
                 'reward_3under_1st' => $arrData['reward3under1st'],
                 'reward_3under_2nd' => $arrData['reward3under2nd'],
+                'reward_3under_3th' => $arrData['reward3under3th'],
+                'reward_3under_4th' => $arrData['reward3under4th'],
                 'reward_2upper' => substr($arrData['reward1st'], 4),
             );
             $this->calculateReward($dataQuery['data']);
@@ -59,12 +63,9 @@ class Reward extends BaseController
     }
                         //  2 , 123
     public function genToad($L, $a){
-
-
         $_a = str_split($a);
         $output = $this->permutation($L,$_a);
         return $output;
-        
 
     }
     function permutation($L,$_a,$buffer='', $delimiter='') {
@@ -103,6 +104,9 @@ class Reward extends BaseController
     }
 
     public function calculateReward($reward){
+
+        echo "<pre>";
+        print_r($reward);
         // 'reward_date' 
         // 'reward_1st' 
         // 'reward_3upper' 
@@ -118,7 +122,7 @@ class Reward extends BaseController
         // 'reward_4toad' 
         // 'reward_5toad'
         
-
+        die;
 
 
     }

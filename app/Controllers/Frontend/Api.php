@@ -186,4 +186,26 @@ class Api extends BaseController
         return json_encode($this->My_Query->selectData($dataQuerySum));
     }
 
+    public function getRewradlist()
+    {
+
+        $round = $this->request->getPost('roundlotto');
+        
+            $where = [
+                'tb_raward.reward_date'=>$round
+            ];        
+        $dataQuery = array(
+            'tableDB' => 'tb_raward',
+            'selectData' => [
+                '*'
+            ],
+            'whereData' => $where,
+            'orderBy' => [
+                'keyOrderBy' => 'reward_id',
+                'sortBy' => 'ASC',
+            ]
+        ); 
+        return  json_encode($this->My_Query->selectDataRow($dataQuery));
+    }
+
 }

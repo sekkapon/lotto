@@ -26,9 +26,10 @@
     <div class="row match-height">
         <div class="col-lg-10 col-12">
             <div class="card">
-                <div class="card-content">
+                 <form id="formReward">
+                 <div class="card-content">
                     <div class="card-body">
-                        <form id="formReward">
+                       
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -56,7 +57,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group has-icon-left">
-                                            <label>เลขท้าย 3 ตัว รางวัลที่1</label>
+                                            <label>เลขหน้า 3 ตัว รางวัลที่1</label>
                                             <div class="position-relative">
                                                 <input type="text" class="form-control reward" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="reward3under1st" required>
                                             </div>
@@ -64,9 +65,27 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group has-icon-left">
-                                            <label>เลขท้าย 3 ตัว รางวัลที่2</label>
+                                            <label>เลขหน้า 3 ตัว รางวัลที่2</label>
                                             <div class="position-relative">
                                                 <input type="text" class="form-control reward" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="reward3under2nd" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group has-icon-left">
+                                            <label>เลขท้าย 3 ตัว รางวัลที่1</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control reward" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="reward3under3th" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group has-icon-left">
+                                            <label>เลขท้าย 3 ตัว รางวัลที่2</label>
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control reward" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="reward3under4th" required>
                                             </div>
                                         </div>
                                     </div>
@@ -82,17 +101,18 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                       
 
                     </div>
                     <footer>
                         <div class="card-footer">
                             <div class="col-12 d-flex justify-content-end">
-                                <button type="button" class="btn btn-success me-1 mb-1 submitReward">Submit</button>
+                                <button type="submit" class="btn btn-success me-1 mb-1 submitReward">Submit</button>
                             </div>
                         </div>
                     </footer>
                 </div>
+ </form>
             </div>
         </div>
     </div>
@@ -107,6 +127,7 @@
                         <table class="table table-striped mb-0">
                             <thead>
                                 <tr align="center">
+                                    <th>งวดวันที่</th>
                                     <th>รางวัลที่1</th>
                                     <th>เลขท้าย 3 ตัว</th>
                                     <th>เลขท้าย 2 ตัว</th>
@@ -126,12 +147,15 @@
 
 
 <script>
-    $(":button.submitReward").click(function() {
+    $("#formReward").submit(function(e) {
+        e.preventDefault();
         arrData = {
             'date': $('#round').val(),
             'reward1st': $('#reward1st').val(),
             'reward3under1st': $('#reward3under1st').val(),
             'reward3under2nd': $('#reward3under2nd').val(),
+            'reward3under3th': $('#reward3under3th').val(),
+            'reward3under4th': $('#reward3under4th').val(),
             'reward2under': $('#reward2under').val()
         }
         console.log(arrData);
@@ -155,11 +179,14 @@
                     $('#tbReward').removeAttr('hidden');
                     content = '';
                     content += '<tr align="center">';
+                    content += '<td>' + res.data.date + '</td>';
                     content += '<td>' + res.data.reward_1st + '</td>';
                     content += '<td>';
                     content += '<div class="d-flex justify-content-around">';
                     content += '<div>' + res.data.reward_3under_1st + '</div>';
                     content += '<div>' + res.data.reward_3under_2nd + '</div>';
+                    content += '<div>' + res.data.reward_3under_3th + '</div>';
+                    content += '<div>' + res.data.reward_3under_4th + '</div>';
                     content += '</div>';
                     content += '</td>';
                     content += '<td>' + res.data.reward_2upper + '</td>';
