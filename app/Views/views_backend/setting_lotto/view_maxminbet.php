@@ -40,15 +40,15 @@
                                     <th>4ตัวโต๊ด</th>
                                     <th>5ตัวโต๊ด</th>
                                 </tr>
-<form id="F_update">
+                                <form id="F_update">
                                     <tr align="center">
                                         <th colspan="2">
-                                            <select class="form-select" id="myselect" >
+                                            <select class="form-select" id="myselect">
                                                 <option value="minPerBet">ขั้นต่ำต่อไม้</option>
                                                 <option value="maxPerBet">สูงสุดต่อไม้</option>
                                             </select>
-                                        </th>                                        
-                                        <th >
+                                        </th>
+                                        <th>
                                             <input type="checkbox" class="form-check-input form-check-secondary" id="chAll" style="margin-top: 5px;">
 
                                         </th>
@@ -62,15 +62,15 @@
                                         <th><input class="form-control" name="U_floatUnder" style="height:30px; width:63px; text-align: right;"></th>
                                         <th><input class="form-control" name="U_4toad" style="height:30px; width:63px; text-align: right;"></th>
                                         <th><input class="form-control" name="U_5toad" style="height:30px; width:63px; text-align: right;"></th>
-                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </form>
                             </thead>
-                            
+
 
                             <tbody align="center" id="tbody">
-                                
-                               
+
+
 
                             </tbody>
                         </table>
@@ -91,59 +91,61 @@
 <script>
     window.onload = function() {
         $.ajax({
-                    method: "POST",
-                    url: "api/Maxminbet",
-                    data:{getdata:true},
-                    dataType: 'json'
-                })
-                .done(function(msg) {
-                    var i = 0;
-                    $.each(msg, function(key, val) {
-                        i++;
-                        $('#tbody').append(`<tr class="tr_maxPerBet hid" hidden>
-                                        <td>`+i+`</td>
-                                        <td>`+val.username+`</td>
-                                        <td><input class="form-check-input form-check-secondary chId" type="checkbox" value="`+val.user_id+`"></td>
-                                        <td id="v_3upper_`+val.user_id+`_maxPerBet">`+val.detail.t_3upper.maxPerBet+`</td>
-                                        <td id="v_3under_`+val.user_id+`_maxPerBet">`+val.detail.t_3under.maxPerBet+`</td>
-                                        <td id="v_3toad_`+val.user_id+`_maxPerBet">`+val.detail.t_3toad.maxPerBet+`</td>
-                                        <td id="v_2upper_`+val.user_id+`_maxPerBet">`+val.detail.t_2upper.maxPerBet+`</td>
-                                        <td id="v_2under_`+val.user_id+`_maxPerBet">`+val.detail.t_2under.maxPerBet+`</td>
-                                        <td id="v_2toad_`+val.user_id+`_maxPerBet">`+val.detail.t_2toad.maxPerBet+`</td>
-                                        <td id="v_floatUpper_`+val.user_id+`_maxPerBet">`+val.detail.t_floatUpper.maxPerBet+`</td>
-                                        <td id="v_floatUnder_`+val.user_id+`_maxPerBet">`+val.detail.t_floatUnder.maxPerBet+`</td>
-                                        <td id="v_4toad_`+val.user_id+`_maxPerBet">`+val.detail.t_4toad.maxPerBet+`</td>
-                                        <td id="v_5toad_`+val.user_id+`_maxPerBet">`+val.detail.t_5toad.maxPerBet+`</td>
-                                        <td id="showStatus_`+val.user_id+`_maxPerBet"></i></td>
+                method: "POST",
+                url: "api/Maxminbet",
+                data: {
+                    getdata: true
+                },
+                dataType: 'json'
+            })
+            .done(function(msg) {
+                var i = 0;
+                $.each(msg, function(key, val) {
+                    i++;
+                    $('#tbody').append(`<tr class="tr_maxPerBet hid" hidden>
+                                        <td>` + i + `</td>
+                                        <td>` + val.username + `</td>
+                                        <td><input class="form-check-input form-check-secondary chId" type="checkbox" value="` + val.user_id + `"></td>
+                                        <td id="v_3upper_` + val.user_id + `_maxPerBet">` + val.detail.t_3upper.maxPerBet + `</td>
+                                        <td id="v_3under_` + val.user_id + `_maxPerBet">` + val.detail.t_3under.maxPerBet + `</td>
+                                        <td id="v_3toad_` + val.user_id + `_maxPerBet">` + val.detail.t_3toad.maxPerBet + `</td>
+                                        <td id="v_2upper_` + val.user_id + `_maxPerBet">` + val.detail.t_2upper.maxPerBet + `</td>
+                                        <td id="v_2under_` + val.user_id + `_maxPerBet">` + val.detail.t_2under.maxPerBet + `</td>
+                                        <td id="v_2toad_` + val.user_id + `_maxPerBet">` + val.detail.t_2toad.maxPerBet + `</td>
+                                        <td id="v_floatUpper_` + val.user_id + `_maxPerBet">` + val.detail.t_floatUpper.maxPerBet + `</td>
+                                        <td id="v_floatUnder_` + val.user_id + `_maxPerBet">` + val.detail.t_floatUnder.maxPerBet + `</td>
+                                        <td id="v_4toad_` + val.user_id + `_maxPerBet">` + val.detail.t_4toad.maxPerBet + `</td>
+                                        <td id="v_5toad_` + val.user_id + `_maxPerBet">` + val.detail.t_5toad.maxPerBet + `</td>
+                                        <td id="showStatus_` + val.user_id + `_maxPerBet"></i></td>
                                     </tr>`);
-                    });
-                    var j = 0;
-                    $.each(msg, function(key, val) {
-                        j++;
-                        $('#tbody').append(`<tr class="tr_minPerBet hid" >
-                                        <td>`+j+`</td>
-                                        <td>`+val.username+`</td>
-                                        <td><input class="form-check-input form-check-secondary chId" type="checkbox" value="`+val.user_id+`"></td>
-                                        <td id="v_3upper_`+val.user_id+`_minPerBet">`+val.detail.t_3upper.minPerBet+`</td>
-                                        <td id="v_3under_`+val.user_id+`_minPerBet">`+val.detail.t_3under.minPerBet+`</td>
-                                        <td id="v_3toad_`+val.user_id+`_minPerBet">`+val.detail.t_3toad.minPerBet+`</td>
-                                        <td id="v_2upper_`+val.user_id+`_minPerBet">`+val.detail.t_2upper.minPerBet+`</td>
-                                        <td id="v_2under_`+val.user_id+`_minPerBet">`+val.detail.t_2under.minPerBet+`</td>
-                                        <td id="v_2toad_`+val.user_id+`_minPerBet">`+val.detail.t_2toad.minPerBet+`</td>
-                                        <td id="v_floatUpper_`+val.user_id+`_minPerBet">`+val.detail.t_floatUpper.minPerBet+`</td>
-                                        <td id="v_floatUnder_`+val.user_id+`_minPerBet">`+val.detail.t_floatUnder.minPerBet+`</td>
-                                        <td id="v_4toad_`+val.user_id+`_minPerBet">`+val.detail.t_4toad.minPerBet+`</td>
-                                        <td id="v_5toad_`+val.user_id+`_minPerBet">`+val.detail.t_5toad.minPerBet+`</td>
-                                        <td id="showStatus_`+val.user_id+`_minPerBet"></i></td>
-                                    </tr>`);
-                    });
-                                    
-
                 });
+                var j = 0;
+                $.each(msg, function(key, val) {
+                    j++;
+                    $('#tbody').append(`<tr class="tr_minPerBet hid" >
+                                        <td>` + j + `</td>
+                                        <td>` + val.username + `</td>
+                                        <td><input class="form-check-input form-check-secondary chId" type="checkbox" value="` + val.user_id + `"></td>
+                                        <td id="v_3upper_` + val.user_id + `_minPerBet">` + val.detail.t_3upper.minPerBet + `</td>
+                                        <td id="v_3under_` + val.user_id + `_minPerBet">` + val.detail.t_3under.minPerBet + `</td>
+                                        <td id="v_3toad_` + val.user_id + `_minPerBet">` + val.detail.t_3toad.minPerBet + `</td>
+                                        <td id="v_2upper_` + val.user_id + `_minPerBet">` + val.detail.t_2upper.minPerBet + `</td>
+                                        <td id="v_2under_` + val.user_id + `_minPerBet">` + val.detail.t_2under.minPerBet + `</td>
+                                        <td id="v_2toad_` + val.user_id + `_minPerBet">` + val.detail.t_2toad.minPerBet + `</td>
+                                        <td id="v_floatUpper_` + val.user_id + `_minPerBet">` + val.detail.t_floatUpper.minPerBet + `</td>
+                                        <td id="v_floatUnder_` + val.user_id + `_minPerBet">` + val.detail.t_floatUnder.minPerBet + `</td>
+                                        <td id="v_4toad_` + val.user_id + `_minPerBet">` + val.detail.t_4toad.minPerBet + `</td>
+                                        <td id="v_5toad_` + val.user_id + `_minPerBet">` + val.detail.t_5toad.minPerBet + `</td>
+                                        <td id="showStatus_` + val.user_id + `_minPerBet"></i></td>
+                                    </tr>`);
+                });
+
+
+            });
     }
     $('#myselect').on('change', function(e) {
-        $('.hid').attr('hidden',true);
-        $('.tr_'+$(this).val()).removeAttr('hidden');
+        $('.hid').attr('hidden', true);
+        $('.tr_' + $(this).val()).removeAttr('hidden');
     });
     $('#chAll').on('click', function(e) {
         let ch = $(this)[0].checked;
@@ -188,7 +190,7 @@
                 });
             }
         }).promise().done(function() {
-          var myselect = $('#myselect').val();
+            var myselect = $('#myselect').val();
             $.ajax({
                     method: "POST",
                     url: "api/updatedata",
@@ -201,13 +203,13 @@
                 .done(function(msg) {
 
                     $.each(msg, function(k, v) {
-                        let vl = $('#v_' + v.typeLotto + '_' + v.id+'_'+myselect);
+                        let vl = $('#v_' + v.typeLotto + '_' + v.id + '_' + myselect);
                         if (v.status) {
                             $(vl).html(v.new);
-                            $(vl).addClass('bggreenY'); 
-                            $('#showStatus_' + v.id+'_'+myselect).html('<i class="bi bi-check-circle-fill ">');
+                            $(vl).addClass('bggreenY');
+                            $('#showStatus_' + v.id + '_' + myselect).html('<i class="bi bi-check-circle-fill ">');
                         } else {
-                            $('#showStatus_' + v.id+'_'+myselect).html('<i class="bi bi-x-circle-fill "></i>');
+                            $('#showStatus_' + v.id + '_' + myselect).html('<i class="bi bi-x-circle-fill "></i>');
                         }
                     });
 
@@ -220,4 +222,3 @@
 </script>
 
 <?php $this->endSection(); ?>
-

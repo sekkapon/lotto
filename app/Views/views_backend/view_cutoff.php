@@ -149,7 +149,7 @@
                                                         <th>จำนวน</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody align="center" id="bodyTable">
+                                                <tbody align="center">
                                                     <tr style="background-color:#f2f7ff">
                                                         <th></th>
                                                         <th>0</th>
@@ -202,7 +202,11 @@
                     userID: $(data).data('user').user_id
                 },
             }).done(function(res) {
+                if (res.code == 1) {
 
+                } else {
+
+                }
             });
         }
     </script>

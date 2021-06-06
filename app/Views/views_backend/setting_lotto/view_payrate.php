@@ -81,7 +81,7 @@
                                         <td id="v_4toad_<?= $val['user_id']; ?>"><?= $val['detail']['t_4toad']['payRate']; ?></td>
                                         <td id="v_5toad_<?= $val['user_id']; ?>"><?= $val['detail']['t_5toad']['payRate']; ?></td>
                                         <td id="showStatus_<?= $val['user_id']; ?>"></i></td>
-                                <?php } ?>
+                                    <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -125,7 +125,6 @@
     });
 
     function update() {
-        var notyf = new Notyf();
         var chId = $('.chId');
         var dataArry = [];
         console.log(dataArry);
@@ -153,12 +152,12 @@
                     dataType: 'json'
                 })
                 .done(function(msg) {
-                        console.log(msg);
+                    console.log(msg);
                     $.each(msg, function(k, v) {
                         let vl = $('#v_' + v.typeLotto + '_' + v.id);
                         if (v.status) {
                             $(vl).html(v.new);
-                            $(vl).addClass('bggreenY'); 
+                            $(vl).addClass('bggreenY');
                             $('#showStatus_' + v.id).html('<i class="bi bi-check-circle-fill ">');
                         } else {
                             $('#showStatus_' + v.id).html('<i class="bi bi-x-circle-fill "></i>');
