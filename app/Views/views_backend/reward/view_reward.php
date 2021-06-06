@@ -12,7 +12,53 @@
     .card-footer {
         border-top: 0px;
     }
+
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
+<div>
+    <button class="btn btn-danger" id="callotto">คำนวณผล</button>
+    <div class="container">
+        <div class="row">
+            <div class="loader" id="loader" hidden></div>
+            <div id="msgsuccess" class="card col-4 bg-light text-danger" hidden>
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -26,10 +72,10 @@
     <div class="row match-height">
         <div class="col-lg-10 col-12">
             <div class="card">
-                 <form id="formReward">
-                 <div class="card-content">
-                    <div class="card-body">
-                       
+                <form id="formReward">
+                    <div class="card-content">
+                        <div class="card-body">
+
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -101,18 +147,18 @@
                                     </div>
                                 </div>
                             </div>
-                       
 
-                    </div>
-                    <footer>
-                        <div class="card-footer">
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-success me-1 mb-1 submitReward">Submit</button>
-                            </div>
+
                         </div>
-                    </footer>
-                </div>
- </form>
+                        <footer>
+                            <div class="card-footer">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-success me-1 mb-1 submitReward">Submit</button>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -202,6 +248,26 @@
                 });
             }
         });
+    });
+
+    $('#callotto').on('click', function() {
+        if (confirm('ยืนยันคำนวณผล')) {
+            $('#loader').removeAttr('hidden');
+            $('#msgsuccess').removeAttr('hidden');
+            $('#msgsuccess').html('<div class="card-body">กำลังประมวณผล</div>');
+            $.ajax({
+
+                url: '<?= base_url('Backend/Reward/calculateReward'); ?>',
+                method: 'POST',
+                dataType: 'json',
+                data: {},
+            }).done(function(res) {
+                $('#loader').attr('hidden',true);
+                $('#msgsuccess').removeClass("bg-light");
+                $('#msgsuccess').addClass("bg-info");
+                $('#msgsuccess').html('<div class="card-body">'+res+'</div>');
+            });
+        }
     });
 </script>
 <?php $this->endSection(); ?>
