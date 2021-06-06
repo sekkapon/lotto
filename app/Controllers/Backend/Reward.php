@@ -142,7 +142,7 @@ class Reward extends BaseController
 
 
         $dataCheck = [
-            'tableDB' => 'tb_ticket2',
+            'tableDB' => 'tb_ticket',
             'whereData' => ['status' => 0, 'round' => $round],
 
         ];
@@ -150,7 +150,7 @@ class Reward extends BaseController
         $count = 0;
         while (($check = $this->My_Query->countData($dataCheck)) > 0) {
             $dataQuery = array(
-                'tableDB' => 'tb_ticket2',
+                'tableDB' => 'tb_ticket',
                 'selectData' => [
                     'ticket_id', 'number_lotto', 'type_lotto'
                 ],
@@ -162,7 +162,7 @@ class Reward extends BaseController
             );
             $rowdata = $this->My_Query->selectDataRow($dataQuery);
             $dataUpdate = array(
-                'tableDB' => 'tb_ticket2',
+                'tableDB' => 'tb_ticket',
                 'whereData' => [
                     'ticket_id' => $rowdata->ticket_id
                 ],
