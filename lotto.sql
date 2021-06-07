@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2021 at 11:48 AM
+-- Generation Time: Jun 07, 2021 at 11:40 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -148,18 +148,18 @@ CREATE TABLE `tb_cutoff` (
 CREATE TABLE `tb_raward` (
   `reward_id` int(11) NOT NULL,
   `reward_date` date NOT NULL COMMENT 'วันที่',
-  `reward_1st` varchar(6) NOT NULL COMMENT 'รางวัลที่1',
-  `reward_3upper` varchar(3) NOT NULL COMMENT '3ตัวล่าง',
-  `reward_3under_1st` varchar(3) NOT NULL COMMENT '3ตัวล่าง รางวัลที่ 1',
-  `reward_3under_2nd` varchar(3) NOT NULL COMMENT '3ตัวล่าง รางวัลที่ 2',
-  `reward_3under_3th` varchar(3) NOT NULL,
-  `reward_3under_4th` varchar(3) NOT NULL,
-  `reward_3toad` varchar(100) NOT NULL,
-  `reward_2under` varchar(2) NOT NULL COMMENT '2 ตัวล่าง',
-  `reward_2upper` varchar(2) NOT NULL COMMENT '2 ตัวบน',
-  `reward_2toad` varchar(50) NOT NULL,
-  `reward_float_under` varchar(1) NOT NULL COMMENT 'ลอยล่าง',
-  `reward_float_upper` varchar(1) NOT NULL COMMENT 'ลอยบน',
+  `reward_1st` longtext NOT NULL COMMENT 'รางวัลที่1',
+  `reward_3upper` longtext NOT NULL COMMENT '3ตัวล่าง',
+  `reward_3under_1st` longtext NOT NULL COMMENT '3ตัวล่าง รางวัลที่ 1',
+  `reward_3under_2nd` longtext NOT NULL COMMENT '3ตัวล่าง รางวัลที่ 2',
+  `reward_3under_3th` longtext NOT NULL,
+  `reward_3under_4th` longtext NOT NULL,
+  `reward_3toad` longtext NOT NULL,
+  `reward_2under` longtext NOT NULL COMMENT '2 ตัวล่าง',
+  `reward_2upper` longtext NOT NULL COMMENT '2 ตัวบน',
+  `reward_2toad` longtext NOT NULL,
+  `reward_float_under` longtext NOT NULL COMMENT 'ลอยล่าง',
+  `reward_float_upper` longtext NOT NULL COMMENT 'ลอยบน',
   `reward_4toad` longtext NOT NULL COMMENT '4โต๊ด',
   `reward_5toad` longtext NOT NULL COMMENT '5โต๊ด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

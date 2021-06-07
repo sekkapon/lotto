@@ -6,10 +6,22 @@
 
     }
 
+    p.sum {
+        margin-top: 1rem;
+        color: red;
+        text-decoration: underline;
+
+    }
+
     span.selectCutoff:hover {
         color: blue;
         text-decoration: underline;
         cursor: pointer;
+    }
+
+    th.betUser {
+        color: red;
+        text-decoration: underline;
     }
 </style>
 <div class="page-heading" id="settingTime">
@@ -22,7 +34,7 @@
             <div class="card-body">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">สมาชิก</a>
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="javascript:$('#divCutoff').attr('hidden',true)">สมาชิก</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">ตัดยอด</a>
@@ -100,7 +112,7 @@
                                                                                 <span><?= number_format($valueLotto['SumBetByType']);  ?> บาท</span>
                                                                             </p>
                                                                         <?php } ?>
-                                                                        <p class="inTable" style="color:red"><?= number_format($sum); ?> บาท</p>
+                                                                        <p class="inTable sum"><?= number_format($sum); ?> บาท</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -127,19 +139,19 @@
                                                         <th colspan="20"> <span id="headShow">ตัดยอดสมาชิก</span> </th>
                                                     </tr>
                                                     <tr align="center">
-                                                        <th width="10%">3ตัวบน</th>
+                                                        <th>3ตัวบน</th>
                                                         <th>จำนวน</th>
-                                                        <th width="6%">3ตัวล่าง</th>
+                                                        <th>3ตัวล่าง</th>
                                                         <th>จำนวน</th>
-                                                        <th width="6%">3ตัวโต๊ด</th>
+                                                        <th>3ตัวโต๊ด</th>
                                                         <th>จำนวน</th>
-                                                        <th width="6%">2ตัวบน</th>
+                                                        <th>2ตัวบน</th>
                                                         <th>จำนวน</th>
-                                                        <th width="6%">2ตัวล่าง</th>
+                                                        <th>2ตัวล่าง</th>
                                                         <th>จำนวน</th>
-                                                        <th width="6%">2ตัวโต๊ด</th>
+                                                        <th>2ตัวโต๊ด</th>
                                                         <th>จำนวน</th>
-                                                        <th width="6%">ลอยบน</th>
+                                                        <th>ลอยบน</th>
                                                         <th>จำนวน</th>
                                                         <th>ลอยล่าง</th>
                                                         <th>จำนวน</th>
@@ -152,25 +164,25 @@
                                                 <tbody align="center">
                                                     <tr style="background-color:#f2f7ff">
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum3upper">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum3under">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum3toad">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum2upper">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum2under">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum2toad">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sumfloatUpper">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sumfloatUnder">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum4toad">0</th>
                                                         <th></th>
-                                                        <th>0</th>
+                                                        <th class="betUser" id="sum5toad">0</th>
                                                     </tr>
                                                 <tbody align="center" id="bodyTable">
                                                 </tbody>
@@ -179,35 +191,379 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <a href="#divCutoff">
+                                        <button type="button addCutoff" class="btn btn-outline-secondary" id="btnCutoff">ตัดยอด</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function pageCutoff(data) {
-            $('#home-tab').removeClass("active");
-            $('#profile-tab').addClass("active");
-            $("#home").removeClass("active");
-            $("#home").removeClass("show");
-            $("#profile").addClass("active");
-            $("#profile").addClass("show");
-            $('#headShow').html($(data).data('user').firstname)
-            $.ajax({
-                url: '<?= base_url('Backend/Cutoff/callDataByUser'); ?>',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    userID: $(data).data('user').user_id
-                },
-            }).done(function(res) {
-                if (res.code == 1) {
+</div>
 
-                } else {
+<div class="col-md-12" id="divCutoff" hidden>
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+                <div class="row" id="divSettingLotto">
+                    <form id="formCutoff">
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                            <thead>
+                                                <tr align="center">
+                                                    <th colspan="20"><span style="color:red;"> ** ใส่ยอดที่ต้องการตัดออก หมายเลขใดไม่ต้องการตัดยอดให้ใส่ 0 **</span></th>
+                                                </tr>
+                                                <tr align="center">
+                                                    <th>3ตัวบน</th>
+                                                    <th>จำนวน</th>
+                                                    <th>3ตัวล่าง</th>
+                                                    <th>จำนวน</th>
+                                                    <th>3ตัวโต๊ด</th>
+                                                    <th>จำนวน</th>
+                                                    <th>2ตัวบน</th>
+                                                    <th>จำนวน</th>
+                                                    <th>2ตัวล่าง</th>
+                                                    <th>จำนวน</th>
+                                                    <th>2ตัวโต๊ด</th>
+                                                    <th>จำนวน</th>
+                                                    <th>ลอยบน</th>
+                                                    <th>จำนวน</th>
+                                                    <th>ลอยล่าง</th>
+                                                    <th>จำนวน</th>
+                                                    <th>4ตัวโต๊ด</th>
+                                                    <th>จำนวน</th>
+                                                    <th>5ตัวโต๊ด</th>
+                                                    <th>จำนวน</th>
+                                                </tr>
+                                            </thead>
 
-                }
-            });
+                                            <tbody align="center" id="bodyTable2">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="subit" class="btn btn-outline-secondary" id="btnCutoff">ยืนยันการตัดยอด</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function pageCutoff(data) {
+        arrDataUser = {
+            'user_id': $(data).data('user').user_id,
+            'firstname': $(data).data('user').firstname,
+            'username': $(data).data('user').username
         }
-    </script>
-    <?php $this->endSection(); ?>
+        localStorage.setItem('dataUser', JSON.stringify(arrDataUser));
+        $('#home-tab').removeClass("active");
+        $('#profile-tab').addClass("active");
+        $("#home").removeClass("active");
+        $("#home").removeClass("show");
+        $("#profile").addClass("active");
+        $("#profile").addClass("show");
+        $('#headShow').html($(data).data('user').firstname)
+
+        $.ajax({
+            url: '<?= base_url('Backend/Cutoff/callDataByUser'); ?>',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                userID: $(data).data('user').user_id
+            },
+        }).done(function(res) {
+            content = '';
+            if (res.code == 1) {
+                localStorage.setItem('dataCutoff', JSON.stringify(res.data));
+                content += '<tr>';
+                content += '<th>'
+                $.each(res.data.num3upper, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num3upper, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num3under, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num3under, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num3toad, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num3toad, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num2upper, function(key, value) {
+
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num2upper, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num2under, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num2under, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+
+                content += '<th>'
+                $.each(res.data.num2toad, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num2toad, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+
+                content += '<th>'
+                $.each(res.data.numfloatUpper, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.numfloatUpper, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.numfloatUnder, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.numfloatUnder, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num4toad, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num4toad, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num5toad, function(key, value) {
+                    content += '<p>' + value.number_lotto + '</p>'
+                });
+                content += '</th>';
+                content += '<th>'
+                $.each(res.data.num5toad, function(key, value) {
+                    content += '<p style="color:red">' + thousands_separators(value.amount_bet) + '</p>'
+                });
+                content += '</th>';
+                content += '</tr>';
+                $('#sum3upper').html(0);
+                $('#sum3under').html(0);
+                $('#sum3toad').html(0);
+                $('#sum3upper').html(0);
+                $('#sum2upper').html(0);
+                $('#sum2under').html(0);
+                $('#sum2toad').html(0);
+                $('#sumfloatUpper').html(0);
+                $('#sumfloatUnder').html(0);
+                $('#sum4toad').html(0);
+                $('#sum5toad').html(0);
+                $.each(res.data.sum, function(key, value) {
+                    $('#' + key).html(thousands_separators(value));
+                });
+                $('#bodyTable').html(content);
+            } else {
+
+            }
+        });
+    }
+
+    $("#btnCutoff").click(function() {
+        $('#divCutoff').removeAttr('hidden')
+        var dataCutoff = JSON.parse(localStorage.getItem('dataCutoff'));
+        var dataUser = JSON.parse(localStorage.getItem('dataUser')).user_id;
+        content = '';
+        content += '<tr>';
+        content += '<th hidden>'
+        content += '<input type="text" class="form-control" id="dataUser" value="' + dataUser + '" readonly>'
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num3upper, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num3upper, function(key, value) {
+            content += '<input type="text" class="form-control" name="num3upper_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num3under, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num3under, function(key, value) {
+            content += '<input type="text" class="form-control" name="num3under_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num3toad, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num3toad, function(key, value) {
+            content += '<input type="text" class="form-control" name="num3toad_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num2upper, function(key, value) {
+
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num2upper, function(key, value) {
+            content += '<input type="text" class="form-control" name="num2upper_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num2under, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num2under, function(key, value) {
+            content += '<input type="text" class="form-control" name="num2under_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+
+        content += '<th>'
+        $.each(dataCutoff.num2toad, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num2toad, function(key, value) {
+            content += '<input type="text" class="form-control" name="num2toad_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+
+        content += '<th>'
+        $.each(dataCutoff.numfloatUpper, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.numfloatUpper, function(key, value) {
+            content += '<input type="text" class="form-control" name="numfloatUpper_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.numfloatUnder, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.numfloatUnder, function(key, value) {
+            content += '<input type="text" class="form-control" name="numfloatUnder_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num4toad, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num4toad, function(key, value) {
+            content += '<input type="text" class="form-control" name="num4toad_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num5toad, function(key, value) {
+            content += '<p class="numLottoToCutoff">' + value.number_lotto + '</p>'
+        });
+        content += '</th>';
+        content += '<th>'
+        $.each(dataCutoff.num5toad, function(key, value) {
+            content += '<input type="text" class="form-control" name="num5toad_' + value.number_lotto + '" value="0" required>'
+        });
+        content += '</th>';
+        content += '</tr>';
+
+        $('#bodyTable2').html(content);
+        $('p.numLottoToCutoff').css({
+            'margin-top': '2rem',
+            'margin-bottom': '2rem'
+        });
+        $('th').css({
+            'width': '5%',
+        });
+        $('input.form-control').css({
+            'width': '100%',
+            'text-align': 'center',
+            'margin-top': '1.6rem',
+            'margin-bottom': '1.6rem',
+            'padding': '0.09rem 0.1rem',
+            'color': 'red'
+        })
+        $('input.form-control').keyup(function(num) {
+            if (num.which >= 37 && num.which <= 40) return;
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            });
+        });
+    });
+
+    $("#formCutoff").submit(function(event) {
+        event.preventDefault();
+        arrData = {
+            'user_id': $('#dataUser').val(),
+            'data': $(this).serializeFormJSON()
+        };
+        console.log(arrData);
+    });
+</script>
+<?php $this->endSection(); ?>

@@ -61,8 +61,8 @@ class Cutoff extends BaseController
 
     public function callDataByUser()
     {
-        // $userID = $this->request->getPost('userID');
-        $userID = 1;
+        $userID = $this->request->getPost('userID');
+        // $userID = 1;
         $dataQuery = array(
             'tableDB' => 'tb_close_time_bet',
             'selectData' => [
@@ -99,8 +99,11 @@ class Cutoff extends BaseController
         foreach ($checkData as $keyCheckData => $valueCheckData) {
             $sortData['num' . $valueCheckData] = [];
             $i = 0;
+            $sum = 0;
             foreach ($data['dataUser'] as $key => $value) {
+
                 if ($valueCheckData == $value['type_lotto']) {
+                    $sum += $value['sumBetByType'];
                     array_push($sortData['num' . $valueCheckData], array(
                         'number_lotto' => $value['number_lotto'],
                         'amount_bet' => $value['sumBetByType']
@@ -108,10 +111,8 @@ class Cutoff extends BaseController
                     $i++;
                 }
             }
+            $sortData['sum']['sum' . $valueCheckData] = $sum;
         }
-
-
-
         if (sizeof($sortData) == 0) {
             echo json_encode(array('code' => 0, 'msg' => 'ไม่มีข้อมูลการแทง'));
             die;
