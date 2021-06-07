@@ -11,24 +11,24 @@ $this->DB = \Config\Database::connect();
 
 <style>
     span.headMenu {
-        font-weight: normal;
-        font-size: 18px;
+        font-weight: 500;
+        font-size: 15px;
     }
 
     span.subMenu {
         font-weight: normal;
-        font-size: 15px;
+        font-size: 14px;
     }
 
     th {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 14px;
         color: #25396f;
     }
 
     td {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     button.reset-btn:hover {

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 11:40 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Generation Time: Jun 07, 2021 at 03:42 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -134,10 +134,21 @@ CREATE TABLE `tb_cutoff` (
   `cutoff_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `round` date NOT NULL,
-  `num_lotto` int(11) NOT NULL,
+  `number_lotto` int(11) NOT NULL,
   `type_lotto` varchar(25) NOT NULL,
   `amount_cutoff` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_cutoff`
+--
+
+INSERT INTO `tb_cutoff` (`cutoff_id`, `user_id`, `round`, `number_lotto`, `type_lotto`, `amount_cutoff`) VALUES
+(1, 1, '2021-06-16', 544, '3upper', 200),
+(2, 1, '2021-06-16', 445, '3upper', 55),
+(3, 1, '2021-06-16', 445, '3under', 50),
+(7, 1, '2021-06-16', 123, '3upper', 12),
+(8, 1, '2021-06-16', 733, '3toad', 10);
 
 -- --------------------------------------------------------
 
@@ -321,7 +332,7 @@ ALTER TABLE `tb_close_time_bet`
 -- AUTO_INCREMENT for table `tb_cutoff`
 --
 ALTER TABLE `tb_cutoff`
-  MODIFY `cutoff_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cutoff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_raward`

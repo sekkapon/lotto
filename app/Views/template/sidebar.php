@@ -16,7 +16,7 @@
                 <li class="sidebar-item">
                     <a href="<?= base_url('backend/backend/system'); ?>" class='sidebar-link'>
                         <i class="bi bi-sliders"></i>
-                        <span class="headMenu">รายละเอียดระบบ</span>
+                        <span class="headMenu">ระบบ</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

@@ -1,6 +1,11 @@
 <?php $this->extend('template/content'); ?>
 <?php $this->section('content'); ?>
 
+<style>
+    select.form-select {
+        font-size: 13px;
+    }
+</style>
 <div class="page-heading">
     <div class="page-title">
         <div class="row">

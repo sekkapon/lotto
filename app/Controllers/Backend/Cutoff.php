@@ -121,4 +121,56 @@ class Cutoff extends BaseController
             die;
         }
     }
+
+    public function cutoffLotto()
+    {
+        $arrData = json_decode($this->request->getPost('arrData'));
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+
+        foreach ($arrData->data as $key => $valueCutoff) {
+            $dataQuery = array(
+                'tableDB' => 'tb_cutoff',
+                'whereData' => [
+                    'user_id' => $arrData->user_id,
+                    'round' => $round,
+                    'number_lotto' => $valueCutoff->number_lotto,
+                    'type_lotto' => $valueCutoff->type_lotto,
+                ],
+                'data' => [
+                    'user_id' => $arrData->user_id,
+                    'round' => $round,
+                    'number_lotto' => $valueCutoff->number_lotto,
+                    'type_lotto' => $valueCutoff->type_lotto,
+                    'amount_cutoff' => str_replace(',', '',  $valueCutoff->amount_cutoff),
+                ]
+            );
+
+            if ($this->My_Query->countData($dataQuery) == 1) {
+                if ($this->My_Query->updateData($dataQuery) === FALSE) {
+                    echo json_encode(array('code' => 0, 'msg' => 'อัพเดทข้อมูลการตัดยอดไม่สำเร็จกรุณาติดต่อโปรแกรมมเมอร์'));
+                    die;
+                }
+            } else {
+                if ($this->My_Query->insertData($dataQuery) === FALSE) {
+                    echo json_encode(array('code' => 0, 'msg' => 'เพิ่มข้อมูลการตัดยอดไม่สำเร็จกรุณาติดต่อโปรแกรมมเมอร์'));
+                    die;
+                }
+            }
+        }
+        echo json_encode(array('code' => 1, 'msg' => 'ทำรายการตัดยอดสำเร็จ'));
+        die;
+    }
 }

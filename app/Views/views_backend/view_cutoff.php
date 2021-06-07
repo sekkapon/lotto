@@ -74,7 +74,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="d-flex justify-content-center">
-                                                                    <div class="col-md-3 col-2" style="border-right: 1px solid gray;">
+                                                                    <div class="col-md-4 col-2" style="border-right: 1px solid gray;">
                                                                         <?php
                                                                         foreach ($value['lotto'] as $key => $valueLotto) {
                                                                         ?>
@@ -103,7 +103,7 @@
                                                                             </p>
                                                                         <?php } ?>
                                                                     </div>
-                                                                    <div class="col-md-3 col-4 ">
+                                                                    <div class="col-md-4 col-4 ">
                                                                         <?php $sum = 0;
                                                                         foreach ($value['lotto'] as $key => $valueLotto) {
                                                                             $sum += (int)$valueLotto['SumBetByType'];
@@ -206,7 +206,7 @@
     </div>
 </div>
 
-<div class="col-md-12" id="divCutoff" hidden>
+<div class="col-md-12 col-sm--12" id="divCutoff" hidden>
     <div class="card">
         <div class="card-body">
             <div class="tab-content" id="myTabContent">
@@ -542,7 +542,8 @@
         $('input.form-control').css({
             'width': '100%',
             'text-align': 'center',
-            'margin-top': '1.6rem',
+            'font-size': '12px',
+            'margin-top': '2rem',
             'margin-bottom': '1.6rem',
             'padding': '0.09rem 0.1rem',
             'color': 'red'
@@ -561,9 +562,31 @@
         event.preventDefault();
         arrData = {
             'user_id': $('#dataUser').val(),
-            'data': $(this).serializeFormJSON()
+            'data': {}
         };
-        console.log(arrData);
+        var i = 0;
+        $.each($(this).serializeFormJSON(), function(key, value) {
+            if (parseInt(value) != 0) {
+                var dataArr = key.substring(3).split("_");
+                arrValue = {
+                    'type_lotto': dataArr[0],
+                    'number_lotto': dataArr[1],
+                    'amount_cutoff': value
+                }
+                arrData.data[i] = arrValue;
+                i++;
+            }
+        });
+        $.ajax({
+            url: '<?= base_url('Backend/Cutoff/cutoffLotto'); ?>',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                arrData: JSON.stringify(arrData)
+            },
+        }).done(function(res) {
+
+        });
     });
 </script>
 <?php $this->endSection(); ?>
