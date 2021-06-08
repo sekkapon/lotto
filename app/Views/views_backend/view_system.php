@@ -60,6 +60,22 @@
                                 <tr>
                                     <td class="col-3">
                                         <div class="d-flex align-items-center">
+                                            <p class="font-bold mb-0">ระบบตัดยอด</p>
+                                        </div>
+                                    </td>
+                                    <td class="col-auto">
+                                        <p class=" mb-0"> - แสดงการวางเดิมพันทั้งหมดตามสมาชิก</p>
+                                        <br>
+                                        <p class=" mb-0"> - แสดงการวางเดิมพันทั้งหมดตามประเภท</p>
+                                        <br>
+                                        <p class=" mb-0"> - ตัดยอด</p>
+                                        <br>
+                                        <p class=" mb-0"> - ปริ้นรายการตัดยอด</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-3">
+                                        <div class="d-flex align-items-center">
                                             <p class="font-bold mb-0">ระบบรายงาน</p>
                                         </div>
                                     </td>
@@ -79,6 +95,8 @@
                                         <p class=" mb-0"> - ระบบเพิ่มผลรางวัลงวดล่าสุด</p>
                                         <br>
                                         <p class=" mb-0"> - เก็บผลรางวัลย้อนหลัง</p>
+                                        <br>
+                                        <p class=" mb-0"> - ระบบตรวจเช็ครางวัลกับรายการวางเดิมพันทั้งหมด</p>
                                     </td>
                                 </tr>
                             </tbody>

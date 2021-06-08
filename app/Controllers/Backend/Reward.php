@@ -21,6 +21,7 @@ class Reward extends BaseController
             die;
         }
 
+
         $dataQuery = array(
             'tableDB' => 'tb_raward',
             'data' => [
@@ -188,26 +189,59 @@ class Reward extends BaseController
         }
 
         if (date('d', time()) == '30' || date('d', time()) == '31' || date('d', time()) == '01' || date('d', time()) == '02' || date('d', time()) == '03') {
-            
-            $nextRound = date('Y-m-16', time());
+            if (date('d', time()) == '30' || date('d', time()) == '31') {
+                $month = date('m', time());
+                if ($month == '12') {
+                    $nextRoundTypeYear = date('Y', time());
+                    $nextRoundTypeYear = (string)((int)$nextRoundTypeYear + 1);
+                    $round = date($nextRoundTypeYear . '-01-16', time());
+                } else {
+                    $nextRoundTypeMonth = (int)$month + 1;
+                    if (strlen($nextRoundTypeMonth) == 1) {
+                        $nextRoundTypeMonth = '0' . (string)$nextRoundTypeMonth;
+                    } else {
+                        $nextRoundTypeMonth = (string)$nextRoundTypeMonth;
+                    }
+                    $round = date('Y-' . $nextRoundTypeMonth . '-16', time());
+                }
+            } else {
+                $round = date('Y-m-16', time());
+            }
         }
         if (date('d', time()) == '14' || date('d', time()) == '15' || date('d', time()) == '16' || date('d', time()) == '17' || date('d', time()) == '18') {
-            $nextRound = date('Y-m-01', time());
+            $month = date('m', time());
+            if ($month == '12') {
+                $nextRoundTypeYear = date('Y', time());
+                $nextRoundTypeYear = (string)((int)$nextRoundTypeYear + 1);
+                $round = date($nextRoundTypeYear . '-01-01', time());
+            } else {
+                $nextRoundTypeMonth = (int)$month + 1;
+                if (strlen($nextRoundTypeMonth) == 1) {
+                    $nextRoundTypeMonth = '0' . (string)$nextRoundTypeMonth;
+                } else {
+                    $nextRoundTypeMonth = (string)$nextRoundTypeMonth;
+                }
+                $round = date('Y-' . $nextRoundTypeMonth . '-01', time());
+            }
         }
         $dataQuery = array(
             'tableDB' => 'tb_close_time_bet',
             'data' => [
-                ''
+                'round' => $round,
+                'close_time' => '15:00',
+                'open_time' => '21:00',
+                'status' => 1
             ]
         );
+        if ($this->My_Query->insertData($dataUpdate) === FALSE) {
+            return json_encode("อัพเดทงวดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์");
+            die;
+        }
 
         return json_encode("สำเร็จ " . $count . " รายการ");
     }
 
-    public function test(){
-        echo date('Y-m-01', time());
-        die;
-    }
+
     public function checkbet($number_lotto, $type_lotto, $dataRewrad)
     {
 

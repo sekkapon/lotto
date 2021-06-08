@@ -227,6 +227,20 @@ class Cutoff extends BaseController
 
     public function printCutoff()
     {
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $data['round'] = $this->My_Query->selectDataRow($dataQuery)->round;
 
         $dataQuery = array(
             'tableDB' => 'tb_user',
@@ -248,24 +262,11 @@ class Cutoff extends BaseController
         );
         $data['dataUser'] = $this->My_Query->selectData($dataQuery);
 
-        $dataQuery = array(
-            'tableDB' => 'tb_close_time_bet',
-            'selectData' => [
-                'round'
-            ],
-            'whereData' => [
-                'status' => 1
-            ],
-            'orderBy' => [
-                'keyOrderBy' => 'close_time_id',
-                'sortBy' => 'ASC',
-            ],
-        );
-        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+
 
         $data['dataCutoff'] = $this->DB->table('tb_cutoff')
             ->select('round,number_lotto,type_lotto,SUM(amount_cutoff) as sumBetByType')
-            ->where('round', $round)
+            ->where('round', $data['round'])
             ->groupBy('number_lotto,type_lotto')
             ->orderBy('type_lotto', 'ASC')
             ->get()

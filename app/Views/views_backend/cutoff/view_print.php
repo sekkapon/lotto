@@ -27,7 +27,7 @@ $this->section('content'); ?>
             <div class="d-flex justify-content-between">
                 <div class="col-md-6">
                     <h3>Print Cutoff</h3>
-                    <p class="text-subtitle text-muted">ปริ้นผลการตัดยอด</p>
+                    <p class="text-subtitle text-muted">ปริ้นรายการตัดยอด</p>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ $this->section('content'); ?>
                         <table class="table table-bordered mb-0" id="tableCutoff">
                             <thead>
                                 <tr align="center" style="background-color:#f2f7ff">
-                                    <th colspan="4"> <span id="headShow">รายการการตัดยอด</span> </th>
+                                    <th colspan="4"> <span id="headShow">รายการการตัดยอดงวดวันที่ <?= date('d-m-Y', strtotime($round)); ?></span> </th>
                                 </tr>
                                 <tr align="center" style="background-color:#f2f7ff">
                                     <th>ลำดับ</th>
@@ -104,7 +104,7 @@ $this->section('content'); ?>
                 </div>
                 <div class="card-footer">
                     <div class="col-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-secondary print">Print File</button>
+                        <button type="button" class="btn btn-outline-secondary print">Print</button>
                     </div>
                 </div>
             </div>
@@ -114,34 +114,40 @@ $this->section('content'); ?>
 <script>
     $(function() {
         $('button[type="button"]').click(function() {
-            var pageTitle = 'รายการการตัดยอด',
-                stylesheet = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
-                win = window.open('', 'Print', 'width=500,height=300');
+            // var   stylesheet = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css';
+            var win = window.open('', 'Print', 'width=1000,height=600');
             win.document.write(`<html>
                 <head>
-                <title>` + pageTitle + `</title>
-                <link rel="stylesheet" href="` + stylesheet + `">
+                <title></title>
+                
                 </head>
                 <style>
                     th{
-                        font-size:9px; 
-                        font-weight: 400; 
+                        font-size:11px; 
+                        font-weight: normal; 
+                        border: 0.5px solid gray;
                     }
 
                     td{
-                        font-size:7px; 
+                        font-size:10px; 
                         font-weight: normal; 
+                        border: 0.5px solid gray;
                     }
                     span{
-                        font-size:9px; 
-                        font-weight: 400;
+                        font-size:11px; 
+                        font-weight: normal;
+                    }
+                
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
                     }
                 </style>
                 <body>
-                <table width="100%">
+                <table>
                     <thead>
                         <tr align="center" style="background-color:#f2f7ff;">
-                            <th colspan="4"><span>ผลการตัดยอดทั้งหมด</span></th>
+                            <th colspan="4">` + $('#headShow').html() + `</th>
                         </tr>
                         <tr align="center" style="background-color:#f2f7ff">
                             <th style="width:10%">ลำดับ</th>
