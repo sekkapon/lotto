@@ -207,5 +207,26 @@ class Api extends BaseController
         ); 
         return  json_encode($this->My_Query->selectDataRow($dataQuery));
     }
+    public function canbet(){
+        if(!$this->checkTimeoff()){
+            return json_encode('หมดเวลาทำรายการ');
+        }else{
+            
+        $dataQuery = array(
+            'tableDB' => 'tb_ticket',
+            'whereData' => [
+                'ticket_id' => $this->request->getPost('id_tic')
+            ],
+            'data' => [
+                'status' => '3'
+            ]
+        );
+        if($this->My_Query->updateData($dataQuery)){
+            return json_encode('สำเร็จ');
+        }
+        return json_encode('ไม่สามารถทำรายการได้');
+        }
 
+        
+    }
 }

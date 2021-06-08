@@ -138,12 +138,12 @@
                     <thead>
                         <tr>
                             <td align="center"></td>
-                            <td >ลำดับ </td>
+                            <td>ลำดับ </td>
                             <td align="center">วันที่-เวลา(ป/ด/ว ช:น)</td>
                             <td align="center">ประเภท</td>
                             <td align="center">หมายเลข</td>
                             <td align="center">จำนวน</td>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
@@ -152,7 +152,7 @@
                         foreach (json_decode($mybet) as $key => $value) {
                             $i++; ?>
                             <tr>
-                                <td align="center"> <i class="fa fa-window-close" aria-hidden="true"></i></td>
+                                <td align="center"> <i class="fa fa-window-close" aria-hidden="true" style="cursor:pointer;" onclick="(confirm('ยืนยันการยกเลิก'))?canbet(<?= $value->ticket_id; ?>):''"></i></td>
                                 <td align="center"><?= $i; ?></td>
                                 <td align="center"><?= date('Y/m/d H:i', $value->create_time); ?></td>
                                 <td align="center"><?php
@@ -194,7 +194,7 @@
                                                     ?></td>
                                 <td align="center"><?= $value->number_lotto ?></td>
                                 <td align="center"><?= $value->amount_bet; ?></td>
-                         
+
                             </tr>
                         <?php  } ?>
 
@@ -234,19 +234,22 @@
 
 
 <script>
-$(document).ready(function() {
-    $('#dbtable').DataTable( {
-        "searching": false,
-        paging: false,
-        "ordering": false,
-        "scrollY":  "800px",
-        "scrollCollapse": true,
-        dom: 'Bfrtip',
-        buttons: [
-            { "extend": 'print' , className: 'btn-info', text:'<i class="fas fa-print"> Print</i>' }
-        ]
-    } );
-} );
+    $(document).ready(function() {
+        $('#dbtable').DataTable({
+            "searching": false,
+            paging: false,
+            "ordering": false,
+            "scrollY": "800px",
+            "scrollCollapse": true,
+            dom: 'Bfrtip',
+            buttons: [{
+                "extend": 'print',
+                className: 'btn-info',
+                text: '<i class="fas fa-print"> Print</i>'
+            }]
+        });
+    });
+
     function checknum(row, colum) {
         var tr = $(row).parents('tr').children().children('.betnum');
         var num = tr.val();
@@ -503,6 +506,22 @@ $(document).ready(function() {
         }
 
     });
+
+    function canbet(id_tic) {
+
+        $.ajax({
+                method: "POST",
+                url: "bet-huay-thai/api/canbet",
+                dataType: "json",
+                data: {
+                    id_tic: id_tic,
+                }
+            })
+            .done(function(msg) {
+                alert(msg);
+                location.reload();
+            });
+    }
 </script>
 
 

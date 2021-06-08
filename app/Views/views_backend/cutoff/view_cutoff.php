@@ -34,7 +34,7 @@
             <div class="card-body">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="javascript:$('#divCutoff').attr('hidden',true)">สมาชิก</a>
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="javascript:$('#divCutoff').attr('hidden',true)">ยอดแทงตามสมาชิก</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">ตัดยอด</a>
@@ -194,7 +194,7 @@
                             <div class="card-footer">
                                 <div class="col-12 d-flex justify-content-end">
                                     <a href="#divCutoff">
-                                        <button type="button addCutoff" class="btn btn-outline-secondary" id="btnCutoff">ตัดยอด</button>
+                                        <button type="button" class="btn btn-outline-secondary" id="btnCutoff">ตัดยอด</button>
                                     </a>
                                 </div>
                             </div>
@@ -543,10 +543,10 @@
             'width': '100%',
             'text-align': 'center',
             'font-size': '12px',
-            'margin-top': '2rem',
-            'margin-bottom': '1.6rem',
+            'margin-top': '1.7rem',
             'padding': '0.09rem 0.1rem',
-            'color': 'red'
+            'color': 'red',
+            'height': '25px'
         })
         $('input.form-control').keyup(function(num) {
             if (num.which >= 37 && num.which <= 40) return;
@@ -585,7 +585,23 @@
                 arrData: JSON.stringify(arrData)
             },
         }).done(function(res) {
-
+            if (res.code == 1) {
+                swal({
+                    icon: 'success',
+                    text: res.msg,
+                    timer: 1500,
+                    buttons: false,
+                }).then(value => {
+                    window.location.href = '<?= base_url('backend/Cutoff'); ?>'
+                });
+            } else {
+                swal({
+                    icon: 'error',
+                    text: res.msg,
+                    timer: 5000,
+                    buttons: false,
+                });
+            }
         });
     });
 </script>

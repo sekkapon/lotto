@@ -74,7 +74,7 @@
                                 <th>RefNo.</th>
                                 <th>ประเภท</th>
                                 <th>หมายเลข</th>
-                                <th>ยอดพนัน</th>
+                                <th>ยอดได้เสีย</th>
                                 <th>คอมมิชชั่น</th>
                                 <th>สถานะ</th>
                             </tr>
@@ -174,7 +174,7 @@ function getround(){
                     }
 
                     txt += `
-                    <tr >
+                    <tr class="`+((val.status == 3)?'bg-secondary':(val.status == 1)?'bg-success':'')+`">
                         <td>` + i + `</td>
                         <td>` + formatDate((val.create_time) * 1000) + `</td>
                         <td>` + val.ticket_id + `</td>
@@ -183,13 +183,21 @@ function getround(){
                         <td>` + val.amount_bet + `</td>
                         <td>` + val.commission + `</td>
                         <td>` + ((val.status == 0) ? '<span class="wait">รอผล</span>' :
-                        (val.status == 1) ? '<span class="win">ได้</span>' :
+                        (val.status == 1) ? '<span class="win">ได้ '+val.if_win+'</span>' :
                         (val.status == 2) ? '<span class="lose">เสีย</span>' :
-                        '') + `</td>
+                        '<span class="text-gray">ยกเลิก</span>') + `</td>
                     </tr>
                 `;
-                    sumbet += parseFloat(val.amount_bet);
+                if(val.status == 0 || val.status == 1 || val.status == 2){
+                    if(val.status == 1){
+                        sumbet += parseFloat(val.amount_bet)-parseFloat(val.if_win);
+                    }else{
+                        sumbet += parseFloat(val.amount_bet);
+                    }
+                    
                     sumcom += parseFloat(val.commission);
+                }
+                    
 
                 });
                 txtfoot += `
@@ -199,7 +207,7 @@ function getround(){
                         <td></td>
                         <td ></td>
                         <td>รวม</td>
-                        <td>` + sumbet + `</td>
+                        <td class="`+((sumbet > 0)?'text-primary':'text-danger')+`">` + ((sumbet > 0)?'+':'-')+sumbet + `</td>
                         <td>` + sumcom + `</td>
                         <td></td>
                     </tr>`;

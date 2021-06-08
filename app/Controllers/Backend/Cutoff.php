@@ -56,7 +56,7 @@ class Cutoff extends BaseController
             }
         }
         $data['dataByUser'] = $sortData;
-        return view('views_backend/view_cutoff', $data);
+        return view('views_backend/cutoff/view_cutoff', $data);
     }
 
     public function callDataByUser()
@@ -141,6 +141,32 @@ class Cutoff extends BaseController
         $round = $this->My_Query->selectDataRow($dataQuery)->round;
 
         foreach ($arrData->data as $key => $valueCutoff) {
+
+            $dataQuery = array(
+                'tableDB' => 'tb_ticket',
+                'selectData' => [
+                    '*'
+                ],
+                'whereData' => [
+                    'user_id' => $arrData->user_id,
+                    'round' => $round,
+                    'number_lotto' => $valueCutoff->number_lotto,
+                    'type_lotto' => $valueCutoff->type_lotto,
+                ],
+                'orderBy' => [
+                    'keyOrderBy' => 'ticket_id',
+                    'sortBy' => 'ASC',
+                ],
+                'limit' => [
+                    'limitCount' => 1,
+                    'startAt' => 0
+                ]
+            );
+            $amount_bet = $this->My_Query->selectData($dataQuery)[0]['amount_bet'];
+            if (str_replace(',', '',  $valueCutoff->amount_cutoff) > $amount_bet) {
+                echo json_encode(array('code' => 0, 'msg' => $this->typeEnToTh($valueCutoff->type_lotto) . ' เลข ' . $valueCutoff->number_lotto . ' ไม่สามารถตัดยอดมากกว่าจำนวนเงินที่แทงมาได้'));
+                die;
+            }
             $dataQuery = array(
                 'tableDB' => 'tb_cutoff',
                 'whereData' => [
@@ -172,5 +198,79 @@ class Cutoff extends BaseController
         }
         echo json_encode(array('code' => 1, 'msg' => 'ทำรายการตัดยอดสำเร็จ'));
         die;
+    }
+
+    public function typeEnToTh($type)
+    {
+        if ($type == '3upper') {
+            return '3ตัวบน';
+        } else if ($type == '3under') {
+            return '3ตัวล่าง';
+        } else if ($type == '3toad') {
+            return '3ตัวโต๊ด';
+        } else if ($type == '2upper') {
+            return '2ตัวบน';
+        } else if ($type == '2under') {
+            return '2ตัวล่าง';
+        } else if ($type == '2toad') {
+            return '2ตัวโต๊ด';
+        } else if ($type == 'floatUpper') {
+            return 'ลอยบน';
+        } else if ($type == 'floatUnder') {
+            return 'ลอยล่าง';
+        } else if ($type == '4toad') {
+            return '4ตัวโต๊ด';
+        } else {
+            return '5ตัวโต๊ด';
+        }
+    }
+
+    public function printCutoff()
+    {
+
+        $dataQuery = array(
+            'tableDB' => 'tb_user',
+            'selectData' => [
+                'user_id', 'username', 'firstname'
+            ],
+            'whereData' => [
+                'user_id !=' => 0,
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'user_id',
+                'sortBy' => 'ASC',
+            ],
+            'limit' => [
+                'limitCount' => 999,
+                'startAt' => 0
+            ]
+        );
+        $data['dataUser'] = $this->My_Query->selectData($dataQuery);
+
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+
+        $data['dataCutoff'] = $this->DB->table('tb_cutoff')
+            ->select('round,number_lotto,type_lotto,SUM(amount_cutoff) as sumBetByType')
+            ->where('round', $round)
+            ->groupBy('number_lotto,type_lotto')
+            ->orderBy('type_lotto', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        return view('views_backend/cutoff/view_print', $data);
     }
 }

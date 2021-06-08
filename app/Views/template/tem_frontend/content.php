@@ -83,13 +83,15 @@ $this->DB = \Config\Database::connect();
                 data: {}
             })
             .done(function(msg) {
+                $('#navtoround').html(msg.round);
                 $('#navtotalbet').html(msg.sumbet);
+                $('#navtoclear').html(msg.sumclear);
+                $('#navtotcom').html(msg.sumcom);
                 setrate()
             });
     }
     function setrate() { 
         // =======================
-
         var detail = JSON.parse(localStorage.getItem("maxmin")).detail;
         var txt = `
                                 <tr>

@@ -63,35 +63,57 @@ class BetHauythai extends BaseController
                 'limitCount' => 999,
                 'startAt' => 0
             ]
-        ); 
-        $dataQuerySum = array(
-            'tableDB' => 'tb_ticket',
-            'selectData' => [
-                'SUM(amount_bet) AS sumbet',
-            ],
-            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id']],
-            'orderBy' => [
-                'keyOrderBy' => 'ticket_id',
-                'sortBy' => 'ASC',
-            ],
-        );
+        );   
         
         return ['data'=>$this->My_Query->selectData($dataQuery),'sum'=>json_decode($this->getsumbet())];
+    }
+    public function getround(){
+
+        $dataQuerySum = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => ['*'],
+            'whereData' => ['status'=>1],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'DESC',
+            ]
+        );
+
+        return $this->My_Query->selectDataRow($dataQuerySum);
     }
 
     public function getsumbet(){
         $dataQuerySum = array(
             'tableDB' => 'tb_ticket',
             'selectData' => [
-                'SUM(amount_bet) AS sumbet',
+                '*',
             ],
-            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id']],
+            'whereData' => ['tb_ticket.user_id'=>$this->session->session_member['user_id'],'status !='=>3],
             'orderBy' => [
                 'keyOrderBy' => 'ticket_id',
                 'sortBy' => 'ASC',
             ],
+            'limit' => [
+                'limitCount' => 99999,
+                'startAt' => 0
+            ]
         );
-        return json_encode($this->My_Query->selectDataRow($dataQuerySum));
+   
+        $sumbet = 0;
+        $sumcom = 0;
+        foreach ( $this->My_Query->selectData($dataQuerySum) as $key => $value) {
+            if($value['status'] == 0 || $value['status'] == 1 || $value['status'] == 2){
+            if($value['status'] == 1){
+                $sumbet += floatval($value['amount_bet']);
+            }else{
+                $sumbet += floatval($value['amount_bet']);
+            }
+            $sumcom += floatval($value['commission']);
+        }
+        } 
+        $sumclear = $sumbet - $sumcom;
+       
+        return json_encode(['sumbet'=>$sumbet,'sumcom'=>$sumcom,'sumclear'=>$sumclear,'round'=>$this->getround()->round] );
     }
 
 

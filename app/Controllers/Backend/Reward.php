@@ -37,11 +37,10 @@ class Reward extends BaseController
                 'reward_2toad' => json_encode($this->genToad(2, substr($arrData['reward1st'], 3))),
                 'reward_float_under' => json_encode($this->genToad(1, substr($arrData['reward1st'], 4))),
                 'reward_float_upper' => json_encode($this->genToad(1, substr($arrData['reward1st'], 3))),
-                'reward_4toad' => json_encode($this->genToad(4, substr($arrData['reward1st'], 2))),
-                'reward_5toad' => json_encode($this->genToad(5, substr($arrData['reward1st'], 1))),
+                'reward_4toad' => json_encode([substr($arrData['reward1st'], 3)]),
+                'reward_5toad' => json_encode([substr($arrData['reward1st'], 3)]),
             ]
         );
-        $this->calculateReward($dataQuery['data']);
 
         if ($this->My_Query->insertData($dataQuery) === FALSE) {
             return json_encode(array('code' => 2, 'msg' => 'ไม่สามารถเพิ่มข้อมูลได้กรุณาติดต่อโปรแกรมเมอร์'));
@@ -84,10 +83,12 @@ class Reward extends BaseController
                     $output = array_merge($output, $return);
                     $output = array_unique($output);
                 } else {
-                    if ($L == 2) {
-                        $output[] = substr($return, 0, 2);
-                    } else if ($L == 1) {
+                    if ($L == 1) {
                         $output[] = substr($return, 0, 1);
+                    } else if ($L == 2) {
+                        $output[] = substr($return, 0, 2);
+                    } else if ($L == 4 || $L == 5) {
+                        $output[] = substr($return, 0, 3);
                     } else {
                         $output[] = $return;
                     }
@@ -173,11 +174,40 @@ class Reward extends BaseController
             $this->My_Query->updateData($dataUpdate);
             $count++;
         }
-        // $after = microtime(true);
-        // echo ($after-$before) . " sec/serialize\n";
-         return json_encode("สำเร็จ ".$count." รายการ" );
+
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'whereData' => [],
+            'data' => [
+                'status' => 0
+            ]
+        );
+        if ($this->My_Query->updateData($dataUpdate) === FALSE) {
+            return json_encode("อัพเดทงวดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์");
+            die;
+        }
+
+        if (date('d', time()) == '30' || date('d', time()) == '31' || date('d', time()) == '01' || date('d', time()) == '02' || date('d', time()) == '03') {
+            
+            $nextRound = date('Y-m-16', time());
+        }
+        if (date('d', time()) == '14' || date('d', time()) == '15' || date('d', time()) == '16' || date('d', time()) == '17' || date('d', time()) == '18') {
+            $nextRound = date('Y-m-01', time());
+        }
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'data' => [
+                ''
+            ]
+        );
+
+        return json_encode("สำเร็จ " . $count . " รายการ");
     }
 
+    public function test(){
+        echo date('Y-m-01', time());
+        die;
+    }
     public function checkbet($number_lotto, $type_lotto, $dataRewrad)
     {
 
@@ -243,14 +273,15 @@ class Reward extends BaseController
                 }
                 break;
             case "4toad":
-                // 'reward_4toad'
-                if (in_array($number_lotto, json_decode($dataRewrad->reward_4toad))) {
+                // 'reward_4toad'                
+
+                if (in_array(json_decode($dataRewrad->reward_4toad)[0], $this->genToad(4, $number_lotto))) {
                     return true;
                 }
                 break;
             case "5toad":
                 // 'reward_5toad'
-                if (in_array($number_lotto, json_decode($dataRewrad->reward_5toad))) {
+                if (in_array(json_decode($dataRewrad->reward_4toad)[0], $this->genToad(5, $number_lotto))) {
                     return true;
                 }
                 break;
@@ -260,7 +291,4 @@ class Reward extends BaseController
         }
         return false;
     }
-
-
-    
 }

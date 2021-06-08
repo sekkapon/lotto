@@ -77,11 +77,24 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item">
-                    <a href="<?= base_url('backend/Cutoff'); ?>" class='sidebar-link'>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-receipt-cutoff"></i>
                         <span class="headMenu">ตัดยอด</span>
                     </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/Cutoff'); ?>">
+                                <span class="subMenu">ตัดยอดสมาชิก</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="<?= base_url('backend/Cutoff/printCutoff'); ?>">
+                                <span class="subMenu">ปริ้นใบตัดยอด</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-item  has-sub">

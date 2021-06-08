@@ -35,12 +35,16 @@
             <div class="card-bodyM">
                 <h4 class="card-title"> สวัสดีค่ะ คุณ <?=$this->session->session_member['firstname'];?> </h4>
                 <ul class="list-group">
-                    <li class="justify-content-between list-group-item"> งวดประจำวันที่ 01-06-2021 </li>
+                    <li class="justify-content-between list-group-item"> งวดประจำวันที่ <span class="" id="navtoround"></span> </li>
                     <!-- <li class="justify-content-between list-group-item"> เครดิต <font size="+2"><span class="badge badge-info badge-pill">5,000.00</span></font></li> -->
                     <li class="justify-content-between list-group-item"> ยอดพนัน <font size="+2"><span class="badge badge-secondary badge-pill" id="navtotalbet">0.00</span></font>
                     </li>
-                    <li class="justify-content-between list-group-item"> ยอดได้-เสีย <font size="+2"><span class="badge badge-danger badge-pill" id="navtotalbalanc">-0.00</span></font>
+                    <li class="justify-content-between list-group-item"> ส่วนลด <font size="+2"><span class="badge badge-secondary badge-pill" id="navtotcom">0.00</span></font>
                     </li>
+                    <li class="justify-content-between list-group-item"> ยอดเคลีย <font size="+2"><span class="badge badge-secondary badge-pill" id="navtoclear">0.00</span></font>
+                    </li>
+                    <!-- <li class="justify-content-between list-group-item"> ยอดได้-เสีย <font size="+2"><span class="badge badge-danger badge-pill" id="navtotalbalanc">-0.00</span></font>
+                    </li> -->
                     <!-- <li class="justify-content-between list-group-item"> คงเหลือ <font size="+2"><span class="badge badge-success badge-pill">4,460.00</span></font></li> -->
                 </ul>
             </div>
