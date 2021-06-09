@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 03:42 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Jun 09, 2021 at 08:56 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,9 +94,22 @@ INSERT INTO `tb_cf_lotto` (`cf_id`, `user_id`, `type_lotto`, `minPerBet`, `maxPe
 CREATE TABLE `tb_close_number` (
   `close_number_id` int(11) NOT NULL,
   `number_lotto` int(11) NOT NULL,
-  `create_time` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `type_lotto` varchar(25) NOT NULL,
+  `status` int(11) NOT NULL,
+  `round` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_close_number`
+--
+
+INSERT INTO `tb_close_number` (`close_number_id`, `number_lotto`, `type_lotto`, `status`, `round`) VALUES
+(1, 123, '3upper', 1, '2021-06-16'),
+(2, 12, '2under', 1, '2021-06-16'),
+(3, 321, '3upper', 1, '2021-06-16'),
+(4, 123, '3upper', 1, '2021-06-16'),
+(5, 321, '3upper', 1, '2021-06-16'),
+(6, 111, '3upper', 1, '2021-06-16');
 
 -- --------------------------------------------------------
 
@@ -117,12 +130,7 @@ CREATE TABLE `tb_close_time_bet` (
 --
 
 INSERT INTO `tb_close_time_bet` (`close_time_id`, `close_time`, `open_time`, `round`, `status`) VALUES
-(1, '12:45', '11:49', '2021-06-01', 0),
-(2, '16:18', '13:19', '2021-05-16', 0),
-(3, '12:45', '11:49', '2021-06-01', 0),
-(4, '11:57', '11:00', '2021-06-30', 0),
-(5, '12:04', '16:07', '2021-06-04', 0),
-(6, '15:00', '21:00', '2021-06-16', 1);
+(1, '15:30', '23:00', '2021-06-16', 1);
 
 -- --------------------------------------------------------
 
@@ -138,17 +146,6 @@ CREATE TABLE `tb_cutoff` (
   `type_lotto` varchar(25) NOT NULL,
   `amount_cutoff` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_cutoff`
---
-
-INSERT INTO `tb_cutoff` (`cutoff_id`, `user_id`, `round`, `number_lotto`, `type_lotto`, `amount_cutoff`) VALUES
-(1, 1, '2021-06-16', 544, '3upper', 200),
-(2, 1, '2021-06-16', 445, '3upper', 55),
-(3, 1, '2021-06-16', 445, '3under', 50),
-(7, 1, '2021-06-16', 123, '3upper', 12),
-(8, 1, '2021-06-16', 733, '3toad', 10);
 
 -- --------------------------------------------------------
 
@@ -175,13 +172,6 @@ CREATE TABLE `tb_raward` (
   `reward_5toad` longtext NOT NULL COMMENT '5โต๊ด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tb_raward`
---
-
-INSERT INTO `tb_raward` (`reward_id`, `reward_date`, `reward_1st`, `reward_3upper`, `reward_3under_1st`, `reward_3under_2nd`, `reward_3under_3th`, `reward_3under_4th`, `reward_3toad`, `reward_2under`, `reward_2upper`, `reward_2toad`, `reward_float_under`, `reward_float_upper`, `reward_4toad`, `reward_5toad`) VALUES
-(1, '2021-06-16', '152353', '353', '125', '324', '', '', '0', '12', '53', '', '5', '3', '2353', '52353');
-
 -- --------------------------------------------------------
 
 --
@@ -198,49 +188,9 @@ CREATE TABLE `tb_ticket` (
   `amount_bet` int(11) NOT NULL COMMENT 'จำนวนเงินแทง',
   `if_win` int(11) NOT NULL COMMENT 'ถ้าชนะจะได้เท่าไร',
   `win_lose` int(1) NOT NULL,
-  `status` int(1) NOT NULL COMMENT '0/รอ  \r\n1/ได้\r\n2/เสีย',
+  `status` int(1) NOT NULL COMMENT '0/รอ  \r\n1/ได้\r\n2/เสีย\r\n3/ยกเลิก',
   `commission` decimal(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_ticket`
---
-
-INSERT INTO `tb_ticket` (`ticket_id`, `user_id`, `round`, `create_time`, `number_lotto`, `type_lotto`, `amount_bet`, `if_win`, `win_lose`, `status`, `commission`) VALUES
-(1, 1, '2021-06-16', 1622615249, 123, '3upper', 50, 3000, 0, 0, '5.00'),
-(2, 1, '2021-06-16', 1622615249, 33, '2upper', 20, 1200, 0, 0, '2.00'),
-(3, 1, '2021-06-16', 1622615249, 567, '3upper', 500, 1200, 0, 0, '2.00'),
-(4, 2, '2021-06-16', 1622615249, 250, '3upper', 100, 3000, 0, 0, '5.00'),
-(5, 2, '2021-06-16', 1622615249, 114, '3under', 250, 3000, 0, 0, '5.00'),
-(10, 2, '2021-06-16', 1622615249, 72, '2under', 500, 3000, 0, 0, '5.00'),
-(13, 2, '2021-06-16', 1622615249, 54, '2under', 300, 3000, 0, 0, '5.00'),
-(14, 2, '2021-06-16', 1622615249, 777, '3under', 100, 3000, 0, 0, '5.00'),
-(15, 2, '2021-06-16', 1622615249, 777, '3upper', 100, 3000, 0, 0, '5.00'),
-(16, 1, '2021-06-16', 1622865308, 12345, '5toad', 5, 1250, 0, 0, '0.50'),
-(17, 1, '2021-06-16', 1622865308, 1234, '4toad', 5, 1000, 0, 0, '0.50'),
-(18, 1, '2021-06-16', 1622865308, 123, '3upper', 100, 10000, 0, 0, '33.00'),
-(19, 1, '2021-06-16', 1622865308, 123, '3toad', 100, 10000, 0, 0, '25.00'),
-(20, 1, '2021-06-16', 1622865308, 123, '3under', 100, 10000, 0, 0, '30.00'),
-(21, 1, '2021-06-16', 1622865308, 12, '2upper', 5, 250, 0, 0, '1.25'),
-(22, 1, '2021-06-16', 1622865308, 12, '2toad', 5, 250, 0, 0, '1.00'),
-(23, 1, '2021-06-16', 1622865308, 12, '2under', 5, 250, 0, 0, '1.25'),
-(24, 1, '2021-06-16', 1622865308, 1, 'floatUpper', 5, 150, 0, 0, '0.50'),
-(25, 1, '2021-06-16', 1622865308, 1, 'floatUnder', 5, 150, 0, 0, '0.50'),
-(26, 1, '2021-06-16', 1622865308, 12345, '5toad', 5, 1250, 0, 0, '0.50'),
-(27, 1, '2021-06-16', 1622865308, 45565, '5toad', 5, 1250, 0, 0, '0.50'),
-(28, 1, '2021-06-16', 1622885181, 733, '3upper', 100, 10000, 0, 0, '33.00'),
-(29, 1, '2021-06-16', 1622885181, 733, '3toad', 100, 10000, 0, 0, '25.00'),
-(30, 1, '2021-06-16', 1622885181, 733, '3under', 100, 10000, 0, 0, '30.00'),
-(31, 1, '2021-06-16', 1622885181, 544, '3upper', 100, 10000, 0, 0, '33.00'),
-(32, 1, '2021-06-16', 1622885181, 544, '3toad', 100, 10000, 0, 0, '25.00'),
-(33, 1, '2021-06-16', 1622885181, 544, '3under', 100, 10000, 0, 0, '30.00'),
-(34, 1, '2021-06-16', 1622885181, 88, '2upper', 5, 250, 0, 0, '1.25'),
-(35, 1, '2021-06-16', 1622885181, 88, '2toad', 5, 250, 0, 0, '1.00'),
-(36, 1, '2021-06-16', 1622885181, 88, '2under', 5, 250, 0, 0, '1.25'),
-(37, 1, '2021-06-16', 1622885181, 445, '3upper', 100, 10000, 0, 0, '33.00'),
-(38, 1, '2021-06-16', 1622885181, 445, '3toad', 100, 10000, 0, 0, '25.00'),
-(39, 1, '2021-06-16', 1622885181, 445, '3under', 100, 10000, 0, 0, '30.00'),
-(40, 1, '2021-06-16', 1622885181, 544, '3upper', 50, 10000, 0, 0, '33.00');
 
 -- --------------------------------------------------------
 
@@ -280,6 +230,12 @@ INSERT INTO `tb_user` (`user_id`, `username`, `firstname`, `phone`, `password`, 
 ALTER TABLE `tb_cf_lotto`
   ADD PRIMARY KEY (`cf_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `tb_close_number`
+--
+ALTER TABLE `tb_close_number`
+  ADD PRIMARY KEY (`close_number_id`);
 
 --
 -- Indexes for table `tb_close_time_bet`
@@ -323,28 +279,34 @@ ALTER TABLE `tb_cf_lotto`
   MODIFY `cf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
+-- AUTO_INCREMENT for table `tb_close_number`
+--
+ALTER TABLE `tb_close_number`
+  MODIFY `close_number_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `tb_close_time_bet`
 --
 ALTER TABLE `tb_close_time_bet`
-  MODIFY `close_time_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `close_time_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_cutoff`
 --
 ALTER TABLE `tb_cutoff`
-  MODIFY `cutoff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cutoff_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_raward`
 --
 ALTER TABLE `tb_raward`
-  MODIFY `reward_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `reward_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_ticket`
 --
 ALTER TABLE `tb_ticket`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
