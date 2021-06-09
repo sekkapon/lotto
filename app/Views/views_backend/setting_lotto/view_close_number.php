@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row match-height" id="settingNumberClose">
-            <div class="col-md-6 col-10">
+            <div class="col-md-8 col-10">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">

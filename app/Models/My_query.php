@@ -134,17 +134,17 @@ class My_query extends Model
         //     'tableDB' => 'log_login_admin',
         //     'data' => []
         // );
-        return ($this->DB->table($dataQuery['tableDB'])->insert($dataQuery['data'])) ? $this->DB->insertID() : false;
+        return ($this->DB->table($dataQuery['tableDB'])->insert($dataQuery['data'])) ? $this->DB->insertID() : FALSE;
     }
     public function insertBatchData($dataQuery)
     {
         // $dataQuery = array(
         //     'tableDB' => 'log_login_admin',
         //     'data' => [
-                // [1,2]
+        // [1,2]
         // ]
         // );
-        return ($this->DB->table($dataQuery['tableDB'])->insertBatch($dataQuery['data'])) ? $this->DB->insertID() : false;
+        return ($this->DB->table($dataQuery['tableDB'])->insertBatch($dataQuery['data'])) ? $this->DB->insertID() : FALSE;
     }
     public function deleteData($dataQuery)
     {
@@ -154,7 +154,7 @@ class My_query extends Model
         //         'id' => 3
         //     ],
         // );
-        return ($this->DB->table($dataQuery['tableDB'])->delete($dataQuery['data'])) ? true : false;
+        return ($this->DB->table($dataQuery['tableDB'])->delete($dataQuery['data'])) ? TRUE : FALSE;
     }
     public function updateData($dataQuery)
     {
@@ -167,7 +167,7 @@ class My_query extends Model
         //         'name' => 'ddd'
         //     ]
         // );
-        return ($this->DB->table($dataQuery['tableDB'])->where($dataQuery['whereData'])->set($dataQuery['data'])->update()) ? true : false;
+        return ($this->DB->table($dataQuery['tableDB'])->where($dataQuery['whereData'])->set($dataQuery['data'])->update()) ? TRUE : FALSE;
     }
 
     public function joinAndWhereData($dataQuery)
@@ -210,13 +210,11 @@ class My_query extends Model
 
     public function checkHaveData($dataCheck)
     {
-        return ($this->DB->table($dataCheck['tableDB'])->where($dataCheck['whereData'])->get()->resultID->num_rows == 1) ? true : false;
+        return ($this->DB->table($dataCheck['tableDB'])->where($dataCheck['whereData'])->get()->resultID->num_rows == 1) ? TRUE : FALSE;
     }
 
     public function countData($dataCheck)
     {
         return $this->DB->table($dataCheck['tableDB'])->where($dataCheck['whereData'])->countAllResults();
     }
-
-
 }

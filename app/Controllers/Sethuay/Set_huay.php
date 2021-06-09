@@ -66,6 +66,12 @@ class Set_huay extends BaseController
         foreach ($arrData->data as $key => $value) {
             $dataQuery = array(
                 'tableDB' => 'tb_close_number',
+                'whereData' => [
+                    'round' => $round,
+                    'number_lotto' => $value->number_lotto,
+                    'type_lotto' => $arrData->type_lotto,
+                    'status' => 1
+                ],
                 'data' => [
                     'round' => $round,
                     'number_lotto' => $value->number_lotto,
@@ -73,9 +79,16 @@ class Set_huay extends BaseController
                     'status' => 1
                 ]
             );
-            if ($this->My_Query->insertData($dataQuery) === FALSE) {
-                echo json_encode(array('code' => 0, 'msg' => 'เพิ่มเลขปิดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์'));
-                die;
+            if ($this->My_Query->checkHaveData($dataQuery) === TRUE) {
+                if ($this->My_Query->updateData($dataQuery) === FALSE) {
+                    echo json_encode(array('code' => 0, 'msg' => 'อัพเดทเลขปิดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์'));
+                    die;
+                }
+            } else {
+                if ($this->My_Query->insertData($dataQuery) === FALSE) {
+                    echo json_encode(array('code' => 0, 'msg' => 'เพิ่มเลขปิดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์'));
+                    die;
+                }
             }
         }
         echo json_encode(array('code' => 1, 'msg' => 'เพิ่มเลขปิดสำเร็จ'));

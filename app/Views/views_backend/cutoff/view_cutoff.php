@@ -58,68 +58,76 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $i = 1;
-                                                foreach ($dataByUser as $key => $value) { ?>
+                                                <?php
+                                                if (sizeof($dataByUser) == 0) { ?>
                                                     <tr align="center">
-                                                        <td><?= $i; ?></td>
-                                                        <td>
-                                                            <span class="selectCutoff" data-user="<?= htmlspecialchars(json_encode($value, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="pageCutoff(this)"><?= $value['firstname']; ?></span>
-                                                        </td>
-                                                        <td class="selectCutoff">
-                                                            <span><?= $value['username']; ?></span>
-                                                        </td>
-                                                        <td>
-                                                            <span><?= date('d-m-Y', strtotime($value['round'])); ?></span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="row">
-                                                                <div class="d-flex justify-content-center">
-                                                                    <div class="col-md-4 col-2" style="border-right: 1px solid gray;">
-                                                                        <?php
-                                                                        foreach ($value['lotto'] as $key => $valueLotto) {
-                                                                        ?>
-                                                                            <p class="inTable">
-                                                                                <?php if ($valueLotto['typeBet'] == '3upper') { ?>
-                                                                                    <span> 3 ตัวบน</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == '3under') { ?>
-                                                                                    <span> 3 ตัวล่าง</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == '3toad') { ?>
-                                                                                    <span> 3 ตัวโต๊ด</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == '2upper') { ?>
-                                                                                    <span> 2 ตัวบน</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == '2under') { ?>
-                                                                                    <span> 2 ตัวล่าง</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == '2toad') { ?>
-                                                                                    <span> 2 ตัวโต๊ด</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == 'floatUnder') { ?>
-                                                                                    <span> ลอยล่าง</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
-                                                                                    <span> ลอยบน</span>
-                                                                                <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
-                                                                                    <span>4 ตัวโต๊ด</span>
-                                                                                <?php  } else { ?>
-                                                                                    <span> 5 ตัวโต๊ด</span>
-                                                                                <?php } ?>
-                                                                            </p>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                    <div class="col-md-4 col-4 ">
-                                                                        <?php $sum = 0;
-                                                                        foreach ($value['lotto'] as $key => $valueLotto) {
-                                                                            $sum += (int)$valueLotto['SumBetByType'];
-                                                                        ?>
-                                                                            <p class="inTable">
-                                                                                <span><?= number_format($valueLotto['SumBetByType']);  ?> บาท</span>
-                                                                            </p>
-                                                                        <?php } ?>
-                                                                        <p class="inTable sum"><?= number_format($sum); ?> บาท</p>
+                                                        <td colspan="5">ไม่มีข้อมูลการตัดยอด</td>
+                                                    </tr>
+                                                    <?php } else {
+                                                    $i = 1;
+                                                    foreach ($dataByUser as $key => $value) { ?>
+                                                        <tr align="center">
+                                                            <td><?= $i; ?></td>
+                                                            <td>
+                                                                <span class="selectCutoff" data-user="<?= htmlspecialchars(json_encode($value, JSON_UNESCAPED_UNICODE), ENT_COMPAT); ?>" onclick="pageCutoff(this)"><?= $value['firstname']; ?></span>
+                                                            </td>
+                                                            <td class="selectCutoff">
+                                                                <span><?= $value['username']; ?></span>
+                                                            </td>
+                                                            <td>
+                                                                <span><?= date('d-m-Y', strtotime($value['round'])); ?></span>
+                                                            </td>
+                                                            <td>
+                                                                <div class="row">
+                                                                    <div class="d-flex justify-content-center">
+                                                                        <div class="col-md-4 col-2" style="border-right: 1px solid gray;">
+                                                                            <?php
+                                                                            foreach ($value['lotto'] as $key => $valueLotto) {
+                                                                            ?>
+                                                                                <p class="inTable">
+                                                                                    <?php if ($valueLotto['typeBet'] == '3upper') { ?>
+                                                                                        <span> 3 ตัวบน</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == '3under') { ?>
+                                                                                        <span> 3 ตัวล่าง</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == '3toad') { ?>
+                                                                                        <span> 3 ตัวโต๊ด</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == '2upper') { ?>
+                                                                                        <span> 2 ตัวบน</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == '2under') { ?>
+                                                                                        <span> 2 ตัวล่าง</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == '2toad') { ?>
+                                                                                        <span> 2 ตัวโต๊ด</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == 'floatUnder') { ?>
+                                                                                        <span> ลอยล่าง</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
+                                                                                        <span> ลอยบน</span>
+                                                                                    <?php } else if ($valueLotto['typeBet'] == 'floatUpper') { ?>
+                                                                                        <span>4 ตัวโต๊ด</span>
+                                                                                    <?php  } else { ?>
+                                                                                        <span> 5 ตัวโต๊ด</span>
+                                                                                    <?php } ?>
+                                                                                </p>
+                                                                            <?php } ?>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-4 ">
+                                                                            <?php $sum = 0;
+                                                                            foreach ($value['lotto'] as $key => $valueLotto) {
+                                                                                $sum += (int)$valueLotto['SumBetByType'];
+                                                                            ?>
+                                                                                <p class="inTable">
+                                                                                    <span><?= number_format($valueLotto['SumBetByType']);  ?> บาท</span>
+                                                                                </p>
+                                                                            <?php } ?>
+                                                                            <p class="inTable sum"><?= number_format($sum); ?> บาท</p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
                                                 <?php $i++;
+                                                    }
                                                 } ?>
+
                                             </tbody>
                                         </table>
                                     </div>

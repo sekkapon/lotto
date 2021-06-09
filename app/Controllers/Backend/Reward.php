@@ -21,6 +21,25 @@ class Reward extends BaseController
             die;
         }
 
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+        if (date('d', time()) != substr($round, 8)) {
+            echo json_encode(array('code' => 3, 'msg' => 'ไม่สามารถเพิ่มผลรางวัลได้'));
+            die;
+        }
+
 
         $dataQuery = array(
             'tableDB' => 'tb_raward',

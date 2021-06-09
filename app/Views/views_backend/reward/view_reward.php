@@ -45,32 +45,33 @@
         }
     }
 </style>
-<div>
-    <button class="btn btn-danger" id="callotto">คำนวณผล</button>
-    <div class="container">
-        <div class="row">
-            <div class="loader" id="loader" hidden></div>
-            <div id="msgsuccess" class="card col-4 bg-light text-danger" hidden>
-                
-            </div>
-        </div>
 
-    </div>
-
-</div>
 
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Reward</h3>
-                <p class="text-subtitle text-muted">ผลรางวัล</p>
+            <div class="d-flex justify-content-between">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Reward</h3>
+                    <p class="text-subtitle text-muted">ผลรางวัล</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <div style="padding-left:17rem; padding-top: 1.3rem;">
+                        <button class="btn btn-outline-secondary" id="callotto">คำนวณผล</button>
+                        <div class="container">
+                            <div class="row">
+                                <div class="loader" id="loader" hidden></div>
+                                <div id="msgsuccess" class="card col-4 bg-light text-danger" hidden>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="row match-height">
-        <div class="col-lg-10 col-12">
+        <div class="col-lg-10 col-md-6">
             <div class="card">
                 <form id="formReward">
                     <div class="card-content">
@@ -179,7 +180,6 @@
                                 </tr>
                             </thead>
                             <tbody align="center" id="bodyTable">
-
                             </tbody>
                         </table>
                     </div>
@@ -261,10 +261,10 @@
                 dataType: 'json',
                 data: {},
             }).done(function(res) {
-                $('#loader').attr('hidden',true);
+                $('#loader').attr('hidden', true);
                 $('#msgsuccess').removeClass("bg-light");
                 $('#msgsuccess').addClass("bg-info");
-                $('#msgsuccess').html('<div class="card-body">'+res+'</div>');
+                $('#msgsuccess').html('<div class="card-body">' + res + '</div>');
             });
         }
     });
