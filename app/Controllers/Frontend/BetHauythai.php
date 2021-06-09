@@ -82,6 +82,7 @@ class BetHauythai extends BaseController
         return $this->My_Query->selectDataRow($dataQuerySum);
     }
 
+
     public function getsumbet(){
         $dataQuerySum = array(
             'tableDB' => 'tb_ticket',
@@ -113,7 +114,7 @@ class BetHauythai extends BaseController
         } 
         $sumclear = $sumbet - $sumcom;
        
-        return json_encode(['sumbet'=>$sumbet,'sumcom'=>$sumcom,'sumclear'=>$sumclear,'round'=>$this->getround()->round] );
+        return json_encode(['sumbet'=>$sumbet,'sumcom'=>$sumcom,'sumclear'=>$sumclear,'round'=>date('d-m-Y',strtotime($this->getround()->round))] );
     }
 
 

@@ -13,14 +13,14 @@ class Api extends BaseController
     }
     public function savemybet()
     {
-         
+
         $checkTimeoff =  $this->checkTimeoff();
         if ($checkTimeoff) {
             $percent = json_decode($this->getmaxminbet())[0]->detail;
             $datbet = $this->request->getPost('data');
             $tosave = [];
             foreach ($datbet as $key => $value) {
-                $type =  strval ($value['type']);
+                $type =  strval($value['type']);
                 array_push(
                     $tosave,
                     [
@@ -28,12 +28,12 @@ class Api extends BaseController
                         "round" => $checkTimeoff->round,
                         "create_time" => time(),
                         "number_lotto" => $value['num'],
-                        "type_lotto" => substr($type,2),
+                        "type_lotto" => substr($type, 2),
                         "amount_bet" => $value['bet'],
-                        "if_win" => ($percent->$type->payRate*$value['bet']),
+                        "if_win" => ($percent->$type->payRate * $value['bet']),
                         "win_lose" => "",
                         "status" => 0,
-                        "commission" => ((($percent->$type->percent)/100) * $value['bet']),
+                        "commission" => ((($percent->$type->percent) / 100) * $value['bet']),
                     ]
                 );
             }
@@ -43,29 +43,29 @@ class Api extends BaseController
                 'data' =>  $tosave
             );
             $this->My_Query->insertBatchData($dataQuery);
-            return json_encode(['status'=>'บันทึกสำเร็จ','data'=>$tosave]);
-        }else{
-            return json_encode(['status'=>'หมดเวลาแทง','data'=>'']);
+            return json_encode(['status' => 'บันทึกสำเร็จ', 'data' => $tosave]);
+        } else {
+            return json_encode(['status' => 'หมดเวลาแทง', 'data' => '']);
         }
-
     }
-    public function checkTimeoff(){
+    public function checkTimeoff()
+    {
         $dataround = json_decode($this->getround(1))[0];
         $round = $dataround->round;
         $close_time = $dataround->close_time;
 
-        $timedbOff = strtotime(date($round.' '.$close_time));
+        $timedbOff = strtotime(date($round . ' ' . $close_time));
         $timesevr = time();
 
-        if(($timesevr - $timedbOff )> 0 ){
+        if (($timesevr - $timedbOff) > 0) {
             // หมดเวลาแทง
             return  false;
-        }else{
+        } else {
             return  $dataround;
         }
-
     }
-    public function getmaxminbet(){
+    public function getmaxminbet()
+    {
 
         $dataQuery = array(
             'tableDB' => 'tb_user',
@@ -90,28 +90,28 @@ class Api extends BaseController
             ]
         );
         $data = $this->My_Query->joinAndWhereData($dataQuery);
-        return json_encode($this->loopnewdata($data)) ;
+        return json_encode($this->loopnewdata($data));
     }
     public function loopnewdata($data)
     {
         $checkData = [];
-        $sortData =[];
+        $sortData = [];
         foreach ($data as $key => $valueData) {
             if (!in_array($valueData['user_id'], $checkData)) {
                 array_push($checkData, $valueData['user_id']);
             }
         }
-       
-        foreach ($checkData as $keyCheckData => $valueCheckData) {    
+
+        foreach ($checkData as $keyCheckData => $valueCheckData) {
             foreach ($data as $key => $valueData) {
                 if ($valueCheckData == $valueData['user_id']) {
-                    $sortData[$keyCheckData]['localTime']=time();
+                    $sortData[$keyCheckData]['localTime'] = time();
                     $sortData[$keyCheckData]['user_id'] = $valueData['user_id'];
                     $sortData[$keyCheckData]['username'] = $valueData['username'];
                     $sortData[$keyCheckData]['firstname'] = $valueData['firstname'];
                     $sortData[$keyCheckData]['phone'] = $valueData['phone'];
                     $sortData[$keyCheckData]['status'] = $valueData['status'];
-                    $sortData[$keyCheckData]['detail']['t_'.$valueData['type_lotto']] = [
+                    $sortData[$keyCheckData]['detail']['t_' . $valueData['type_lotto']] = [
                         'cf_id' => $valueData['cf_id'],
                         'type_lotto' => $valueData['type_lotto'],
                         'minPerBet' => $valueData['minPerBet'],
@@ -123,7 +123,7 @@ class Api extends BaseController
                 }
             }
         }
-        
+
         return $sortData;
     }
 
@@ -131,19 +131,19 @@ class Api extends BaseController
     {
         $type = $this->request->getPost('slLottoType');
         $round = $this->request->getPost('roundlotto');
-        if($type != ""){
+        if ($type != "") {
             $where = [
-                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
-                'tb_ticket.type_lotto'=> $type,
-                'tb_ticket.round'=>$round
+                'tb_ticket.user_id' => $this->session->session_member['user_id'],
+                'tb_ticket.type_lotto' => $type,
+                'tb_ticket.round' => $round
             ];
-        }else{
+        } else {
             $where = [
-                'tb_ticket.user_id'=>$this->session->session_member['user_id'],
-                'tb_ticket.round'=>$round
+                'tb_ticket.user_id' => $this->session->session_member['user_id'],
+                'tb_ticket.round' => $round
             ];
         }
-        
+
         $dataQuery = array(
             'tableDB' => 'tb_ticket',
             'selectData' => [
@@ -158,15 +158,16 @@ class Api extends BaseController
                 'limitCount' => 999,
                 'startAt' => 0
             ]
-        ); 
+        );
         return  json_encode($this->My_Query->selectData($dataQuery));
     }
 
-    public function getround($status){
+    public function getround($status)
+    {
         //  = $this->request->getPost('status');
-        if($status != 0){
-            $where = ['status'=>$status];
-        }else{
+        if ($status != 0) {
+            $where = ['status' => $status];
+        } else {
             $where = [];
         }
         $dataQuerySum = array(
@@ -176,7 +177,7 @@ class Api extends BaseController
             'orderBy' => [
                 'keyOrderBy' => 'close_time_id',
                 'sortBy' => 'DESC',
-            ],     
+            ],
             'limit' => [
                 'limitCount' => 6,
                 'startAt' => 0
@@ -185,15 +186,84 @@ class Api extends BaseController
 
         return json_encode($this->My_Query->selectData($dataQuerySum));
     }
+    public function checkoffnum()
+    {
+        $num = $this->request->getPost('num');
+        $type = $this->request->getPost('type');
+        $round = json_decode($this->getround(1))[0]->round;
+        $dataQuery = array(
+            'tableDB' => 'tb_close_number',
+            'selectData' => [
+                '*'
+            ],
+            'whereData' => [
+                'round' => $round
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_number_id',
+                'sortBy' => 'ASC',
+            ],
+            'limit' => [
+                'limitCount' => 999,
+                'startAt' => 0
+            ]
+        );
 
+        $numOff = $this->My_Query->selectData($dataQuery);
+
+        foreach ($numOff as $key => $value) {
+            if ($value['type_lotto'] == $type) {
+                $name = '';
+                switch ($type) {
+                    case 'floatUpper':
+                        $name = '1 ตัวบน';
+                        break;
+                    case 'floatUnder':
+                        $name = '1 ตัวล่าง';
+                        break;
+                    case '2upper':
+                        $name = '2 ตัวบน';
+                        break;
+                    case '2toad':
+                        $name = '2 ตัวโต๊ด';
+                        break;
+                    case '2under':
+                        $name = '2 ตัวล่าง';
+                        break;
+                    case '3upper':
+                        $name = '3 ตัวบน';
+                        break;
+                    case '3toad':
+                        $name = '3 ตัวโต๊ด';
+                        break;
+                    case '3under':
+                        $name = '3 ตัวล่าง';
+                        break;
+                    case '4toad':
+                        $name = '4 ตัวโต๊ด';
+                        break;
+                    case '5toad':
+                        $name = '5 ตัวโต๊ด';
+                        break;
+
+                    default:
+                        break;
+                }
+                if ($value['number_lotto'] == $num) {
+                    return json_encode(' >>> ' . $num . '  (' . $name . ')  ปิดรับ <<<');
+                }
+            }
+        }
+        return json_encode('pass');
+    }
     public function getRewradlist()
     {
 
         $round = $this->request->getPost('roundlotto');
-        
-            $where = [
-                'tb_raward.reward_date'=>$round
-            ];        
+
+        $where = [
+            'tb_raward.reward_date' => $round
+        ];
         $dataQuery = array(
             'tableDB' => 'tb_raward',
             'selectData' => [
@@ -204,29 +274,106 @@ class Api extends BaseController
                 'keyOrderBy' => 'reward_id',
                 'sortBy' => 'ASC',
             ]
-        ); 
+        );
         return  json_encode($this->My_Query->selectDataRow($dataQuery));
     }
-    public function canbet(){
-        if(!$this->checkTimeoff()){
+    public function canbet()
+    {
+        if (!$this->checkTimeoff()) {
             return json_encode('หมดเวลาทำรายการ');
-        }else{
-            
+        } else {
+
+            $dataQuery = array(
+                'tableDB' => 'tb_ticket',
+                'whereData' => [
+                    'ticket_id' => $this->request->getPost('id_tic')
+                ],
+                'data' => [
+                    'status' => '3'
+                ]
+            );
+            if ($this->My_Query->updateData($dataQuery)) {
+                return json_encode('สำเร็จ');
+            }
+            return json_encode('ไม่สามารถทำรายการได้');
+        }
+    }
+    public function loadnumoff()
+    {
+        $round = json_decode($this->getround(1))[0]->round;
         $dataQuery = array(
-            'tableDB' => 'tb_ticket',
-            'whereData' => [
-                'ticket_id' => $this->request->getPost('id_tic')
+            'tableDB' => 'tb_close_number',
+            'selectData' => [
+                '*'
             ],
-            'data' => [
-                'status' => '3'
+            'whereData' => [
+                'round' => $round
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_number_id',
+                'sortBy' => 'ASC',
+            ],
+            'limit' => [
+                'limitCount' => 999,
+                'startAt' => 0
             ]
         );
-        if($this->My_Query->updateData($dataQuery)){
-            return json_encode('สำเร็จ');
-        }
-        return json_encode('ไม่สามารถทำรายการได้');
+
+        $numOff = $this->My_Query->selectData($dataQuery);
+        $i=0;
+        $newNumoff=[];
+        foreach ($numOff as $key => $value) {        
+            if (!in_array($value['type_lotto'],$newNumoff)){
+                $name = '';
+                switch ($value['type_lotto']) {
+                    case 'floatUpper':
+                        $name = '1 ตัวบน';
+                        break;
+                    case 'floatUnder':
+                        $name = '1 ตัวล่าง';
+                        break;
+                    case '2upper':
+                        $name = '2 ตัวบน';
+                        break;
+                    case '2toad':
+                        $name = '2 ตัวโต๊ด';
+                        break;
+                    case '2under':
+                        $name = '2 ตัวล่าง';
+                        break;
+                    case '3upper':
+                        $name = '3 ตัวบน';
+                        break;
+                    case '3toad':
+                        $name = '3 ตัวโต๊ด';
+                        break;
+                    case '3under':
+                        $name = '3 ตัวล่าง';
+                        break;
+                    case '4toad':
+                        $name = '4 ตัวโต๊ด';
+                        break;
+                    case '5toad':
+                        $name = '5 ตัวโต๊ด';
+                        break;
+        
+                    default:
+                        break;
+                } 
+                $newNumoff[$value['type_lotto']]['name']=$name;
+            }
         }
 
-        
+        foreach ($newNumoff as $k => $v) {
+            $d=[]; 
+            foreach ($numOff as $key => $value) {   
+                if ($k == $value['type_lotto']){ 
+                    array_push($d,$value['number_lotto']);
+                }
+            }
+            $newNumoff[$k]['num'] = $d;
+        }
+
+            return json_encode($newNumoff);
     }
 }

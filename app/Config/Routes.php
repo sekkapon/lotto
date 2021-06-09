@@ -77,6 +77,7 @@ $routes->group('backend', ['filter' => 'auth'], function ($routes) {
 		$routes->get('max-min-bet', 'Sethuay\Set_huay::Maxminbet');
 		$routes->get('commission', 'Sethuay\Set_huay::Commission');
 		$routes->get('close-time', 'Sethuay\Set_huay::Closetime');
+		$routes->get('close-number', 'Sethuay\Set_huay::CloseNumber');
 		$routes->add('api/(:any)', 'Sethuay\Set_huay::$1');
 	});
 });

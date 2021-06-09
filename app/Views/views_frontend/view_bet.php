@@ -17,6 +17,15 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-12 col-xl-12">
+        <label>หมายเลขปิดรับ</label>
+        <div class="row" id="rowNumoff">
+
+
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-6 col-xl-5">
         <div class="card mb-3 card ">
             <div class="card-header">
@@ -39,32 +48,32 @@
                             <table class="mb-0 table table-striped">
                                 <tbody>
 
-                                    <tr id="row_show_reward" style="">
+                                    <!-- <tr id="row_show_reward" style="">
                                         <td align="center" class="text-10"><b><label id="caption_reward">อัตราจ่าย</label></b></td>
                                         <td class="text-10" align="center"><span id="reward_show1" class="reward-white"></span></td>
                                         <td class="text-10" align="center"><span id="reward_show2" class="reward-white"></span></td>
                                         <td class="text-10" align="center"><span id="reward_show3" class="reward-white"></span></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td align="center" class="bg-gradient-gray LR10 text-8"><strong>หมายเลข</strong> </td>
-                                        <td class="bg-gradient-gray LR10 text-9" align="center"><input class="form-control" type="button" name="btnCopy1" value="คัดลอก" onclick="copyBetAmount(1);" title="กด Click เพื่อ copy จำนวนเงิน จากแถวแรก"><label id="lb_1"></label></td>
-                                        <td class="bg-gradient-gray LR10 text-9" align="center"><input class="form-control" type="button" name="btnCopy1" value="คัดลอก" onclick="copyBetAmount(1);" title="กด Click เพื่อ copy จำนวนเงิน จากแถวแรก"><label id="lb_2"></label></td>
-                                        <td class="bg-gradient-gray LR10 text-9" align="center"><input class="form-control" type="button" name="btnCopy1" value="คัดลอก" onclick="copyBetAmount(1);" title="กด Click เพื่อ copy จำนวนเงิน จากแถวแรก"><label id="lb_3"></label></td>
+                                        <td class="bg-gradient-gray LR10 text-9" align="center"><label id="lb_1"></label></td>
+                                        <td class="bg-gradient-gray LR10 text-9" align="center"><label id="lb_2"></label></td>
+                                        <td class="bg-gradient-gray LR10 text-9" align="center"><label id="lb_3"></label></td>
                                     </tr>
 
                                     <?php for ($i = 0; $i < 10; $i++) { ?>
                                         <tr>
                                             <td class="border-white bg-info " align="center">
-                                                <input class="form-control betnum" type="text" name="bet_number[<?= $i; ?>]" id="bet_number_<?= $i; ?>" onkeyup="checkdis($(this).val(),this);" onblur="checkdis(this,$(this).val(),this);" maxlength="5" autocomplete="off">
+                                                <input class="form-control betnum" type="text" name="bet_number[<?= $i; ?>]" id="bet_number_<?= $i; ?>" onkeyup="checkdis($(this).val(),this);" onblur="checkdis($(this).val(),this);" maxlength="5" autocomplete="off">
                                             </td>
                                             <td class="border-white td1" align="center">
-                                                <input class="form-control" name="bet_amt[1][<?= $i; ?>]" id="bet_amt1_<?= $i; ?>" onblur="checkmaxmin(this,1)" onfocus="checknum(this,1)" onclick="checknum(this,1)" type="text" autocomplete="off">
+                                                <input class="form-control" name="bet_amt[1][<?= $i; ?>]" id="bet_amt1_<?= $i; ?>" onblur="checkmaxmin(this,1);" onfocus="checknum(this,1)" onclick="checknum(this,1)" type="text" autocomplete="off">
                                             </td>
                                             <td class="border-white td2" align="center">
-                                                <input class="form-control" name="bet_amt[2][<?= $i; ?>]" id="bet_amt2_<?= $i; ?>" onblur="checkmaxmin(this,2)" onfocus="checknum(this,1)" onclick="checknum(this,2)" type="text" autocomplete="off">
+                                                <input class="form-control" name="bet_amt[2][<?= $i; ?>]" id="bet_amt2_<?= $i; ?>" onblur="checkmaxmin(this,2);" onfocus="checknum(this,1)" onclick="checknum(this,2)" type="text" autocomplete="off">
                                             </td>
                                             <td class="border-white td3" align="center">
-                                                <input class="form-control" name="bet_amt[3][<?= $i; ?>]" id="bet_amt3_<?= $i; ?>" onblur="checkmaxmin(this,3)" onfocus="checknum(this,1)" onclick="checknum(this,3)" type="text" autocomplete="off">
+                                                <input class="form-control" name="bet_amt[3][<?= $i; ?>]" id="bet_amt3_<?= $i; ?>" onblur="checkmaxmin(this,3);" onfocus="checknum(this,1)" onclick="checknum(this,3)" type="text" autocomplete="off">
                                             </td>
                                         </tr>
                                     <?php  } ?>
@@ -207,28 +216,6 @@
 
 
     </div>
-    <!-- <div class="col-md-6 col-xl-2">
-    <label>หมายเลขปิดรับ</label>
-    <div class="card mb-3 widget-content ">
-        <div class="widget-content-wrapper ">
-            <div class="widget-content-left">
-                <div class="widget-heading">3 ตัวบน</div>
-                <div class="widget-subheading">123 - 456 - 789 - 321 - 654 - 987 </div>
-
-            </div>
-
-        </div>
-    </div>
-    <div class="card mb-3 widget-content ">
-        <div class="widget-content-wrapper ">
-            <div class="widget-content-left">
-                <div class="widget-heading">2 ตัวบน</div>
-                <div class="widget-subheading">12 - 34 - 56 - 78 - 90</div>
-
-            </div>
-        </div>
-    </div>
-</div> -->
 
 </div>
 
@@ -248,8 +235,42 @@
                 text: '<i class="fas fa-print"> Print</i>'
             }]
         });
+        setTimeout(() => {
+            loadnumoff();
+        }, 200);
+        
     });
-
+    function loadnumoff(){
+        $.ajax({
+                method: "POST",
+                url: "bet-huay-thai/api/loadnumoff",
+                dataType: "json",
+                data: {  }
+            })
+            .done(function(msg) {
+                console.log(msg);
+                var txt= ``;
+                $.each(msg, function(key, value) {
+                    txt+=`
+                    <div class="col">
+                        <div class="card mb-2 widget-content ">
+                            <div class="widget-content-wrapper ">
+                                <div class="widget-content-left">
+                                    <div class="widget-heading">`+value.name+`</div>
+                                    <div class="widget-subheading">`;
+                                    $.each(value.num, function(k, num) {
+                                        txt+= num+`&nbsp;&nbsp;`; 
+                                    });
+                    txt+=`          </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+                    $('#rowNumoff').html(txt);
+            });
+    }
     function checknum(row, colum) {
         var tr = $(row).parents('tr').children().children('.betnum');
         var num = tr.val();
@@ -327,11 +348,32 @@
         }
     }
 
+    function checkNumoff(num, tr, type) {
+        $.ajax({
+                method: "POST",
+                url: "bet-huay-thai/api/checkoffnum",
+                dataType: "json",
+                data: {
+                    num: num,
+                    type: type
+                }
+            })
+            .done(function(msg) {
+                if (msg != 'pass') {
+                    alert(msg);
+                    $(tr).val('');
+                }
+                return msg;
+            });
+    }
+
     function checkmaxmin(row, type) {
         var detail = JSON.parse((localStorage.getItem("maxmin"))).detail;
         var num = $(row).parents('tr').children().children('.betnum').val();
-        var bet = parseInt($(row).val());
-        if (bet != "") {
+        var bet = $(row).val();
+
+        if (bet != "" || bet != 0 ) {
+            bet = parseInt(bet)
             var len = num.length;
             switch (len) {
                 case 1:
@@ -339,20 +381,25 @@
                         // t_floatUpper
                         let min = detail.t_floatUpper.minPerBet;
                         let max = detail.t_floatUpper.maxPerBet;
-                        if (bet < min || bet > max) {
-                            alert('ประเภท 1 ตัวบน \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
-                            $(row).val("");
-                            $(row).focus();
+                        if (checkNumoff(num, row, 'floatUpper') == 'pass') {
+                            if (bet < min || bet > max) {
+                                alert('ประเภท 1 ตัวบน \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
+                                $(row).val("");
+                                $(row).focus();
+                            }
                         }
+
                     }
                     if (type == 3) {
                         // t_floatUnder
                         let min = detail.t_floatUnder.minPerBet;
                         let max = detail.t_floatUnder.maxPerBet;
-                        if (bet < min || bet > max) {
-                            alert('ประเภท 1 ตัวล่าง \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
-                            $(row).val("");
-                            $(row).focus();
+                        if (checkNumoff(num, row, 'floatUnder') == 'pass') {
+                            if (bet < min || bet > max) {
+                                alert('ประเภท 1 ตัวล่าง \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
+                                $(row).val("");
+                                $(row).focus();
+                            }
                         }
                     }
                     break;
@@ -361,31 +408,37 @@
                         // t_2upper
                         let min = detail.t_2upper.minPerBet;
                         let max = detail.t_2upper.maxPerBet;
-                        if (bet < min || bet > max) {
-                            alert('ประเภท 2 ตัวบน \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
-                            $(row).val("");
-                            $(row).focus();
+                        if (checkNumoff(num, row, '2upper') == 'pass') {
+                            if (bet < min || bet > max) {
+                                alert('ประเภท 2 ตัวบน \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
+                                $(row).val("");
+                                $(row).focus();
+                            }
                         }
                     }
                     if (type == 2) {
                         // t_2toad
                         let min = detail.t_2toad.minPerBet;
                         let max = detail.t_2toad.maxPerBet;
-                        if (bet < min || bet > max) {
-                            alert('ประเภท 2 ตัวโต๊ด \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
-                            $(row).val("");
-                            $(row).focus();
+                        if (checkNumoff(num, row, '2toad') == 'pass') {
+                            if (bet < min || bet > max) {
+                                alert('ประเภท 2 ตัวโต๊ด \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
+                                $(row).val("");
+                                $(row).focus();
+                            }
                         }
                     }
                     if (type == 3) {
                         // t_2under
                         let min = detail.t_2under.minPerBet;
                         let max = detail.t_2under.maxPerBet;
+                        if (checkNumoff(num, row, '2under') == 'pass') {
                         if (bet < min || bet > max) {
                             alert('ประเภท 2 ตัวล่าง \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
                             $(row).val("");
                             $(row).focus();
                         }
+                    }
                     }
                     break;
                 case 3:
@@ -393,31 +446,37 @@
                         // t_3upper
                         let min = detail.t_3upper.minPerBet;
                         let max = detail.t_3upper.maxPerBet;
+                        if (checkNumoff(num, row, '3upper') == 'pass') {
                         if (bet < min || bet > max) {
                             alert('ประเภท 3 ตัวบน \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
                             $(row).val("");
                             $(row).focus();
                         }
                     }
+                    }
                     if (type == 2) {
                         // t_3toad
                         let min = detail.t_3toad.minPerBet;
                         let max = detail.t_3toad.maxPerBet;
+                        if (checkNumoff(num, row, '3toad') == 'pass') {
                         if (bet < min || bet > max) {
                             alert('ประเภท 3 ตัวโต๊ด \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
                             $(row).val("");
                             $(row).focus();
                         }
                     }
+                    }
                     if (type == 3) {
                         // t_3under
                         let min = detail.t_3under.minPerBet;
                         let max = detail.t_3under.maxPerBet;
+                        if (checkNumoff(num, row, '3under') == 'pass') {
                         if (bet < min || bet > max) {
                             alert('ประเภท 3 ตัวล่าง \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
                             $(row).val("");
                             $(row).focus();
                         }
+                    }
                     }
                     break;
                 case 4:
@@ -425,11 +484,13 @@
                         // t_4toad
                         let min = detail.t_4toad.minPerBet;
                         let max = detail.t_4toad.maxPerBet;
+                        if (checkNumoff(num, row, '4toad') == 'pass') {
                         if (bet < min || bet > max) {
                             alert('ประเภท 4 ตัวโต๊ด \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
                             $(row).val("");
                             $(row).focus();
                         }
+                    }
                     }
                     break;
                 case 5:
@@ -437,11 +498,13 @@
                         // t_5toad
                         let min = detail.t_5toad.minPerBet;
                         let max = detail.t_5toad.maxPerBet;
+                        if (checkNumoff(num, row, '5toad') == 'pass') {
                         if (bet < min || bet > max) {
                             alert('ประเภท 5 ตัวโต๊ด \nขั้นต่ำ : ' + min + ' \nสูงสุด : ' + max);
                             $(row).val("");
                             $(row).focus();
                         }
+                    }
                     }
                     break;
                 default:

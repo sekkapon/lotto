@@ -71,6 +71,11 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
+                            <a href="<?= base_url('backend/set-huay/close-number'); ?>">
+                                <span class="subMenu">เลขปิด</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
                             <a href="<?= base_url('backend/set-huay/close-time'); ?>">
                                 <span class="subMenu">เวลาปิดการแทง</span>
                             </a>
@@ -120,7 +125,6 @@
                         </li>
                     </ul>
                 </li>
-
 
 
                 <li class="sidebar-item">

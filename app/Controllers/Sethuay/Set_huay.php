@@ -39,6 +39,49 @@ class Set_huay extends BaseController
         $data['datacommision'] = $this->dataAll;
         return view('views_backend/setting_lotto/view_commission', $data);
     }
+
+    public function CloseNumber()
+    {
+        return view('views_backend/setting_lotto/view_close_number');
+    }
+
+    public function setCloseNumber()
+    {
+        $arrData = json_decode($this->request->getPost('arrData'));
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+
+        foreach ($arrData->data as $key => $value) {
+            $dataQuery = array(
+                'tableDB' => 'tb_close_number',
+                'data' => [
+                    'round' => $round,
+                    'number_lotto' => $value->number_lotto,
+                    'type_lotto' => $arrData->type_lotto,
+                    'status' => 1
+                ]
+            );
+            if ($this->My_Query->insertData($dataQuery) === FALSE) {
+                echo json_encode(array('code' => 0, 'msg' => 'เพิ่มเลขปิดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์'));
+                die;
+            }
+        }
+        echo json_encode(array('code' => 1, 'msg' => 'เพิ่มเลขปิดสำเร็จ'));
+        die;
+    }
+
     public function Closetime()
     {
         $dataQuery = array(
@@ -60,6 +103,7 @@ class Set_huay extends BaseController
         $dataCloseTime['dataUser'] =  $this->My_Query->selectData($dataQuery);
         return view('views_backend/setting_lotto/view_closetime', $dataCloseTime);
     }
+
     public function updateTime()
     {
         $arrData = $this->request->getPost('arrData');
