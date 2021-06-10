@@ -11,14 +11,16 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <div class="d-flex justify-content-end">
-                        <div class="form-group has-icon-left col-md-5 col-xl-5">
-                            <label>งวดวันที่</label>
-                            <div class="position-relative">
-                                <div class="form-control-icon">
-                                    <i class="bi bi-calendar"></i>
-                                </div>
-                                <input type="date" class="form-control" id="round" required>
-                            </div>
+                        <div class="col-md-3 mb-2">
+                            <p style="margin-bottom:0.5rem;">งวดวันที่</p>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="round">
+                                    <option value="0000-00-00">เลือก</option>
+                                    <?php foreach ($round as $key => $value) { ?>
+                                        <option value="<?= $value['round']; ?>"><?php echo date('d-m-Y', strtotime($value['round'])) ?></option>
+                                    <?php } ?>
+                                </select>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -36,9 +38,9 @@
                                 <tr align="center">
                                     <th>ลำดับ</th>
                                     <th>ชื่อสมาชิก</th>
-                                    <th>งวด</th>
-                                    <th>ยอดแทงรวม</th>
-                                    <th>ได้ / เสีย</th>
+                                    <th>งวดวันที่</th>
+                                    <th>ยอดแทงรวม (บาท)</th>
+                                    <th>ได้ / เสีย (บาท)</th>
                                 </tr>
                             </thead>
                             <tbody align="center" id="bodyTable">
@@ -56,6 +58,56 @@
 
 <script>
     $("#round").change(function() {
+        if (this.value == '0000-00-00') {
+            $('#bodyTable').html(`
+                                <tr align="center">
+                                     <td colspan="5">กรุณาเลือกงวด เพื่อนแสดงรายงาน</td>
+                                </tr>
+                                `);
+        } else {
+            $.ajax({
+                url: '<?= base_url('Backend/Report/reportByMemberByRound'); ?>',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    round: this.value
+                },
+            }).done(function(res) {
+                if (res.code == 1) {
+                    content = '';
+                    var i = 1;
+                    $.each(res.data, function(key, value) {
+                        content += '<tr align="center">';
+                        content += '<td>' + i + '</td>';
+                        content += '<td>' + value.firstname + '</td>';
+                        var redate = value.round.split('-');
+                        content += '<td>' + redate[2] + '-' + redate[1] + '-' + redate[0] + '</td>';
+                        content += '<td>' + thousands_separators(value.amount_bet) + '</td>';
+                        content += '<td>';
+                        if (value.amount_bet < value.win) {
+                            var result = parseInt(value.win) - parseInt(value.amount_bet);
+                            content += '<span style="color:#3ac47d">+' + thousands_separators(result) + '</span>';
+                        } else if (value.amount_bet == value.amount_bet.win) {
+                            content += '<span>0</span>';
+                        } else {
+                            var result = parseInt(value.amount_bet) - parseInt(value.win);
+                            content += '<span style="color:red">-' + thousands_separators(result) + '</span>';
+                        }
+                        content += '</td>';
+                        content += '</tr>';
+                        i++;
+                    });
+                    $('#bodyTable').html(content);
+                } else {
+                    swal({
+                        icon: 'error',
+                        text: res.msg,
+                        timer: 5000,
+                        buttons: false,
+                    });
+                }
+            });
+        }
 
     });
 </script>

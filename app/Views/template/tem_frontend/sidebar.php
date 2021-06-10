@@ -57,7 +57,8 @@
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
-                        <div class="widget-content p-0">
+                                    <a class="btn btn-danger" href="<?=base_url('/logout')?>"><i class="fa fa-power-off"> Logout</i></a>
+                        <!-- <div class="widget-content p-0">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="btn-group">
@@ -89,7 +90,8 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
                     </div>
                 </div>
             </div>

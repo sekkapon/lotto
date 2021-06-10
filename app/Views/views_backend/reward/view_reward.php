@@ -261,6 +261,7 @@
                 dataType: 'json',
                 data: {},
             }).done(function(res) {
+
                 $('#loader').attr('hidden', true);
                 $('#msgsuccess').removeClass("bg-light");
                 $('#msgsuccess').addClass("bg-info");

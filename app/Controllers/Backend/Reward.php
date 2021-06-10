@@ -35,12 +35,12 @@ class Reward extends BaseController
             ],
         );
         $round = $this->My_Query->selectDataRow($dataQuery)->round;
-        if (date('d', time()) != substr($round, 8)) {
+        /*         if (date('d', time()) != substr($round, 8)) {
             echo json_encode(array('code' => 3, 'msg' => 'ไม่สามารถเพิ่มผลรางวัลได้'));
             die;
         }
 
-
+ */
         $dataQuery = array(
             'tableDB' => 'tb_raward',
             'data' => [
@@ -146,7 +146,6 @@ class Reward extends BaseController
     public function calculateReward()
     {
         $round = json_decode($this->getround(1))[0]->round;
-
         $dataQRewrad = array(
             'tableDB' => 'tb_raward',
             'selectData' => [
@@ -202,18 +201,18 @@ class Reward extends BaseController
                 'status' => 0
             ]
         );
-        if ($this->My_Query->updateData($dataUpdate) === FALSE) {
+        if ($this->My_Query->updateData($dataQuery) === FALSE) {
             return json_encode("อัพเดทงวดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์");
             die;
         }
-
-        if (date('d', time()) == '30' || date('d', time()) == '31' || date('d', time()) == '01' || date('d', time()) == '02' || date('d', time()) == '03') {
-            if (date('d', time()) == '30' || date('d', time()) == '31') {
-                $month = date('m', time());
+        $time = '1623791517';
+        if (date('d', $time) == '30' || date('d', $time) == '31' || date('d', $time) == '01' || date('d', $time) == '02' || date('d', $time) == '03') {
+            if (date('d', $time) == '30' || date('d', $time) == '31') {
+                $month = date('m', $time);
                 if ($month == '12') {
-                    $nextRoundTypeYear = date('Y', time());
+                    $nextRoundTypeYear = date('Y', $time);
                     $nextRoundTypeYear = (string)((int)$nextRoundTypeYear + 1);
-                    $round = date($nextRoundTypeYear . '-01-16', time());
+                    $roundInsert = date($nextRoundTypeYear . '-01-16', $time);
                 } else {
                     $nextRoundTypeMonth = (int)$month + 1;
                     if (strlen($nextRoundTypeMonth) == 1) {
@@ -221,18 +220,18 @@ class Reward extends BaseController
                     } else {
                         $nextRoundTypeMonth = (string)$nextRoundTypeMonth;
                     }
-                    $round = date('Y-' . $nextRoundTypeMonth . '-16', time());
+                    $roundInsert = date('Y-' . $nextRoundTypeMonth . '-16', $time);
                 }
             } else {
-                $round = date('Y-m-16', time());
+                $roundInsert = date('Y-m-16', $time);
             }
         }
-        if (date('d', time()) == '14' || date('d', time()) == '15' || date('d', time()) == '16' || date('d', time()) == '17' || date('d', time()) == '18') {
-            $month = date('m', time());
+        if (date('d', $time) == '14' || date('d', $time) == '15' || date('d', $time) == '16' || date('d', $time) == '17' || date('d', $time) == '18') {
+            $month = date('m', $time);
             if ($month == '12') {
-                $nextRoundTypeYear = date('Y', time());
+                $nextRoundTypeYear = date('Y', $time);
                 $nextRoundTypeYear = (string)((int)$nextRoundTypeYear + 1);
-                $round = date($nextRoundTypeYear . '-01-01', time());
+                $roundInsert = date($nextRoundTypeYear . '-01-01', $time);
             } else {
                 $nextRoundTypeMonth = (int)$month + 1;
                 if (strlen($nextRoundTypeMonth) == 1) {
@@ -240,19 +239,19 @@ class Reward extends BaseController
                 } else {
                     $nextRoundTypeMonth = (string)$nextRoundTypeMonth;
                 }
-                $round = date('Y-' . $nextRoundTypeMonth . '-01', time());
+                $roundInsert = date('Y-' . $nextRoundTypeMonth . '-01', $time);
             }
         }
         $dataQuery = array(
             'tableDB' => 'tb_close_time_bet',
             'data' => [
-                'round' => $round,
                 'close_time' => '15:00',
                 'open_time' => '21:00',
+                'round' => $roundInsert,
                 'status' => 1
             ]
         );
-        if ($this->My_Query->insertData($dataUpdate) === FALSE) {
+        if ($this->My_Query->insertData($dataQuery) === FALSE) {
             return json_encode("อัพเดทงวดไม่สำเร็จกรุณาติดต่อโปรแกรมเมอร์");
             die;
         }

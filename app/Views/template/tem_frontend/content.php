@@ -37,7 +37,7 @@ $this->DB = \Config\Database::connect();
                 getminmax();
             }
         } else {
-                getminmax();
+            getminmax();
         }
 
 
@@ -84,13 +84,14 @@ $this->DB = \Config\Database::connect();
             })
             .done(function(msg) {
                 $('#navtoround').html(msg.round);
-                $('#navtotalbet').html(msg.sumbet);
-                $('#navtoclear').html(msg.sumclear);
-                $('#navtotcom').html(msg.sumcom);
+                $('#navtotalbet').html(thousands_separators(msg.sumbet));
+                $('#navtoclear').html(thousands_separators(msg.sumclear));
+                $('#navtotcom').html(thousands_separators(msg.sumcom));
                 setrate()
             });
     }
-    function setrate() { 
+
+    function setrate() {
         // =======================
         var detail = JSON.parse(localStorage.getItem("maxmin")).detail;
         var txt = `
@@ -148,7 +149,13 @@ $this->DB = \Config\Database::connect();
         $('#bodyshowminmax').html(txt);
 
         // ===================
-     }
+    }
+
+    function thousands_separators(num) {
+        var num_parts = num.toString().split(".");
+        num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return num_parts.join(".");
+    }
 </script>
 
 </html>

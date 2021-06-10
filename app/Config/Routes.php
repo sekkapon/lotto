@@ -38,7 +38,6 @@ $routes->setAutoRoute(true);
 // ==============================================================================
 // $routes->get('/', 'Frontend\Home::index');
 $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
-
 	$routes->get('', 'Frontend\BetHauythai::index');
 	$routes->post('myapi/(:any)', 'Frontend\BetHauythai::$1');
 	$routes->get('bet-list', 'Frontend\BetHauythai::BetList');
@@ -47,6 +46,7 @@ $routes->group('bet-huay-thai', ['filter' => 'auth_mem'], function ($routes) {
 	$routes->add('api/(:any)', 'Frontend\Api::$1');
 });
 // login frontend
+$routes->get('/logout', 'Login\Singin::logout');
 $routes->get('/', 'Login\Singin::index');
 $routes->add('singin/(:any)', 'Login\Singin::$1');
 

@@ -79,4 +79,9 @@ class Singin extends BaseController
 			return false;
 		}
 	}
+	public function logout(){
+		$this->session->remove('session_member');
+		return redirect()->to(base_url('/'));
+	}
+	
 }

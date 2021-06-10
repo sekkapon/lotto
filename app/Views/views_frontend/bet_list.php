@@ -207,7 +207,7 @@ function getround(){
                         <td></td>
                         <td ></td>
                         <td>รวม</td>
-                        <td class="`+((sumbet > 0)?'text-primary':'text-danger')+`">` + ((sumbet > 0)?'+':'-')+sumbet + `</td>
+                        <td class="`+((sumbet > 0)?'text-primary':'text-danger')+`">` + ((sumbet > 0)?'+':'')+sumbet + `</td>
                         <td>` + sumcom + `</td>
                         <td></td>
                     </tr>`;
