@@ -274,4 +274,58 @@ class Cutoff extends BaseController
 
         return view('views_backend/cutoff/view_print', $data);
     }
+
+    public function detailCutoff()
+    {
+        $dataQuery = array(
+            'tableDB' => 'tb_close_time_bet',
+            'selectData' => [
+                'round'
+            ],
+            'whereData' => [
+                'status' => 1
+            ],
+            'orderBy' => [
+                'keyOrderBy' => 'close_time_id',
+                'sortBy' => 'ASC',
+            ],
+        );
+        $round = $this->My_Query->selectDataRow($dataQuery)->round;
+
+        $data['dataUser'] = $this->DB->table('tb_cutoff')
+            ->select('tb_user.firstname,tb_user.username,tb_cutoff.user_id,tb_cutoff.round,tb_cutoff.type_lotto,SUM(tb_cutoff.amount_cutoff) as sumBetByType')
+            ->join('tb_user', 'tb_user.user_id = tb_cutoff.user_id', 'left')
+            ->where('tb_cutoff.round', $round)
+
+            ->groupBy('tb_cutoff.type_lotto,tb_cutoff.user_id')
+            ->orderBy('tb_cutoff.type_lotto', 'ASC')
+            ->get()->getResultArray();
+
+        $checkData = [];
+        $sortData = [];
+        foreach ($data['dataUser'] as $key => $value) {
+            if (!in_array($value['user_id'], $checkData)) {
+                array_push($checkData, $value['user_id']);
+            }
+        }
+        foreach ($checkData as $keyCheckData => $valueCheckData) {
+            $i = 0;
+            foreach ($data['dataUser'] as $keydataUser => $valuedataUser) {
+                if ($valueCheckData == $valuedataUser['user_id']) {
+                    $sortData[$keyCheckData]['user_id'] = $valuedataUser['user_id'];
+                    $sortData[$keyCheckData]['round'] = $valuedataUser['round'];
+                    $sortData[$keyCheckData]['username'] = $valuedataUser['username'];
+                    $sortData[$keyCheckData]['firstname'] = $valuedataUser['firstname'];
+                    $sortData[$keyCheckData]['lotto'][$i] = [
+                        'typeBet' => $valuedataUser['type_lotto'],
+                        'SumBetByType' => $valuedataUser['sumBetByType']
+                    ];
+                    $i++;
+                }
+            }
+        }
+        $sortData['dataByUser'] = $sortData;
+
+        return view('views_backend/cutoff/view_cutoff_detail', $sortData);
+    }
 }

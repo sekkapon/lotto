@@ -95,6 +95,11 @@
                             </a>
                         </li>
                         <li class="submenu-item ">
+                            <a href="<?= base_url('backend/Cutoff/detailCutoff'); ?>">
+                                <span class="subMenu">รายการตัดยอด</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item ">
                             <a href="<?= base_url('backend/Cutoff/printCutoff'); ?>">
                                 <span class="subMenu">ปริ้นใบตัดยอด</span>
                             </a>
@@ -113,11 +118,11 @@
                                 <span class="subMenu">ยอดได้/เสีย ตามสมาชิก</span>
                             </a>
                         </li>
-                        <li class="submenu-item ">
+                        <!--   <li class="submenu-item ">
                             <a href="<?= base_url('backend/report/reportByType'); ?>">
                                 <span class="subMenu">ยอดได้/เสีย ตามประเภทหวย</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="submenu-item ">
                             <a href="<?= base_url('backend/report/reportReward'); ?>">
                                 <span class="subMenu">ผลรางวัลย้อนหลัง</span>

@@ -44,7 +44,7 @@ class Reward extends BaseController
         $dataQuery = array(
             'tableDB' => 'tb_raward',
             'data' => [
-                'reward_date' => $arrData['date'],
+                'reward_date' => $round,
                 'reward_1st' => json_encode([$arrData['reward1st']]),
                 'reward_3upper' => json_encode([substr($arrData['reward1st'], 3)]),
                 'reward_3toad' => json_encode($this->genToad(3, substr($arrData['reward1st'], 3))),
@@ -67,7 +67,7 @@ class Reward extends BaseController
         } else {
 
             $data = array(
-                'reward_date' => $arrData['date'],
+                'reward_date' => $round,
                 'reward_1st' => $arrData['reward1st'],
                 'reward_3under_1st' => $arrData['reward3under1st'],
                 'reward_3under_2nd' => $arrData['reward3under2nd'],
@@ -181,6 +181,7 @@ class Reward extends BaseController
                 ]
             );
             $rowdata = $this->My_Query->selectDataRow($dataQuery);
+
             $dataUpdate = array(
                 'tableDB' => 'tb_ticket',
                 'whereData' => [
@@ -320,6 +321,7 @@ class Reward extends BaseController
                 break;
             case "floatUnder":
                 // 'reward_float_under'
+
                 if (in_array($number_lotto, json_decode($dataRewrad->reward_float_under))) {
                     return true;
                 }

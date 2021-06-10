@@ -77,7 +77,7 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="form-body">
-                                <div class="row">
+                                <!--       <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group has-icon-left">
                                             <label>งวดวันที่</label>
@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group has-icon-left">
@@ -195,7 +195,7 @@
     $("#formReward").submit(function(e) {
         e.preventDefault();
         arrData = {
-            'date': $('#round').val(),
+            // 'date': $('#round').val(),
             'reward1st': $('#reward1st').val(),
             'reward3under1st': $('#reward3under1st').val(),
             'reward3under2nd': $('#reward3under2nd').val(),
